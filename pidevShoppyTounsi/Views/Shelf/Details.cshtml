@@ -1,0 +1,67 @@
+﻿@model pidevShoppyTounsi.Models.Shelf
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+
+<div>
+    <div class="card">
+        <div class="card-header">
+            <i class="fa fa-eye"></i> Details of User : @Model.shelfname
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                @Html.LabelFor(model => model.shelfname, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.shelfname, new { htmlAttributes = new { @disabled = "disabled", @class = "form-control form-control-rounded" } })
+
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.type, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.type, new { htmlAttributes = new { @disabled = "disabled", @class = "form-control form-control-rounded" } })
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.reductionPercantage, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.reductionPercantage, new { htmlAttributes = new { @disabled = "disabled", @class = "form-control form-control-rounded" } })
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.rating, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.rating, new { htmlAttributes = new { @disabled = "disabled", @class = "form-control form-control-rounded" } })
+
+                </div>
+            </div>
+
+
+     
+
+
+            <div class="col-md-offset-2 col-md-10">
+
+                <button type="button" value="Edit" class="btn btn-dark" onclick="location.href='../Edit/'+@Model.shelfId">
+                    <i class="fa fa-edit"></i>
+                    Edit
+                </button>
+                <button type="button" value="Back To List" class="btn btn-primary" onclick="location.href='../Index'">
+                    <i class="fa fa-home"></i>
+                    Back To list
+                </button>
+            </div>
+
+
+        </div>
+        </div>
+    </div>
+    

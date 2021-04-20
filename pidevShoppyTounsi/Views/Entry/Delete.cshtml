@@ -1,0 +1,81 @@
+﻿@model pidevShoppyTounsi.Models.Entry
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+
+
+<div>
+    <div class="card">
+        <div class="card-header">
+            <i class="fa fa-trash"></i> Are you sure you want to delete this Entry 
+        <div class="card-body">
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.product, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.product.name, new { htmlAttributes = new { @disabled = "disabled", @class = "form-control form-control-rounded" } })
+
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.provider, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.provider.name, new { htmlAttributes = new { @disabled = "disabled", @class = "form-control form-control-rounded" } })
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.quantity, new { htmlAttributes = new { @disabled = "disabled", @class = "form-control form-control-rounded" } })
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.entryDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.entryDate, new { htmlAttributes = new { @disabled = "disabled", @class = "form-control form-control-rounded" } })
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.articalPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.articalPrice, new { htmlAttributes = new { @disabled = "disabled", @class = "form-control form-control-rounded" } })
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.montant, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.montant, new { htmlAttributes = new { @disabled = "disabled", @class = "form-control form-control-rounded" } })
+
+                </div>
+            </div>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" value="Delete" class="btn btn-danger">
+                        <i class="fa fa-trash-o"></i>
+                        Delete
+                    </button>
+                    <button type="button" value="Back To List" class="btn btn-primary" onclick="location.href='../Index'">
+                        <i class="fa fa-home"></i>
+                        Back To list
+                    </button>
+                </div>
+            }
+        </div>
+        </div>
+</div>

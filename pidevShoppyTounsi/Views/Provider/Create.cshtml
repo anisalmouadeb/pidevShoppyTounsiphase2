@@ -1,0 +1,99 @@
+﻿@model pidevShoppyTounsi.Models.Provider
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="card">
+        <div class="card-header">
+            <i class="fa fa-plus"></i> Add New Provider 
+        </div>
+        <div class="card-body">
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-7">
+                        @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control form-control-rounded" } })
+                        @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-7">
+                        @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control form-control-rounded" } })
+                        @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.note, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-7">
+                        @Html.EditorFor(model => model.note, new { htmlAttributes = new { @class = "form-control form-control-rounded" } })
+                        @Html.ValidationMessageFor(model => model.note, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.deleviryFees, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-7">
+                        @Html.EditorFor(model => model.deleviryFees, new { htmlAttributes = new { @class = "form-control form-control-rounded" } })
+                        @Html.ValidationMessageFor(model => model.deleviryFees, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.seuilMontant, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-7">
+                        @Html.EditorFor(model => model.seuilMontant, new { htmlAttributes = new { @class = "form-control form-control-rounded" } })
+                        @Html.ValidationMessageFor(model => model.seuilMontant, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.reductionPercentage, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-7">
+                        @Html.EditorFor(model => model.reductionPercentage, new { htmlAttributes = new { @class = "form-control form-control-rounded" } })
+                        @Html.ValidationMessageFor(model => model.reductionPercentage, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Disponibility, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.Disponibility)
+                            @Html.ValidationMessageFor(model => model.Disponibility, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" value="Create" class="btn btn-success">
+                        <i class="fa fa-check-square-o"></i>
+                        Create
+                    </button>
+                    <button type="button" value="Back To List" class="btn btn-primary" onclick="location.href='Index'">
+                        <i class="fa fa-check-square-o"></i>
+                        Back To list
+                    </button>
+
+                </div>
+            </div>
+            </div>
+        </div>
+            }
+
+
+
+            @section Scripts {
+                @Scripts.Render("~/bundles/jqueryval")
+            }

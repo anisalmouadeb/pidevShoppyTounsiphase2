@@ -1,0 +1,95 @@
+﻿@model pidevShoppyTounsi.Models.Provider
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<div>
+    <div class="card">
+        <div class="card-header">
+            <i class="fa fa-eye"></i> Details of Provider @Model.name
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @disabled = "disabled", @class = "form-control form-control-rounded" } })
+
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @disabled = "disabled", @class = "form-control form-control-rounded" } })
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.note, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.note, new { htmlAttributes = new { @disabled = "disabled", @class = "form-control form-control-rounded" } })
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.deleviryFees, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.deleviryFees, new { htmlAttributes = new { @disabled = "disabled", @class = "form-control form-control-rounded" } })
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.seuilMontant, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.seuilMontant, new { htmlAttributes = new { @disabled = "disabled", @class = "form-control form-control-rounded" } })
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.reductionPercentage, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.reductionPercentage, new { htmlAttributes = new { @disabled = "disabled", @class = "form-control form-control-rounded" } })
+
+                </div>
+            </div>
+
+            <div>
+
+                @Html.LabelFor(model => model.Disponibility, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                @if (Model.Disponibility)
+                {<div class="icheck-material-success ">
+                        <input type="checkbox" id="success" checked disabled />
+                        <label for="success"></label>
+                    </div>}
+                else
+                {<div class="icheck-material-danger">
+                        <input type="checkbox" id="success" checked disabled />
+                        <label for="success"></label>
+                    </div>}
+
+
+
+            </div>
+
+
+
+            <div class="col-md-offset-2 col-md-10">
+                <button type="button" value="Back To List" class="btn btn-dark" onclick="location.href='../Edit/'+@Model.providerId">
+                    <i class="fa fa-edit"></i>
+                    Edit
+                </button>
+                <button type="button" value="Back To List" class="btn btn-primary" onclick="location.href='../Index'">
+                    <i class="fa fa-home"></i>
+                    Back To list
+                </button>
+            </div>
+
+
+            </div></div></div>

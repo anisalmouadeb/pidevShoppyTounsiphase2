@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pidevShoppyTounsi", "pidevShoppyTounsi\pidevShoppyTounsi.csproj", "{FD87525B-D8D6-4F51-BAD8-DFDE35017B82}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FD87525B-D8D6-4F51-BAD8-DFDE35017B82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD87525B-D8D6-4F51-BAD8-DFDE35017B82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD87525B-D8D6-4F51-BAD8-DFDE35017B82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD87525B-D8D6-4F51-BAD8-DFDE35017B82}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {512F9CEF-C2A8-45CF-9163-E776CC8D2CF2}
+	EndGlobalSection
+EndGlobal

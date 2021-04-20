@@ -1,0 +1,106 @@
+﻿@model pidevShoppyTounsi.Models.Shelf
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+<div class="card">
+    <div class="card-header">
+        <i class="fa fa-plus"></i> Add New Shelf
+    </div>
+    <div class="card-body">
+        <div class="form-horizontal">
+
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.shelfname, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.shelfname, new { htmlAttributes = new { @class = "form-control form-control-rounded" } })
+                    @Html.ValidationMessageFor(model => model.shelfname, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.type, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EnumDropDownListFor(model => model.type, new { @class = "form-control form-control-rounded" })
+                    @Html.ValidationMessageFor(model => model.type, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.reductionPercantage, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.reductionPercantage, new { htmlAttributes = new { @class = "form-control form-control-rounded" } })
+                    @Html.ValidationMessageFor(model => model.reductionPercantage, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.image, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.image, new { htmlAttributes = new { @class = "form-control form-control-rounded" } })
+                    @Html.ValidationMessageFor(model => model.image, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" value="Create" class="btn btn-success">
+                    <i class="fa fa-check-square-o"></i>
+                    Create
+                </button>
+                <button type="button" value="Back To List" class="btn btn-primary" onclick="location.href='Index'">
+                    <i class="fa fa-check-square-o"></i>
+                    Back To list
+                </button>
+
+            </div>
+            <br/>
+            <div>
+                @{
+                    if (TempData["message"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible" role="alert" style="width:60% ;margin-left : 0%; height:50px">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <div class="text-center">
+                                <div class="alert-message" style="margin-left : 30%">
+
+                                    <span>@Html.Label(TempData["message"].ToString(), new { @style = "font-size:10px ;color:white;" })</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                }
+            </div>
+        </div>
+        </div>
+
+        </div>
+        }
+
+
+
+
+
+
+
+
+
+
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }

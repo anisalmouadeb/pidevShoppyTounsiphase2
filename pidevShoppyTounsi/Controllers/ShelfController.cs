@@ -11,6 +11,7 @@ using System.Web.Mvc;
 
 namespace pidevShoppyTounsi.Controllers
 {
+    [RedirectingAction]
     public class ShelfController : Controller
     {
         HttpClient Client;

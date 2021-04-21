@@ -6,9 +6,11 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
+using pidevShoppyTounsi.Models.Login;
 
 namespace pidevShoppyTounsi.Controllers
 {
+    [RedirectingAction]
     public class ProviderController : Controller
     {
         HttpClient Client;

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Net.Http;
 using pidevShoppyTounsi.Models.Login;
 using pidevShoppyTounsi.Models;
+using System.Diagnostics;
 
 namespace pidevShoppyTounsi.Controllers
 {
@@ -62,9 +63,13 @@ namespace pidevShoppyTounsi.Controllers
                     JwtResponse response = APIresponse.Content.ReadAsAsync<JwtResponse>().Result;
                     TokenConnect = response.accessToken;
 
+                    if(response.roles.Contains("ROLE_ADMIN"))
+                    {
+                        return RedirectToAction("../User");
+                    }
                     
 
-                    return RedirectToAction("Index");
+                    return RedirectToAction("../Home");
                 }
                 else
                 {
@@ -76,7 +81,7 @@ namespace pidevShoppyTounsi.Controllers
 
 
             }
-            catch(Exception e)
+            catch
             {
                 return View();
             }
@@ -100,7 +105,7 @@ namespace pidevShoppyTounsi.Controllers
             {
                 JwtResponse response = APIresponse.Content.ReadAsAsync<JwtResponse>().Result;
                
-                return RedirectToAction("LoginRequest");
+                return RedirectToAction("Verify");
             }
             else
             {
@@ -151,13 +156,18 @@ namespace pidevShoppyTounsi.Controllers
         [HttpPost]
         public ActionResult ForgetPassword(ForgetPassword forgetPassword)
         {
-            LoginRequest l = new LoginRequest();
-            l.username = forgetPassword.username.ToLower();
-            Console.WriteLine(l.username);
+           
             try
             {
+                LoginRequest l = new LoginRequest();
+                l.username = forgetPassword.username;
+                l.password= forgetPassword
+                Debug.WriteLine(l.username);
+                Debug.WriteLine(l.password);
+                Debug.WriteLine("anis");
 
-                var APIresponse = Client.PostAsJsonAsync<LoginRequest>(baseAddress + "forget", l).GetAwaiter().GetResult();
+                var APIresponse = Client.PostAsJsonAsync<LoginRequest>(baseAddress + "forget",l).GetAwaiter().GetResult();
+               
                 if (APIresponse.IsSuccessStatusCode)
                 {
                     return RedirectToAction("LoginRequest");

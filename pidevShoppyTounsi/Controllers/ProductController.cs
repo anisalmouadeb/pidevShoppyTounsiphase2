@@ -8,50 +8,66 @@ using System.Web.Mvc;
 
 namespace pidevShoppyTounsi.Controllers
 {
-    public class OrderController : Controller
+    public class ProductController : Controller
     {
         HttpClient Client;
         string baseAddress;
 
-        public OrderController()
+        public ProductController()
         {
             Client = new HttpClient();
             baseAddress = "http://localhost:8081/";
             Client.BaseAddress = new Uri(baseAddress);
             Client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
         }
-        // GET: Order
+
+
+        // GET: Product
         public ActionResult Index()
         {
-            HttpResponseMessage response = Client.GetAsync("getAllOrders").Result;
-            IEnumerable<Order> orders;
+            HttpResponseMessage response = Client.GetAsync("allProducts").Result;
+            IEnumerable<Product> Products;
 
             if (response.IsSuccessStatusCode)
             {
-                orders = response.Content.ReadAsAsync<IEnumerable<Order>>().Result;
+                Products = response.Content.ReadAsAsync<IEnumerable<Product>>().Result;
             }
             else
             {
-                orders = null;
+                Products = null;
 
             }
 
-            return View(orders);
+            return View(Products);
         }
 
-        // GET: Order/Details/5
+        // GET: Product/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+
+            HttpResponseMessage response = Client.GetAsync("getProductById/" + id).Result;
+            Product Product;
+
+            if (response.IsSuccessStatusCode)
+            {
+                Product = response.Content.ReadAsAsync<Product>().Result;
+            }
+            else
+            {
+                Product = null;
+
+            }
+
+            return View(Product);
         }
 
-        // GET: Order/Create
+        // GET: Product/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Order/Create
+        // POST: Product/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -67,13 +83,13 @@ namespace pidevShoppyTounsi.Controllers
             }
         }
 
-        // GET: Order/Edit/5
+        // GET: Product/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Order/Edit/5
+        // POST: Product/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -89,13 +105,13 @@ namespace pidevShoppyTounsi.Controllers
             }
         }
 
-        // GET: Order/Delete/5
+        // GET: Product/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Order/Delete/5
+        // POST: Product/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
@@ -109,44 +125,6 @@ namespace pidevShoppyTounsi.Controllers
             {
                 return View();
             }
-        }
-        // GET: GetOrderOftheMonth
-        public ActionResult GetOrderOftheMonth()
-        {
-
-            HttpResponseMessage response = Client.GetAsync("GetOrderOftheMonth").Result;
-            Order orders;
-
-            if (response.IsSuccessStatusCode)
-            {
-                orders = response.Content.ReadAsAsync<Order>().Result;
-            }
-            else
-            {
-                orders = null;
-
-            }
-
-            return View(orders);
-        }
-        // GET: GetStarUserOftheMonth
-        public ActionResult GetStarUserOftheMonth()
-        {
-
-            HttpResponseMessage response = Client.GetAsync("GetStarUserOftheMonth").Result;
-            User  users;
-
-            if (response.IsSuccessStatusCode)
-            {
-                users = response.Content.ReadAsAsync<User>().Result;
-            }
-            else
-            {
-                users = null;
-
-            }
-
-            return View(users);
         }
     }
 }

@@ -13,6 +13,7 @@ namespace pidevShoppyTounsi.Models
         public object type { get; set; }
         public string categoryType { get; set; }
         public int lastShelf { get; set; }
+        public Shelf shelf { get; set; }
     }
 
 }

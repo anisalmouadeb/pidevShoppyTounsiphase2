@@ -1,0 +1,88 @@
+﻿@model pidevShoppyTounsi.Models.User
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div>
+    <div class="card">
+        <div class="card-header">
+            <i class="fa fa-eye"></i> My Account Details
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @disabled = "disabled", @class = "form-control form-control-rounded" } })
+
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @disabled = "disabled", @class = "form-control form-control-rounded" } })
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.cin, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.cin, new { htmlAttributes = new { @disabled = "disabled", @class = "form-control form-control-rounded" } })
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.age, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.age, new { htmlAttributes = new { @disabled = "disabled", @class = "form-control form-control-rounded" } })
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.numTel, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.numTel, new { htmlAttributes = new { @disabled = "disabled", @class = "form-control form-control-rounded" } })
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.address, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.address, new { htmlAttributes = new { @disabled = "disabled", @class = "form-control form-control-rounded" } })
+
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.sex, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.sex, new { htmlAttributes = new { @disabled = "disabled", @class = "form-control form-control-rounded" } })
+
+                </div>
+            </div>
+          
+            <div>
+            
+                
+
+
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="button" value="Back To List" class="btn btn-dark" onclick="location.href='Edit'">
+                        <i class="fa fa-edit"></i>
+                        Edit
+                    </button>
+                    <button type="button" value="Back To List" class="btn btn-primary" onclick="location.href='../../Provider/Index'">
+                        <i class="fa fa-home"></i>
+                        Back To Home
+                    </button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

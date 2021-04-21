@@ -124,7 +124,7 @@ namespace pidevShoppyTounsi.Controllers
             }
        
             ViewBag.shelfname = shelf.shelfname;
-            ViewBag.ProductId = new SelectList(cats3, "categoryId", "name");
+            ViewBag.CategoryId = new SelectList(cats3, "categoryId", "name");
             return View(cats);
         }
 
@@ -286,7 +286,92 @@ namespace pidevShoppyTounsi.Controllers
             }
         }
 
+        public ActionResult AddCategory(int shelfId)
 
+        {
+            ViewBag.shelfid = shelfId;
+            HttpResponseMessage response = Client.GetAsync("getShelfById/" + shelfId).Result;
+            Shelf shelf;
+            HttpResponseMessage response2 = Client.GetAsync("category/getAllCategory").Result;
+            IEnumerable<Category> cats2;
+            IList<Category> cats3 = new List<Category> { }; 
+            if (response2.IsSuccessStatusCode)
+            {
+                cats2 = response2.Content.ReadAsAsync<IEnumerable<Category>>().Result;
+            }
+            else
+            {
+                cats2 = null;
+            }
+
+
+
+            if (response.IsSuccessStatusCode)
+            {
+                shelf = response.Content.ReadAsAsync<Shelf>().Result;
+            }
+            else
+            {
+                shelf = null;
+
+            }
+
+            IEnumerable<Category> cats;
+            cats = shelf.category;
+            foreach (Category c in cats2)
+            {
+                Debug.WriteLine(c.categoryId);
+               if (cats!=null)
+                {
+                    foreach (Category c2 in cats)
+                    {
+                        if (c.categoryId != c2.categoryId)
+                        {
+
+                           
+                        }
+                    }
+                }
+                cats3.Add(c);
+            }
+
+            ViewBag.shelfname = shelf.shelfname;
+            ViewBag.CategoryId = new SelectList(cats3, "categoryId", "name");
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddCategory(FormCollection collection, int shelfId)
+        {
+            try
+            {
+
+
+                var value = collection["category"];
+
+                Debug.WriteLine(value);
+
+                var APIresponse = Client.PutAsJsonAsync<Shelf>(baseAddress + "affecterCategoryAShelf/" + value + "/" + shelfId, null).GetAwaiter().GetResult();
+                // TODO: Add insert logic here
+                String message = APIresponse.ToString();
+                if (APIresponse.IsSuccessStatusCode)
+                {
+                    JwtResponse response = APIresponse.Content.ReadAsAsync<JwtResponse>().Result;
+
+                    return RedirectToAction("ListOfCategory/" + shelfId);
+                }
+                else
+                {
+                    return RedirectToAction("ListOfCategory/" + shelfId);
+                }
+
+
+            }
+            catch
+            {
+                return RedirectToAction("ListOfCategory/" + shelfId);
+            }
+        }
 
         // POST: Shelf/Delete/5
         [HttpPost]

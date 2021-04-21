@@ -10,21 +10,7 @@
 <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
 <div class="card">
-    <div class="card-header"><i class="fa fa-plus"></i> Add Category To :@ViewBag.shelfname</div>
-    <div class="card-body">
 
-        <div class="form-group">
-            @Html.Label("Category", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-7">
-                @Html.DropDownList("Category", ViewBag.ProductId as SelectList, htmlAttributes: new { @class = "form-control form-control-rounded" })
-                <br/>
-                <a class="btn btn-success" href="@Url.Action("Desaaffcter","Shelf")"> <i class="fa fa-plus"></i> Add </a>
-            </div>
-        </div>
-    </div>
-   
-        
-        
         <div class="card-header"><i class="fa fa-table"></i> List of Products of shelf :@ViewBag.shelfname</div>
         <div class="card-body">
 
@@ -59,7 +45,7 @@
                                     @Html.DisplayFor(modelItem => item.categoryType)
                                 </td>
 
-                                <td>@Html.ActionLink("Delete", "DeleteCategory", new { id = item.categoryId,shelfId= @ViewBag.shelfid })</td>
+                                <td>@Html.ActionLink("Delete", "DeleteCategory", new { id = item.categoryId, shelfId = @ViewBag.shelfid })</td>
 
 
 
@@ -68,6 +54,25 @@
                     </tbody>
                 </table>
             </div>
+            <br /><br />
+            <div class="col-md-7">
+
+
+               
+            </div>
+
+
+            <div class="col-md-offset-2 col-md-10">
+                <a class="btn btn-success" href="@Url.Action("AddCategory","Shelf", new { shelfId= @ViewBag.shelfid })"> <i class="fa fa-plus"></i> Add Category To Shelf </a>
+                <button type="button" value="Back To List" class="btn btn-primary" onclick="location.href='../Index'">
+                    <i class="fa fa-check-square-o"></i>
+                    Back To list of shelfs
+                </button>
+
+            </div>
+
+
+
         </div>
     </div>
     <script>

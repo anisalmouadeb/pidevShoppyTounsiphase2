@@ -167,6 +167,7 @@
     <Compile Include="Models\Login\RedirectingActionAttribute.cs" />
     <Compile Include="Models\Login\SignUpRequest.cs" />
     <Compile Include="Models\Login\Verify.cs" />
+    <Compile Include="Models\OrderLine.cs" />
     <Compile Include="Models\ShelfRating.cs" />
     <Compile Include="Models\ShelfType.cs" />
     <Compile Include="Models\Product.cs" />
@@ -1311,10 +1312,11 @@
     <Content Include="Views\Login\Verify.cshtml" />
     <Content Include="Views\Shared\LoginLayout.cshtml" />
     <Content Include="Views\Shelf\ListOfCategory.cshtml" />
-    <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\Shelf\AddCategory.cshtml" />
     <Content Include="Views\AdminAccount\Details.cshtml" />
     <Content Include="Views\AdminAccount\Edit.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Order\GetOrderOftheMonth.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

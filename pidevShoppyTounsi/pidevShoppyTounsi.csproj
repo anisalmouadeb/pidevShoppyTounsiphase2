@@ -1319,6 +1319,10 @@
     <Content Include="Views\AdminAccount\Edit.cshtml" />
     <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\Order\GetOrderOftheMonth.cshtml" />
+    <Content Include="Views\Product\Details.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Shelf\Delete.cshtml" />
+    <Content Include="Views\Shelf\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

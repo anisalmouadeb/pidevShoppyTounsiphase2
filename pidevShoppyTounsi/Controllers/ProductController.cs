@@ -1,6 +1,7 @@
 ﻿using pidevShoppyTounsi.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Web;
@@ -25,7 +26,7 @@ namespace pidevShoppyTounsi.Controllers
         // GET: Product
         public ActionResult Index()
         {
-            HttpResponseMessage response = Client.GetAsync("allProducts").Result;
+            HttpResponseMessage response = Client.GetAsync("product/allProducts").Result;
             IEnumerable<Product> Products;
 
             if (response.IsSuccessStatusCode)
@@ -37,7 +38,10 @@ namespace pidevShoppyTounsi.Controllers
                 Products = null;
 
             }
-
+            foreach(Product p in Products)
+            {
+                Debug.WriteLine(p.name);
+            }
             return View(Products);
         }
 

@@ -129,5 +129,24 @@ namespace pidevShoppyTounsi.Controllers
 
             return View(orders);
         }
+        // GET: GetStarUserOftheMonth
+        public ActionResult GetStarUserOftheMonth()
+        {
+
+            HttpResponseMessage response = Client.GetAsync("GetStarUserOftheMonth").Result;
+            User  users;
+
+            if (response.IsSuccessStatusCode)
+            {
+                users = response.Content.ReadAsAsync<User>().Result;
+            }
+            else
+            {
+                users = null;
+
+            }
+
+            return View(users);
+        }
     }
 }

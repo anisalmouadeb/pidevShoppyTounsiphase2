@@ -29,7 +29,7 @@
                         <th>
                             @Html.DisplayNameFor(model => model.confirmedPayment)
                         </th>
-                        <th></th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -60,7 +60,7 @@
                                     </div>
                                 </div>
                             </td>
-                            
+
                         </tr>
                     }
                 </tbody>
@@ -71,9 +71,13 @@
                 <i class="fa fa-check-square-o"></i>
                 Order of the month
             </button>
-        </div>
+            <button type="button" value="User Of the month" class="btn btn-primary" onclick="location.href='GetStarUserOftheMonth'">
+                <i class="fa fa-check-square-o"></i>
+                User of the month
+            </button>
         </div>
     </div>
+</div>
 <script>
 
     $('#demoGrid').dataTable({

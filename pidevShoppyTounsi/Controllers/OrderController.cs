@@ -23,7 +23,7 @@ namespace pidevShoppyTounsi.Controllers
         // GET: Order
         public ActionResult Index()
         {
-            HttpResponseMessage response = Client.GetAsync("").Result;
+            HttpResponseMessage response = Client.GetAsync("getAllOrders").Result;
             IEnumerable<Order> orders;
 
             if (response.IsSuccessStatusCode)
@@ -109,6 +109,25 @@ namespace pidevShoppyTounsi.Controllers
             {
                 return View();
             }
+        }
+        // GET: GetOrderOftheMonth
+        public ActionResult GetOrderOftheMonth()
+        {
+
+            HttpResponseMessage response = Client.GetAsync("GetOrderOftheMonth").Result;
+            Order orders;
+
+            if (response.IsSuccessStatusCode)
+            {
+                orders = response.Content.ReadAsAsync<Order>().Result;
+            }
+            else
+            {
+                orders = null;
+
+            }
+
+            return View(orders);
         }
     }
 }

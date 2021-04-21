@@ -1,0 +1,77 @@
+﻿@model pidevShoppyTounsi.Models.Shelf
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="card">
+        <div class="card-header">
+            <i class="fa fa-table"></i> Edit of Shelf : @ViewBag.name
+        </div>
+        <div class="card-body">
+
+            <div class="form-horizontal">
+              
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.shelfId)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.shelfname, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-7">
+                        @Html.EditorFor(model => model.shelfname, new { htmlAttributes = new { @class = "form-control form-control-rounded" } })
+                        @Html.ValidationMessageFor(model => model.shelfname, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.type, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-7">
+                        @Html.EnumDropDownListFor(model => model.type, new { @class = "form-control form-control-rounded" })
+                        @Html.ValidationMessageFor(model => model.type, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.reductionPercantage, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-7">
+                        @Html.EditorFor(model => model.reductionPercantage, new { htmlAttributes = new { @class = "form-control form-control-rounded" } })
+                        @Html.ValidationMessageFor(model => model.reductionPercantage, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.image, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-7">
+                        @Html.EditorFor(model => model.image, new { htmlAttributes = new { @class = "form-control form-control-rounded" } })
+                        @Html.ValidationMessageFor(model => model.image, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" value="Create" class="btn btn-success">
+                        <i class="fa fa-edit"></i>
+                        Edit
+                    </button>
+                    <button type="button" value="Back To List" class="btn btn-primary" onclick="location.href='Index'">
+                        <i class="fa fa-check-square-o"></i>
+                        Back To list
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

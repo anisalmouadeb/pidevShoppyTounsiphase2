@@ -232,11 +232,22 @@ namespace pidevShoppyTounsi.Controllers
 
         // POST: Shelf/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Shelf shelf,int id, FormCollection collection)
         {
             try
             {
                 // TODO: Add update logic here
+             
+              
+
+                
+                ViewBag.name = shelf.shelfname;
+                Debug.WriteLine(shelf.shelfname);
+                Debug.WriteLine(id);
+                // TODO: Add update logic here
+                shelf.shelfId = id;
+
+                var APIresponse = Client.PutAsJsonAsync<Shelf>(baseAddress + "updateShelf", shelf).ContinueWith(putTask => putTask.Result.EnsureSuccessStatusCode());
 
                 return RedirectToAction("Index");
             }
@@ -249,7 +260,19 @@ namespace pidevShoppyTounsi.Controllers
         // GET: Shelf/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            HttpResponseMessage response = Client.GetAsync("getShelfById/" + id).Result;
+            Shelf shelf;
+
+            if (response.IsSuccessStatusCode)
+            {
+                shelf = response.Content.ReadAsAsync<Shelf>().Result;
+            }
+            else
+            {
+                shelf = null;
+
+            }
+            return View(shelf);
         }
         
      
@@ -381,8 +404,9 @@ namespace pidevShoppyTounsi.Controllers
             try
             {
                 // TODO: Add delete logic here
-
+                var APIresponse = Client.DeleteAsync(baseAddress + "deleteShelfById/" + id).ContinueWith(deleteTask => deleteTask.Result.EnsureSuccessStatusCode());
                 return RedirectToAction("Index");
+                
             }
             catch
             {

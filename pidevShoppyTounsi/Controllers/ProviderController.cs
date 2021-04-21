@@ -32,94 +32,18 @@ namespace pidevShoppyTounsi.Controllers
             HttpResponseMessage response = Client.GetAsync("getAllProviders").Result;
             IEnumerable<Provider> providers;
 
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.EmailSortParm = sortOrder == "Email" ? "email_desc" : "Email";
-            ViewBag.NoteSortParm = sortOrder == "Note" ? "note_desc" : "Note";
-            ViewBag.DeleviryFeesSortParm = sortOrder == "DeleviryFees" ? "DeleviryFees_desc" : "DeleviryFees";
-            ViewBag.SeuilMontantSortParm = sortOrder == "SeuilMontant" ? "SeuilMontant_desc" : "SeuilMontant";
-            ViewBag.ReductionPercentageSortParm = sortOrder == "ReductionPercentage" ? "ReductionPercentage_desc" : "ReductionPercentage";
-            ViewBag.DisponibilitySortParm = sortOrder == "Disponibility" ? "Disponibility_desc" : "Disponibility";
-            ViewBag.CurrentSort = sortOrder;
-            if (searchString != null)
-            {
-                page = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
-
-            ViewBag.CurrentFilter = searchString;
-
             if (response.IsSuccessStatusCode)
             {
                 providers = response.Content.ReadAsAsync<IEnumerable<Provider>>().Result;
                 
-                if (!String.IsNullOrEmpty(searchString))
-                {
-                    providers = providers.Where(s => s.name.Contains(searchString)
-                                           || s.email.Contains(searchString));
-                }
-
-                switch (sortOrder)
-                {
-                    case "name_desc":
-                        providers = providers.OrderByDescending(s => s.name);
-                        break;
-                    case "Email":
-                        providers = providers.OrderBy(s => s.email);
-                        break;
-                    case "email_desc":
-                        providers = providers.OrderByDescending(s => s.email);
-                        break;
-                    case "Note":
-                        providers = providers.OrderBy(s => s.note);
-                        break;
-                    case "note_desc":
-                        providers = providers.OrderByDescending(s => s.note);
-                        break;
-                    case "DeleviryFees":
-                        providers = providers.OrderBy(s => s.deleviryFees);
-                        break;
-                    case "DeleviryFees_desc":
-                        providers = providers.OrderByDescending(s => s.deleviryFees);
-                        break;
-                    case "SeuilMontant":
-                        providers = providers.OrderBy(s => s.seuilMontant);
-                        break;
-                    case "SeuilMontant_desc":
-                        providers = providers.OrderByDescending(s => s.seuilMontant);
-                        break;
-                    case "ReductionPercentage":
-                        providers = providers.OrderBy(s => s.reductionPercentage);
-                        break;
-                    case "ReductionPercentage_desc":
-                        providers = providers.OrderByDescending(s => s.reductionPercentage);
-                        break;
-                    case "Disponibility":
-                        providers = providers.OrderBy(s => s.Disponibility);
-                        break;
-                    case "Disponibility_desc":
-                        providers = providers.OrderByDescending(s => s.Disponibility);
-                        break;
-                    default:
-                        providers = providers.OrderBy(s => s.name);
-                        break;
-                }
-
-
-
-
             }
             else
             {
                 providers = null;
 
             }
-            int pageSize = 5;
-            int pageNumber = (page ?? 1);
-        
-            return View(providers.ToPagedList(pageNumber,pageSize));
+         
+            return View(providers);
         }
 
         // GET: Provider/Details/5

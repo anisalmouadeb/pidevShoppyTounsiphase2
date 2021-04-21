@@ -1,7 +1,7 @@
 ﻿@model pidevShoppyTounsi.Models.Shelf
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Delete";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
@@ -10,7 +10,7 @@
 <div>
     <div class="card">
         <div class="card-header">
-            <i class="fa fa-eye"></i> Details of Shelf : @Model.shelfname
+            <i class="fa fa-trash"></i> Are you sure you want to delete the shelf :
         </div>
         <div class="card-body">
             <div class="form-group">
@@ -45,23 +45,28 @@
             </div>
 
 
-     
 
 
-            <div class="col-md-offset-2 col-md-10">
-
-                <button type="button" value="Edit" class="btn btn-dark" onclick="location.href='../Edit/'+@Model.shelfId">
-                    <i class="fa fa-edit"></i>
-                    Edit
-                </button>
-                <button type="button" value="Back To List" class="btn btn-primary" onclick="location.href='../Index'">
-                    <i class="fa fa-home"></i>
-                    Back To list
-                </button>
-            </div>
 
 
-        </div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" value="Delete" class="btn btn-danger">
+                        <i class="fa fa-trash-o"></i>
+                        Delete
+                    </button>
+                    <button type="button" value="Back To List" class="btn btn-primary" onclick="location.href='../Index'">
+                        <i class="fa fa-home"></i>
+                        Back To list
+                    </button>
+                </div>
+            }
+
+
+
         </div>
     </div>
-    
+</div>

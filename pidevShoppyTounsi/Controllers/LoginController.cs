@@ -148,6 +148,39 @@ namespace pidevShoppyTounsi.Controllers
             }
         }
 
+     
+
+        public ActionResult RestPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult RestPassword(RestPassword forgetPassword)
+        {
+            try
+            {
+                var APIresponse = Client.PostAsJsonAsync<RestPassword>("http://localhost:8081/reset", forgetPassword).GetAwaiter().GetResult();
+
+
+                if (APIresponse.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("LoginRequest");
+                }
+                else
+                {
+                    TempData["message"] = APIresponse.StatusCode;
+                    return RedirectToAction("RestPassword");
+                }
+            }
+            catch
+            {
+                return View();
+            }
+}
+
+
+
+
         public ActionResult ForgetPassword()
         {
             return View();
@@ -164,17 +197,18 @@ namespace pidevShoppyTounsi.Controllers
                 l.password = null;
                 Debug.WriteLine(l.username);
                 Debug.WriteLine(l.password);
-                Debug.WriteLine("anis");
+                
 
-                var APIresponse = Client.PostAsJsonAsync<LoginRequest>(baseAddress + "forget",l).GetAwaiter().GetResult();
+                var APIresponse = Client.PostAsJsonAsync<LoginRequest>("http://localhost:8081/forget", l).GetAwaiter().GetResult();
                
+                
                 if (APIresponse.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("LoginRequest");
+                    return RedirectToAction("RestPassword");
                 }
                 else
                 {
-                    TempData["message"] = "Verify your Username";
+                    TempData["message"] = APIresponse.StatusCode;
                     return RedirectToAction("ForgetPassword");
                 }
             }

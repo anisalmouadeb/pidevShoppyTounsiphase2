@@ -161,7 +161,7 @@ namespace pidevShoppyTounsi.Controllers
             {
                 LoginRequest l = new LoginRequest();
                 l.username = forgetPassword.username;
-                l.password= forgetPassword
+                l.password = null;
                 Debug.WriteLine(l.username);
                 Debug.WriteLine(l.password);
                 Debug.WriteLine("anis");

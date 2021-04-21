@@ -148,6 +148,7 @@
     <Compile Include="Controllers\EntryController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\PurshaseOrderOutOfDateController.cs" />
     <Compile Include="Controllers\PushaseOrderInProccessController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -1318,6 +1319,8 @@
     <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\Order\GetOrderOftheMonth.cshtml" />
     <Content Include="Views\Order\GetStarUserOftheMonth.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Product\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

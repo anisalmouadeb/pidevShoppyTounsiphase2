@@ -1,0 +1,62 @@
+﻿@model pidevShoppyTounsi.Models.Product
+
+<div>
+    <h2>Product Detail</h2>
+
+
+    <table with="65%">
+        <tr>
+            <td>
+                <div>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.name)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.name)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.description)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.description)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.priceV)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.priceV)
+                        </dd>
+                        <dt></dt>
+                        <dd>
+                            <div>
+                                @using (Html.BeginForm("AddItemIntoBasket", "Basket", FormMethod.Post))
+                                {
+                                    @Html.HiddenFor(m => m.Id)
+                                    @Html.DropDownList("Quantity", Enumerable.Range(1, 10).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }))
+                                    @Html.Hidden("UserId", 1)
+                                    <input type="submit" class="btn-primary" value="Add Basket" />
+                                }
+                            </div>
+                        </dd>
+
+
+                    </dl>
+
+                </div>
+            </td>
+        </tr>
+    </table>
+
+
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.productId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

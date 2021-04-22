@@ -87,7 +87,7 @@ namespace pidevShoppyTounsi.Controllers
             ViewBag.shelfid = id;
             HttpResponseMessage response = Client.GetAsync("getShelfById/" + id).Result;
             Shelf shelf;
-            HttpResponseMessage response2 = Client.GetAsync("category/getAllCategory").Result;
+            HttpResponseMessage response2 = Client.GetAsync("getAllCategory").Result;
             IEnumerable<Category> cats2;
             IList<Category> cats3= new List<Category> { };
             if (response2.IsSuccessStatusCode)
@@ -316,7 +316,7 @@ namespace pidevShoppyTounsi.Controllers
             ViewBag.shelfid = shelfId;
             HttpResponseMessage response = Client.GetAsync("getShelfById/" + shelfId).Result;
             Shelf shelf;
-            HttpResponseMessage response2 = Client.GetAsync("category/getAllCategory").Result;
+            HttpResponseMessage response2 = Client.GetAsync("getAllCategory").Result;
             IEnumerable<Category> cats2;
             IList<Category> cats3 = new List<Category> { }; 
             if (response2.IsSuccessStatusCode)

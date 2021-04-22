@@ -70,7 +70,7 @@ namespace pidevShoppyTounsi.Controllers
             
             HttpResponseMessage response = Client.GetAsync("getAllProviders").Result;
             IEnumerable<Provider> providers;
-            HttpResponseMessage response2 = Client.GetAsync("product/allProducts").Result;
+            HttpResponseMessage response2 = Client.GetAsync("allProducts").Result;
             IEnumerable<Product> products;
             if (response.IsSuccessStatusCode)
             {

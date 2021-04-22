@@ -10,12 +10,11 @@ using System.Web.Mvc;
 
 namespace pidevShoppyTounsi.Controllers
 {
-    public class AdminAccountController : Controller
+    public class ClientAccountController : Controller
     {
-
         HttpClient Client;
         string baseAddress;
-        public AdminAccountController()
+        public ClientAccountController()
         {
             Client = new HttpClient();
             baseAddress = "http://localhost:8081/";
@@ -28,16 +27,21 @@ namespace pidevShoppyTounsi.Controllers
                     new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", LoginController.TokenConnect);
             }
         }
-        // GET: AdminAccount
+        // GET: ClientAccount
         public ActionResult Index()
         {
-            
             return View();
         }
 
-        // GET: AdminAccount/Details/5
-        public ActionResult Details()
+        // GET: ClientAccount/Details/5
+        public ActionResult Details(int id)
         {
+           
+            return View();
+        }
+        public ActionResult MyAccount()
+        {
+
             Debug.WriteLine(LoginController.TokenConnect);
             HttpResponseMessage response = Client.GetAsync("getMyInfo").Result;
             User user;
@@ -53,24 +57,47 @@ namespace pidevShoppyTounsi.Controllers
             }
             return View(user);
         }
+  
+        [HttpPost]
+        public ActionResult UpdateAccount(User u)
+        {
+            Debug.WriteLine(u.name);
 
-        // GET: AdminAccount/Create
+            try
+            {
+                // TODO: Add update logic here
+                Debug.WriteLine(u.name);
+                Debug.WriteLine(u.userId);
+                var APIresponse = Client.PutAsJsonAsync<User>(baseAddress + "updateUser", u).GetAwaiter().GetResult();
+
+                if (APIresponse.IsSuccessStatusCode)
+                {
+                    JwtResponse response = APIresponse.Content.ReadAsAsync<JwtResponse>().Result;
+                    LoginController.TokenConnect = response.accessToken;
+
+                    Debug.WriteLine(u.name);
+                    Debug.WriteLine(u.userId);
+
+                    return RedirectToAction("MyAccount");
+                }
+
+
+
+                return View();
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: ClientAccount/Create
         public ActionResult Create()
         {
             return View();
         }
-        public ActionResult Logout()
-        {
-            LoginController.TokenConnect = "";
-            Debug.WriteLine(LoginController.ConnectedRole);
-            if(LoginController.ConnectedRole == "ROLE_CLIENT")
-            {
-              return  RedirectToAction("../Home");
-            }
-            return RedirectToAction("../Login/LoginRequest");
-        }
 
-        // POST: AdminAccount/Create
+        // POST: ClientAccount/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -86,34 +113,21 @@ namespace pidevShoppyTounsi.Controllers
             }
         }
 
-        // GET: AdminAccount/Edit/5
-        public ActionResult Edit()
+        // GET: ClientAccount/Edit/5
+        public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: AdminAccount/Edit/5
+        // POST: ClientAccount/Edit/5
         [HttpPost]
-        public ActionResult Edit(User user)
+        public ActionResult Edit(int id, FormCollection collection)
         {
             try
             {
                 // TODO: Add update logic here
-                var APIresponse = Client.PutAsJsonAsync<User>(baseAddress + "updateUser", user).GetAwaiter().GetResult(); 
 
-                if (APIresponse.IsSuccessStatusCode)
-                {
-                    JwtResponse response = APIresponse.Content.ReadAsAsync<JwtResponse>().Result;
-                    LoginController.TokenConnect = response.accessToken;
-
-
-
-                    return RedirectToAction("Details");
-                }
-
-
-
-                return View();
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -121,13 +135,13 @@ namespace pidevShoppyTounsi.Controllers
             }
         }
 
-        // GET: AdminAccount/Delete/5
+        // GET: ClientAccount/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: AdminAccount/Delete/5
+        // POST: ClientAccount/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

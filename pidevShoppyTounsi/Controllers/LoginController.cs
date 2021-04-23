@@ -13,6 +13,9 @@ namespace pidevShoppyTounsi.Controllers
     public class LoginController : Controller
     {
         public static String TokenConnect = "";
+        public static long ConnectedId = 0;
+        public static String ConnectedName = "";
+        public static String ConnectedRole = "";
         HttpClient Client;
         string baseAddress;
 
@@ -62,8 +65,11 @@ namespace pidevShoppyTounsi.Controllers
                 {
                     JwtResponse response = APIresponse.Content.ReadAsAsync<JwtResponse>().Result;
                     TokenConnect = response.accessToken;
+                    ConnectedId = response.id;
+                    ConnectedName = response.username;
+                    ConnectedRole = response.roles.ElementAt(0);
 
-                    if(response.roles.Contains("ROLE_ADMIN"))
+                    if (response.roles.Contains("ROLE_ADMIN"))
                     {
                         return RedirectToAction("../User");
                     }

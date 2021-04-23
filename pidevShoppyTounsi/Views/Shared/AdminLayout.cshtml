@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using pidevShoppyTounsi.Controllers
+<!DOCTYPE html>
 <html lang="en">
 
 <!-- Mirrored from codervent.com/rukada/color-admin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Nov 2019 15:04:08 GMT -->
@@ -34,9 +35,9 @@
         <!--Start sidebar-wrapper-->
         <div style="width :258px" id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
             <div class="brand-logo">
-                <a href="index.html">
-                 
-                    <h5 class="logo-text"> Admin</h5>
+                <a href="">
+                    <img src="~/assets/images/logo-icon.png" alt="logo" width="30" height="30" />
+                    <h5 class="logo-text"> Welcome @LoginController.ConnectedName</h5>
                 </a>
             </div>
             <ul class="sidebar-menu do-nicescrol">
@@ -82,7 +83,7 @@
                     </ul>
                 </li>
 
-                <li class="sidebar-header">LABELS</li>
+            
                 <li><a href="javaScript:void();" class="waves-effect"><i class="zmdi zmdi-coffee text-danger"></i> <span>Important</span></a></li>
                 <li><a href="javaScript:void();" class="waves-effect"><i class="zmdi zmdi-chart-donut text-success"></i> <span>Warning</span></a></li>
                 <li><a href="javaScript:void();" class="waves-effect"><i class="zmdi zmdi-share text-info"></i> <span>Information</span></a></li>
@@ -226,13 +227,13 @@
 
 
                             <li class="dropdown-divider"></li>
-                            <li class="dropdown-item"><a href="/AdminAccount/Details" ><i class="icon-wallet mr-2"> My Account Details</i> </a></li>
+                            <li class="dropdown-item"><a href="/AdminAccount/Details"><i class="icon-wallet mr-2"> My Details</i> </a></li>
                             <li class="dropdown-divider"></li>
-                            <li class="dropdown-item"><a href="/AdminAccount/Edit" ><i class="icon-settings mr-2"> Update My Details</i></a></li>
+                            <li class="dropdown-item"><a href="/AdminAccount/Edit"><i class="icon-settings mr-2"> Update Account</i></a></li>
                             <li class="dropdown-divider"></li>
                             <li class="dropdown-item"><a href="/AdminAccount/Logout"><i class="icon-power mr-2"> Logout</i> </a></li>
                         </ul>
-                  
+
                 </ul>
             </nav>
         </header>
@@ -282,8 +283,8 @@
     <!--Peity Chart -->
     <script src="~/assets/plugins/peity/jquery.peity.min.js"></script>
     <!-- Index js -->
-   <!-- <script src="~/assets/js/index.js"></script>-->
-   
+    <!-- <script src="~/assets/js/index.js"></script>-->
+
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

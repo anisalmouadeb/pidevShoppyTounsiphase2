@@ -1496,9 +1496,6 @@
     <Content Include="Views\Shared\ConnectedClient.cshtml" />
     <Content Include="Views\ClientAccount\MyAccount.cshtml" />
     <Content Include="Views\ClientAccount\UpdateAccount.cshtml" />
-    <Content Include="Views\Shelf\ListShelfs.cshtml" />
-    <Content Include="Views\Shelf\ShelfListOfProducts.cshtml" />
-    <Content Include="Views\Provider\ListOfEntries.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

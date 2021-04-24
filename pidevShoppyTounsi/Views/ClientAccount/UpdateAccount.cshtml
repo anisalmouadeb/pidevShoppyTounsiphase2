@@ -1,6 +1,131 @@
 ﻿@model pidevShoppyTounsi.Models.User
-
+@using pidevShoppyTounsi.Controllers
 @{
     ViewBag.Title = "UpdateAccount";
 }
 
+@if (LoginController.TokenConnect != "")
+{ Layout = "~/Views/Shared/ConnectedClient.cshtml"; }
+else
+{ Layout = "~/Views/Shared/NotConnectedClient.cshtml"; }
+
+<nav class="breadcrumb-nav">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="demo1.html"><i class="d-icon-user"></i></a></li>
+            <li>My Account</li>
+        </ul>
+    </div>
+</nav>
+<div class="page-content mt-4 mb-10 pb-6">
+    <div class="container">
+
+        <div class="tab tab-vertical gutter-lg">
+            <ul class="nav nav-tabs mb-4 col-lg-3 col-md-4" role="tablist">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/MyAccount">Update Account details</a>
+                </li>
+
+            </ul>
+            <div class="tab-content col-lg-9 col-md-8">
+
+
+
+
+                <div class="tab-pane active" id="update">
+
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                  
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="row">
+                            <div class="col-sm-6">
+                                @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control form-control-rounded" } })
+                                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger", @style = "color:red" })
+                            </div>
+
+                            <div class="col-sm-6">
+                                @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control form-control-rounded" } })
+                                @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" ,@style = "color:red" })
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control form-control-rounded" } })
+                                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger", @style = "color:red" })
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.address, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control form-control-rounded" } })
+                                @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger", @style = "color:red" })
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-6">
+                                @Html.LabelFor(model => model.age, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                                @Html.EditorFor(model => model.age, new { htmlAttributes = new { @class = "form-control form-control-rounded" } })
+                                @Html.ValidationMessageFor(model => model.age, "", new { @class = "text-danger", @style = "color:red" })
+                            </div>
+
+                            <div class="col-sm-6">
+                                @Html.LabelFor(model => model.sex, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.sex, new { htmlAttributes = new { @class = "form-control form-control-rounded" } })
+                                @Html.ValidationMessageFor(model => model.sex, "", new { @class = "text-danger", @style = "color:red" })
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-6">
+                                @Html.LabelFor(model => model.cin, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                                @Html.EditorFor(model => model.cin, new { htmlAttributes = new { @class = "form-control form-control-rounded" } })
+                                @Html.ValidationMessageFor(model => model.cin, "", new { @class = "text-danger", @style = "color:red" })
+                            </div>
+
+                            <div class="col-sm-6">
+                                @Html.LabelFor(model => model.numTel, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.numTel, new { htmlAttributes = new { @class = "form-control form-control-rounded" } })
+                                @Html.ValidationMessageFor(model => model.numTel, "", new { @class = "text-danger", @style = "color:red" })
+                            </div>
+                        </div>
+
+
+                        <br />
+
+                        <div class="col-md-offset-2 col-md-10">
+                            <button type="submit" value="Create" class="btn btn-success">
+                                <i class="fa fa-check-square-o"></i>
+                                Submit
+                            </button>
+
+
+                        </div>
+                    </div>
+                           
+                    }
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

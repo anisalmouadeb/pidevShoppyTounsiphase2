@@ -18,12 +18,10 @@
 <div class="card">
     <div class="card-header"><i class="fa fa-table"></i> List of Stock</div>
     <div class="card-body">
-        <p>
-            @Html.ActionLink("Add New Entry Stock", "Create")
-        </p>
+
         <div class="table-responsive">
             <table id="demoGrid" class="table table-striped table-bordered dt-responsive nowrap table table-light shadow-light">
-                <thead>
+                <thead class="thead-primary">
                     <tr>
                         <th>
                             @Html.DisplayNameFor(model => model.product)
@@ -48,7 +46,7 @@
                             @Html.DisplayNameFor(model => model.montant)
 
                         </th>
-                    
+
                         <th></th>
                     </tr>
                 </thead>
@@ -78,11 +76,11 @@
                                 @Html.DisplayFor(modelItem => item.montant)
                             </td>
 
-                          
+
                             <td>
-                             |
-                                @Html.ActionLink("Details", "Details", new { id = item.entryId }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.entryId })
+                               
+                                <a class="btn btn-link text-info m-1" href="@Url.Action("Details","Entry" , new { id = item.entryId })"> Details </a>
+                                <a class="btn btn-link text-danger m-1" href="@Url.Action("Delete","Entry" , new { id = item.entryId })">  Delete </a>
                             </td>
                         </tr>
                     }
@@ -90,6 +88,9 @@
 
             </table>
         </div>
+        <p>
+            <a class="btn btn-success" href="@Url.Action("Create","Entry")"> <i class="fa fa-plus"></i> Add New Stock </a>
+        </p>
     </div>
 </div>
 <script>

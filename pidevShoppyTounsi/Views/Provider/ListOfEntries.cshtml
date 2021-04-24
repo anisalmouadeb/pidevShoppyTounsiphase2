@@ -1,18 +1,19 @@
-﻿@model IEnumerable<pidevShoppyTounsi.Models.Product>
+﻿@model IEnumerable<pidevShoppyTounsi.Models.Entry>
 
 @{
-    ViewBag.Title = "ListOfProducts";
+    ViewBag.Title = "ListOfEntries";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
-
+<
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
 <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+
 <div class="card">
-    <div class="card-header"><i class="fa fa-table"></i> List of Products of shelf :@ViewBag.shelfname</div>
+    <div class="card-header"><i class="fa fa-table"></i> List of Stock</div>
     <div class="card-body">
 
         <div class="table-responsive">
@@ -20,17 +21,26 @@
                 <thead class="thead-primary">
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.name)
+                            @Html.DisplayNameFor(model => model.product)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.description)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.priceV)
+                            @Html.DisplayNameFor(model => model.provider)
 
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.quantity)
+
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.entryDate)
+
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.articalPrice)
+
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.montant)
 
                         </th>
 
@@ -41,36 +51,43 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.name)
-                            </td>
 
                             <td>
-                                @Html.DisplayFor(modelItem => item.description)
+                                @Html.DisplayFor(modelItem => item.product.name)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.priceV)
+                                @Html.DisplayFor(modelItem => item.provider.name)
+
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.quantity)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.entryDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.articalPrice)
 
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.montant)
                             </td>
 
                         </tr>
                     }
                 </tbody>
+
             </table>
         </div>
-        <br/>
+        <br />
         <button type="button" value="Back To List" class="btn btn-primary" onclick="location.href='../Index'">
-            <i class="fa fa-home"></i>
-            Back To list of shelfs
+            <i class="fa fa-check-square-o"></i>
+            Back To list
         </button>
     </div>
 </div>
 <script>
 
-    $('#demoGrid').dataTable({
-    });
+            $('#demoGrid').dataTable({
+            });
 </script>
-

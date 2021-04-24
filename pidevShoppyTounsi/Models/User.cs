@@ -9,16 +9,27 @@ namespace pidevShoppyTounsi.Models
     public class User
     {
         public long userId { get; set; }
+        [Required]
         public long cin { get; set; }
         [Display(Name = "Name")]
+        [Required]
         public string name { get; set; }
+        [Required]
         [Display(Name = " Address")]
         public string address { get; set; }
+        [Required]
+        [MaxLength(50, ErrorMessage = "maximum letters 50")]
+        [DataType(DataType.EmailAddress)]
+      
         [Display(Name = " Email")]
         public string email { get; set; }
+        [Required]
         [Display(Name = " Phone number")]
+         
         public string numTel { get; set; }
+        [Required] 
         public string sex { get; set; }
+        
         public int counterLogin { get; set; }
         [Display(Name = " Active")]
         public bool desactivate { get; set; }
@@ -31,7 +42,12 @@ namespace pidevShoppyTounsi.Models
         [Display(Name = "Points")]
         public int point { get; set; }
         public int lastyearaddpoint { get; set; }
+        [Required]
+        [MinLength(6, ErrorMessage = "password must be between 6 and 40 letters")]
+        [MaxLength(40, ErrorMessage = "password must be between 6 and 40 letters")]
+        [DataType(DataType.Password)]
         public string password { get; set; }
+        [Required]
         [Display(Name = "Age")]
         public int age { get; set; }
         public int codeVerif { get; set; }

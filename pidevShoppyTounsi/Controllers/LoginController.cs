@@ -16,6 +16,9 @@ namespace pidevShoppyTounsi.Controllers
         public static long ConnectedId = 0;
         public static String ConnectedName = "";
         public static String ConnectedRole = "";
+      
+        
+        
         HttpClient Client;
         string baseAddress;
 

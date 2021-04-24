@@ -723,6 +723,7 @@
     <Content Include="assets\images\avatars\avatar-7.png" />
     <Content Include="assets\images\avatars\avatar-8.png" />
     <Content Include="assets\images\avatars\avatar-9.png" />
+    <Content Include="assets\images\avatars\OIP.jpg" />
     <Content Include="assets\images\coming-soon.png" />
     <Content Include="assets\images\contact-us.jpg" />
     <Content Include="assets\images\error-texture.png" />
@@ -817,11 +818,17 @@
     <Content Include="assets\images\payment-icons\mastro-dark.png" />
     <Content Include="assets\images\payment-icons\paypal-dark.png" />
     <Content Include="assets\images\payment-icons\visa-dark.png" />
+    <Content Include="assets\images\product1.jpg" />
     <Content Include="assets\images\products\01.png" />
     <Content Include="assets\images\products\02.png" />
     <Content Include="assets\images\products\03.png" />
     <Content Include="assets\images\products\04.png" />
     <Content Include="assets\images\products\05.png" />
+    <Content Include="assets\images\Sh.jpg" />
+    <Content Include="assets\images\Shelf.jpg" />
+    <Content Include="assets\images\Shelfheader.png" />
+    <Content Include="assets\images\Shelheader.jpg" />
+    <Content Include="assets\images\Shjpg.jpg" />
     <Content Include="assets\images\store-1.jpg" />
     <Content Include="assets\images\store-2.jpg" />
     <Content Include="assets\images\store-3.jpg" />
@@ -1489,6 +1496,9 @@
     <Content Include="Views\Shared\ConnectedClient.cshtml" />
     <Content Include="Views\ClientAccount\MyAccount.cshtml" />
     <Content Include="Views\ClientAccount\UpdateAccount.cshtml" />
+    <Content Include="Views\Shelf\ListShelfs.cshtml" />
+    <Content Include="Views\Shelf\ShelfListOfProducts.cshtml" />
+    <Content Include="Views\Provider\ListOfEntries.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

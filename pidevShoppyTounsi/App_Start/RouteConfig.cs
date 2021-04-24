@@ -18,6 +18,9 @@ namespace pidevShoppyTounsi
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            routes.MapRoute(name :"AddRate", url : "{controller}/{action}/{id}/{rate}", defaults: new { controller = "Shelf", action = "AddRate", id = UrlParameter.Optional, rate = UrlParameter.Optional }
+
+);
         }
     }
 }

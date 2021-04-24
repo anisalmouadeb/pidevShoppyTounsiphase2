@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace pidevShoppyTounsi.Controllers
 {
+    [RedirectingAction]
     public class ClientAccountController : Controller
     {
         HttpClient Client;
@@ -57,33 +58,43 @@ namespace pidevShoppyTounsi.Controllers
             }
             return View(user);
         }
-  
-        [HttpPost]
-        public ActionResult UpdateAccount(User u)
-        {
-            Debug.WriteLine(u.name);
 
+        public ActionResult UpdateAccount()
+        {
+            return View();
+        }
+
+            [HttpPost]
+        public ActionResult UpdateAccount(FormCollection collection, User u)
+        {
+       
             try
             {
-                // TODO: Add update logic here
+                var id = u.userId;
+              
+                Debug.WriteLine(id);
+                Debug.WriteLine(u.email);
                 Debug.WriteLine(u.name);
-                Debug.WriteLine(u.userId);
+                Debug.WriteLine(u.sex);
+                Debug.WriteLine(u.age);
+                // TODO: Add update logic here
+
                 var APIresponse = Client.PutAsJsonAsync<User>(baseAddress + "updateUser", u).GetAwaiter().GetResult();
 
-                if (APIresponse.IsSuccessStatusCode)
-                {
-                    JwtResponse response = APIresponse.Content.ReadAsAsync<JwtResponse>().Result;
-                    LoginController.TokenConnect = response.accessToken;
+                 if (APIresponse.IsSuccessStatusCode)
+                 {
+                     JwtResponse response = APIresponse.Content.ReadAsAsync<JwtResponse>().Result;
+                     LoginController.TokenConnect = response.accessToken;
 
-                    Debug.WriteLine(u.name);
-                    Debug.WriteLine(u.userId);
+                     Debug.WriteLine(u.name);
+                     Debug.WriteLine(u.userId);
 
-                    return RedirectToAction("MyAccount");
-                }
+                     return RedirectToAction("MyAccount");
+                 }
 
+                 
 
-
-                return View();
+                return RedirectToAction("MyAccount");
             }
             catch
             {

@@ -1,0 +1,127 @@
+﻿@model IEnumerable<pidevShoppyTounsi.Models.Product>
+@using pidevShoppyTounsi.Controllers
+@{
+    ViewBag.Title = "ShelfListOfProducts";
+}
+<link rel="stylesheet" type="text/css" href="~/ClientTemp/vendor/magnific-popup/magnific-popup.min.css">
+<link rel="stylesheet" type="text/css" href="~/ClientTemp/vendor/owl-carousel/owl.carousel.min.css">
+<link rel="stylesheet" type="text/css" href="~/ClientTemp/vendor/photoswipe/photoswipe.min.css">
+<link rel="stylesheet" type="text/css" href="~/ClientTemp/vendor/photoswipe/default-skin/default-skin.min.css">
+@if (LoginController.TokenConnect != "")
+{ Layout = "~/Views/Shared/ConnectedClient.cshtml"; }
+else
+{ Layout = "~/Views/Shared/NotConnectedClient.cshtml"; }
+<nav class="breadcrumb-nav">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="demo1.html"><i class="d-icon-mode-list"></i></a></li>
+            <li>List of products for shelf : @ViewBag.shelfName </li>
+        </ul>
+    </div>
+</nav>
+
+
+
+
+
+<main class="main mt-6 single-product">
+    <div class="page-content mb-10 pb-6">
+        <div class="container">
+
+
+
+
+            <section class="pt-3 mt-10">
+           
+
+                <div class="owl-carousel owl-theme owl-nav-full row cols-2 cols-md-3 cols-lg-4"
+                     data-owl-options="{
+							'items': 5,
+							'nav': false,
+							'loop': false,
+							'dots': true,
+							'margin': 20,
+							'responsive': {
+								'0': {
+									'items': 2
+								},
+								'768': {
+									'items': 3
+								},
+								'992': {
+									'items': 4,
+									'dots': false,
+									'nav': true
+								}
+							}
+						}">
+                    @foreach (var item in Model)
+                    {
+
+
+                    <div class="product">
+                        <figure class="product-image">
+
+                            <img src="../../assets/images/product1.jpg" alt="product" width="280" height="315">
+
+                            @if (ViewBag.type != 1)
+                            {
+                                <div class="product-label-group">
+                                    <label class="product-label label-sale">Promo @ViewBag.per %</label>
+                                </div>
+                            }
+
+                            <div class="product-action-vertical">
+                                <a href="#" class="btn-product-icon btn-cart" data-toggle="modal"
+                                   data-target="#addCartModal" title="Add to cart">
+                                    <i class="d-icon-bag"></i>
+                                </a>
+
+                            </div>
+                            <div class="product-action">
+                                <a href="#" class="btn-product btn-quickview" title="Quick View">Quick View</a>
+                            </div>
+                        </figure>
+                       
+                        <div class="product-details">
+
+                            <h3 class="product-name">
+                                <a href="product.html"> @Html.DisplayFor(modelItem => item.name)</a>
+                            </h3>
+                            @{double price = 0; }
+                            @if (ViewBag.per != null && ViewBag.per != 0)
+                            {
+                                float var = 100 / ViewBag.per;
+                                price = item.priceV * (var / (var - 1));
+                            }
+
+                            <div class="product-price">
+                                <ins class="new-price">   @Html.DisplayFor(modelItem => item.priceV) Dt</ins>
+                                @if (ViewBag.type != 1)
+                                {<del class="old-price">@price dt</del>}
+                            </div>
+
+                        </div>
+                    </div>
+                    }
+
+                </div>
+            </section>
+        </div>
+    </div>
+</main>
+
+
+
+<script src="~/ClientTemp/vendor/jquery/jquery.min.js"></script>
+<script src="~/ClientTemp/vendor/sticky/sticky.min.js"></script>
+<script src="~/ClientTemp/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+<script src="~/ClientTemp/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+<script src="~/ClientTemp/vendor/owl-carousel/owl.carousel.min.js"></script>
+<script src="~/ClientTemp/vendor/elevatezoom/jquery.elevatezoom.min.js"></script>
+<script src="~/ClientTemp/vendor/photoswipe/photoswipe.min.js"></script>
+<script src="~/ClientTemp/vendor/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+
+

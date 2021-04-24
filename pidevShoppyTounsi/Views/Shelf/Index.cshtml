@@ -14,12 +14,10 @@
 <div class="card">
     <div class="card-header"><i class="fa fa-table"></i> List of Shelfs</div>
     <div class="card-body">
-        <p>
-            @Html.ActionLink("Create New Shelf", "Create")
-        </p>
+
         <div class="table-responsive">
             <table id="demoGrid" class="table table-striped table-bordered dt-responsive nowrap table table-light shadow-light">
-                <thead>
+                <thead class="thead-primary">
                     <tr>
                         <th>
                             @Html.DisplayNameFor(model => model.shelfname)
@@ -43,51 +41,55 @@
                         <th></th>
                         <th></th>
                         <th></th>
-                        <th></th>
+                     
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.shelfname)
-                        </td>
-                        <td>
-                            @if (item.dateExpiration == null)
-                            {<div>Unlimited</div>}
-                            else
-                            { @Html.DisplayFor(modelItem => item.dateExpiration)}
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.rating)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.type)
-                        </td>
-                        <td>
-                            @if (item.reductionPercantage == 0)
-                            {<div>No reduction </div>}
-                            else
-                            { @Html.DisplayFor(modelItem => item.reductionPercantage)}
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.shelfname)
+                            </td>
+                            <td>
+                                @if (item.dateExpiration == null)
+                                {<div>Unlimited</div>}
+                                else
+                                { @Html.DisplayFor(modelItem => item.dateExpiration)}
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.rating)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.type)
+                            </td>
+                            <td>
+                                @if (item.reductionPercantage == 0)
+                                {<div>No reduction </div>}
+                                else
+                                { @Html.DisplayFor(modelItem => item.reductionPercantage)}
 
-                        </td>
-                        <td>@Html.ActionLink("List of Rate", "ListOfRating", new { id = item.shelfId })</td>
-                        <td>@Html.ActionLink("List of Product", "ListOfProducts", new { id = item.shelfId }) </td>
-                        <td>@Html.ActionLink("List of Category", "ListOfCategory", new { id = item.shelfId }) </td>
-                     
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.shelfId }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.shelfId }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.shelfId })
-                            |
+                            </td>
+                            <td><a class="btn btn-link text-primary m-1" href="@Url.Action("ListOfRating","Shelf" , new { id = item.shelfId })"> List of Rate </a></td>
+                            <td><a class="btn btn-link text-primary m-1" href="@Url.Action("ListOfProducts","Shelf" , new { id = item.shelfId })"> List of Products </a></td>
+                            <td><a class="btn btn-link text-primary m-1" href="@Url.Action("ListOfCategory","Shelf" , new { id = item.shelfId })">List of Categories </a></td>
+                
 
-                        </td>
-                    </tr>
+                            <td>
+
+                                <a class="btn btn-link text-dark m-1" href="@Url.Action("Edit","Shelf" , new { id = item.shelfId })"> Edit </a>
+                                <a class="btn btn-link text-info m-1" href="@Url.Action("Details","Shelf" , new { id = item.shelfId })"> Details </a>
+                                <a class="btn btn-link text-danger m-1" href="@Url.Action("Delete","Shelf" , new { id = item.shelfId })">  Delete </a>
+
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>
         </div>
+        <br />      <p>
+                        <a class="btn btn-success" href="@Url.Action("Create","Shelf")"> <i class="fa fa-plus"></i> Add New Shelf </a>
+        </p>
     </div>
 </div>
 <script>

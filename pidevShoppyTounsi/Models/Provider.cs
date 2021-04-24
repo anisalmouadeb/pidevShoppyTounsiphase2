@@ -19,13 +19,13 @@ namespace pidevShoppyTounsi.Models
 		[Required(ErrorMessage = "Note is required")]
 		[Range(0, 5, ErrorMessage = "Note Must be between 0 and 5")]
 		public int note { get; set; }
-		[Required(ErrorMessage = "deleviry Fees is required")]
+		[Required(ErrorMessage = "Deleviry Fees is required")]
 		[Range(0, float.PositiveInfinity,ErrorMessage = "deleviry Fees  Must be  greater than 0")]
 		[Display(Name = "Deleviry Fees")]
 		public float deleviryFees { get; set; }
-		[Required(ErrorMessage = "threshold Amount is required")]
+		[Required(ErrorMessage = "Threshold Amount is required")]
 		[Range(0, float.PositiveInfinity, ErrorMessage = "threshold Amount Must be  greater than 0")]
-		[Display(Name = "threshold Amount")]
+		[Display(Name = "Threshold Amount")]
 		public float seuilMontant { get; set; }
 		[Required(ErrorMessage = "Reduction Percentage is required")]
 		[Range(0, 100, ErrorMessage = "Reduction Percentage Must be between 0 and 100")]

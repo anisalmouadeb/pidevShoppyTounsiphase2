@@ -23,17 +23,24 @@ namespace pidevShoppyTounsi.Controllers
             baseAddress = "http://localhost:8081/";
             Client.BaseAddress = new Uri(baseAddress);
             Client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            if (LoginController.TokenConnect != "")
+            {
+                Client.DefaultRequestHeaders.Add("Accept", "application/json");
+
+                Client.DefaultRequestHeaders.Authorization =
+                    new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", LoginController.TokenConnect);
+            }
         }
         // GET: Shelf
         public ActionResult Index()
         {
             HttpResponseMessage response = Client.GetAsync("getAllShelfs").Result;
             IEnumerable<Shelf> shelfs;
-          
+
             if (response.IsSuccessStatusCode)
             {
                 shelfs = response.Content.ReadAsAsync<IEnumerable<Shelf>>().Result;
-          
+
 
 
 
@@ -43,15 +50,56 @@ namespace pidevShoppyTounsi.Controllers
                 shelfs = null;
 
             }
-        
+
             return View(shelfs);
         }
+
+
+
+        public ActionResult ListShelfs()
+        {
+            HttpResponseMessage response = Client.GetAsync("getShelfs").Result;
+            IEnumerable<Shelf> shelfs;
+
+            if (response.IsSuccessStatusCode)
+            {
+                shelfs = response.Content.ReadAsAsync<IEnumerable<Shelf>>().Result;
+
+
+
+
+            }
+            else
+            {
+                shelfs = null;
+
+            }
+            HttpResponseMessage response2 = Client.GetAsync("getAllRating").Result;
+            IEnumerable<ShelfRating> shelfRatings;
+
+            if (response2.IsSuccessStatusCode)
+            {
+                shelfRatings = response2.Content.ReadAsAsync<IEnumerable<ShelfRating>>().Result;
+
+            }
+            else
+            {
+                shelfRatings = null;
+
+            }
+            ViewBag.shelfRating = shelfRatings;
+            Debug.WriteLine(shelfRatings.Count());
+            return View(shelfs);
+        }
+
+
+
         public ActionResult ListOfProducts(int id)
         {
             HttpResponseMessage response = Client.GetAsync("getShelfById/" + id).Result;
             Shelf shelf;
-  
-          
+
+
             if (response.IsSuccessStatusCode)
             {
                 shelf = response.Content.ReadAsAsync<Shelf>().Result;
@@ -61,14 +109,53 @@ namespace pidevShoppyTounsi.Controllers
                 shelf = null;
 
             }
-            List<Product> products= new List<Product> {}; ;
+            List<Product> products = new List<Product> { }; ;
             IEnumerable<Category> cats;
-         
+
             cats = shelf.category;
-          
-            foreach(Category cat in cats)
+
+            foreach (Category cat in cats)
             {
-                
+
+                foreach (Product p in cat.product)
+                {
+                    Debug.WriteLine(p.productId);
+                    products.Add(p);
+                    Debug.WriteLine(products.ElementAt(0));
+                }
+            }
+            ViewBag.shelfname = shelf.shelfname;
+
+            return View(products);
+        }
+
+        public ActionResult ShelfListOfProducts(int id)
+        {
+            HttpResponseMessage response = Client.GetAsync("getShelfById/" + id).Result;
+            Shelf shelf;
+
+
+            if (response.IsSuccessStatusCode)
+            {
+                shelf = response.Content.ReadAsAsync<Shelf>().Result;
+            }
+            else
+            {
+                shelf = null;
+
+            }
+            List<Product> products = new List<Product> { }; ;
+            IEnumerable<Category> cats;
+            ViewBag.shelfName = shelf.shelfname;
+            ViewBag.per = shelf.reductionPercantage;
+            if (shelf.type != ShelfType.PROMO)
+            { ViewBag.type = 1; }
+
+            cats = shelf.category;
+
+            foreach (Category cat in cats)
+            {
+
                 foreach (Product p in cat.product)
                 {
                     Debug.WriteLine(p.productId);
@@ -82,14 +169,14 @@ namespace pidevShoppyTounsi.Controllers
         }
 
 
-        public ActionResult ListOfCategory(int id ) 
+        public ActionResult ListOfCategory(int id)
         {
             ViewBag.shelfid = id;
             HttpResponseMessage response = Client.GetAsync("getShelfById/" + id).Result;
             Shelf shelf;
             HttpResponseMessage response2 = Client.GetAsync("getAllCategory").Result;
             IEnumerable<Category> cats2;
-            IList<Category> cats3= new List<Category> { };
+            IList<Category> cats3 = new List<Category> { };
             if (response2.IsSuccessStatusCode)
             {
                 cats2 = response2.Content.ReadAsAsync<IEnumerable<Category>>().Result;
@@ -98,8 +185,8 @@ namespace pidevShoppyTounsi.Controllers
             {
                 cats2 = null;
             }
-          
-           
+
+
 
             if (response.IsSuccessStatusCode)
             {
@@ -110,20 +197,20 @@ namespace pidevShoppyTounsi.Controllers
                 shelf = null;
 
             }
-           
+
             IEnumerable<Category> cats;
             cats = shelf.category;
-            foreach(Category c in cats2)
+            foreach (Category c in cats2)
             {
-                foreach(Category c2 in cats)
+                foreach (Category c2 in cats)
                 {
-                    if(c.categoryId!=c2.categoryId)
+                    if (c.categoryId != c2.categoryId)
                     {
                         cats3.Add(c);
                     }
                 }
             }
-       
+
             ViewBag.shelfname = shelf.shelfname;
             ViewBag.CategoryId = new SelectList(cats3, "categoryId", "name");
             return View(cats);
@@ -146,10 +233,10 @@ namespace pidevShoppyTounsi.Controllers
             }
             HttpResponseMessage response = Client.GetAsync("getAllRating").Result;
             IEnumerable<ShelfRating> shelfRatings;
-          
+
             if (response.IsSuccessStatusCode)
             {
-                shelfRatings  = response.Content.ReadAsAsync<IEnumerable<ShelfRating>>().Result;
+                shelfRatings = response.Content.ReadAsAsync<IEnumerable<ShelfRating>>().Result;
 
             }
             else
@@ -157,15 +244,15 @@ namespace pidevShoppyTounsi.Controllers
                 shelfRatings = null;
 
             }
-            List<ShelfRating> ratings = new List<ShelfRating> { }; 
-       
+            List<ShelfRating> ratings = new List<ShelfRating> { };
+
 
             foreach (ShelfRating r in shelfRatings)
             {
-                if(r.shelf.shelfId==shelf.shelfId)
+                if (r.shelf.shelfId == shelf.shelfId)
                     ratings.Add(r);
-                    
-                
+
+
             }
             ViewBag.shelfname = shelf.shelfname;
 
@@ -231,6 +318,18 @@ namespace pidevShoppyTounsi.Controllers
         }
 
         // POST: Shelf/Edit/5
+
+        public ActionResult AddRate(int id ,int rate )
+
+        {
+           // addShelfRating / 1 / 1
+            Debug.WriteLine(rate);
+            Debug.WriteLine(id);
+            var APIresponse = Client.PostAsJsonAsync<Shelf>(baseAddress + "addShelfRating/" + id + "/" + rate,null).GetAwaiter().GetResult();
+            Debug.WriteLine(APIresponse.StatusCode);
+            return RedirectToAction("ListShelfs");
+        }
+
         [HttpPost]
         public ActionResult Edit(Shelf shelf,int id, FormCollection collection)
         {

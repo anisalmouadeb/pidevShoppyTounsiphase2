@@ -17,7 +17,7 @@
 
         <div class="table-responsive">
             <table id="demoGrid" class="table table-striped table-bordered dt-responsive nowrap table table-light shadow-light">
-                <thead>
+                <thead class="thead-primary">
                     <tr>
                         <th>
                             @Html.DisplayNameFor(model => model.user)
@@ -25,7 +25,7 @@
                         <th>
                             @Html.DisplayNameFor(model => model.rating)
                         </th>
-                     
+
 
 
                     </tr>
@@ -41,13 +41,18 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.rating)
                             </td>
-                         
+
 
                         </tr>
                     }
                 </tbody>
             </table>
         </div>
+        <br />
+        <button type="button" value="Back To List" class="btn btn-primary" onclick="location.href='../Index'">
+            <i class="fa fa-home"></i>
+            Back To list of shelfs
+        </button>
     </div>
 </div>
 <script>

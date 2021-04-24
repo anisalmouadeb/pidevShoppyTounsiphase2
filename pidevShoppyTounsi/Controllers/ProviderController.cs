@@ -25,7 +25,7 @@ namespace pidevShoppyTounsi.Controllers
         }
       
         // GET: Provider
-        public ActionResult Index(String searchString, string sortOrder, string currentFilter, int? page)
+        public ActionResult Index()
         {
          
            
@@ -45,6 +45,31 @@ namespace pidevShoppyTounsi.Controllers
          
             return View(providers);
         }
+
+
+
+        public ActionResult ListOfEntries( int id )
+        {
+
+
+            HttpResponseMessage response = Client.GetAsync("getEntryByProvider/"+id).Result;
+            IEnumerable<Entry> entries;
+
+            if (response.IsSuccessStatusCode)
+            {
+                entries = response.Content.ReadAsAsync<IEnumerable<Entry>>().Result;
+
+            }
+            else
+            {
+                entries = null;
+
+            }
+
+            return View(entries);
+        }
+
+
 
         // GET: Provider/Details/5
         public ActionResult Details(long id)

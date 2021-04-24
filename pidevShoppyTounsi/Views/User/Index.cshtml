@@ -14,7 +14,7 @@
     <div class="card-body">
         <div class="table-responsive">
             <table id="demoGrid" class="table table-striped table-bordered dt-responsive nowrap table table-light shadow-light">
-                <thead>
+                <thead class="thead-primary">
                     <tr>
                         <th>
                             @Html.DisplayNameFor(model => model.cin)
@@ -76,6 +76,8 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
+                        if(item.name !="admin")
+                        { 
                         <tr>
                             <td>
                                 @Html.DisplayFor(modelItem => item.cin)
@@ -163,17 +165,19 @@
                                 </div>
                             </td>
                             <td>
+                                <a class="btn btn-link text-info m-1" href="@Url.Action("Details","User" , new { id = item.userId })"> Details </a>
 
-                                @Html.ActionLink("Details", "Details", new { id = item.userId }) |
                                 @if (item.desactivate == true)
-                                {@Html.ActionLink("Activate", "Activate", new { id = item.userId })}
-                            else
-                            { @Html.ActionLink("Desactivate", "Desactivate", new { id = item.userId })}
+                                { 
+                                    <a class="btn btn-link text-success m-1" href="@Url.Action("Activate","User" , new { id = item.userId })"> Acivate </a>
+                                }
+                                else
+                                { <a class="btn btn-link text-danger m-1" href="@Url.Action("Desactivate","User" , new { id = item.userId })"> Desactivate </a>}
 
 
                             </td>
                         </tr>
-                    }
+                        }    }
                 </tbody>
 
             </table>

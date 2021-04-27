@@ -1,0 +1,40 @@
+﻿@model IEnumerable<pidevShoppyTounsi.Models.Donation>
+
+@{
+    ViewBag.Title = "MyDonations";
+    Layout = "~/Views/Shared/ConnectedClient.cshtml";
+}
+
+<h2>MyDonations</h2>
+
+<p>
+    @Html.ActionLink("Make Donation", "Create", "MakePaiment", null, null) | 
+    @Html.ActionLink("Month Donation", "MonthDonation", "Donation", null, null) |
+    @Html.ActionLink("Best Donation", "AllTimeDonation", "Donation", null, null)
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.donationDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.donationDate)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id=item.donationId }) 
+        </td>
+    </tr>
+}
+
+</table>

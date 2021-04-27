@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace pidevShoppyTounsi.Controllers
 {
+    [RedirectingAction]
     public class AdminAccountController : Controller
     {
 
@@ -31,10 +32,88 @@ namespace pidevShoppyTounsi.Controllers
         // GET: AdminAccount
         public ActionResult Index()
         {
-            
+     
             return View();
         }
 
+        public ActionResult Home()
+        {
+            HttpResponseMessage response = Client.GetAsync("getSumOutlay").Result;
+
+            var x = 0;
+            if (response.IsSuccessStatusCode)
+            {
+                x = response.Content.ReadAsAsync<int>().Result;
+            }
+            else
+            {
+                x = 0;
+
+            }
+            ViewBag.sumoutLay = x;
+            Debug.WriteLine(x);
+            HttpResponseMessage response2 = Client.GetAsync("getAllUsers").Result;
+            IEnumerable<User> users;
+
+            if (response.IsSuccessStatusCode)
+            {
+                users = response2.Content.ReadAsAsync<IEnumerable<User>>().Result;
+
+            }
+            else
+            {
+                users = null;
+                // this is a comment 
+            }var nbu = 0;
+            foreach(User u in users)
+            {if(u.name!= "admin")
+                nbu++;
+            }
+            ViewBag.nbuser = nbu;
+            Debug.WriteLine(x);
+            HttpResponseMessage response3 = Client.GetAsync("getAllOrders").GetAwaiter().GetResult(); ;
+            IEnumerable<Order> orders;
+
+            if (response.IsSuccessStatusCode)
+            {
+                orders = response3.Content.ReadAsAsync<IEnumerable<Order>>().Result;
+
+            }
+            else
+            {
+                orders = null;
+                // this is a comment 
+            }
+            var amount = 0.0;
+            foreach (Order o in orders)
+            {
+
+                amount = amount+o.orderAmount;
+            }
+            //getShelfRevenu
+
+            HttpResponseMessage response4 = Client.GetAsync("getShelfRevenu").GetAwaiter().GetResult(); ;
+            IEnumerable<ShelfRevenu> shelfrv;
+
+            if (response.IsSuccessStatusCode)
+            {
+                shelfrv = response4.Content.ReadAsAsync<IEnumerable<ShelfRevenu>>().Result;
+
+            }
+            else
+            {
+                shelfrv = null;
+                // this is a comment 
+            }
+
+            Debug.WriteLine(shelfrv.ElementAt(0));
+            ViewBag.shelfs = shelfrv;
+
+
+            ViewBag.amount = amount;
+            Debug.WriteLine(amount);
+            return View();
+        }
         // GET: AdminAccount/Details/5
         public ActionResult Details()
         {
@@ -67,7 +146,7 @@ namespace pidevShoppyTounsi.Controllers
             {
               return  RedirectToAction("../Home");
             }
-            return RedirectToAction("../Login/LoginRequest");
+            return RedirectToAction("../Home");
         }
 
         // POST: AdminAccount/Create

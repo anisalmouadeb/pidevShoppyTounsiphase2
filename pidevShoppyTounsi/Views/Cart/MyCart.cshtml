@@ -1,0 +1,68 @@
+﻿@model IEnumerable<pidevShoppyTounsi.Models.OrderLine>
+@using pidevShoppyTounsi.Controllers
+@using pidevShoppyTounsi.Models
+@{
+    ViewBag.Title = "MyCart";
+}
+
+@if (LoginController.TokenConnect != "")
+{ Layout = "~/Views/Shared/ConnectedClient.cshtml"; }
+else
+{ Layout = "~/Views/Shared/NotConnectedClient.cshtml"; }
+
+<main class="main account">
+
+    <div class="page-content mt-4 mb-10 pb-6">
+        <div class="container">
+
+            <div class="tab tab-vertical gutter-lg">
+                <ul class="nav nav-tabs mb-4 col-lg-3 col-md-4" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#orders">My Cart</a>
+
+                </ul>
+                <div class="tab-content col-lg-9 col-md-8">
+
+                    <div class="tab-pane active" id="orders">
+                        <table class="order-table">
+                            <thead>
+                                <tr>
+                                   
+                                    <th>Product Name</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                    <th>Status</th>
+                                    <th class="pr-2"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (OrderLine o in ViewBag.ords)
+                                {
+                                <tr>
+                                    <td class="order-sm-11"><a href="#">@o.product.name</a></td>
+                                    <td class="order-number">@o.quantity</td>
+                                    <td class="order-status">@o.price</td>
+                                    <td class="order-total">
+                                        @if (o.confirmed == true)
+                                        {<div> Confirmed</div> }
+                                        else
+                                        { <span> Not Confirmed</span>}
+                                    </td>
+                                    @if (o.confirmed == false) { 
+                                        <td class="order-action">   <a class="btn btn-link text-danger m-1" onclick="location.href='Delete/'+@o.orderLineId">  Delete </a></td>
+                             }
+                                </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

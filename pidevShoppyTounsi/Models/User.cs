@@ -9,25 +9,27 @@ namespace pidevShoppyTounsi.Models
     public class User
     {
         public long userId { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Cin number is required")]
         public long cin { get; set; }
         [Display(Name = "Name")]
-        [Required]
+        [Required(ErrorMessage ="Name is required")]
         public string name { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Address is required")]
+       
         [Display(Name = " Address")]
         public string address { get; set; }
-        [Required]
-        [MaxLength(50, ErrorMessage = "maximum letters 50")]
-        [DataType(DataType.EmailAddress)]
+        [Required(ErrorMessage = "Email is required")]
+        [MaxLength(50, ErrorMessage = "Maximum letters 50")]
+        [DataType(DataType.EmailAddress,ErrorMessage ="Enter a valid email address")]
       
         [Display(Name = " Email")]
         public string email { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Phone number is required")]
         [Display(Name = " Phone number")]
          
         public string numTel { get; set; }
-        [Required] 
+        [Required(ErrorMessage = "Sex is required")]
+        [Display(Name = "Sex")]
         public string sex { get; set; }
         
         public int counterLogin { get; set; }
@@ -42,12 +44,12 @@ namespace pidevShoppyTounsi.Models
         [Display(Name = "Points")]
         public int point { get; set; }
         public int lastyearaddpoint { get; set; }
-        [Required]
-        [MinLength(6, ErrorMessage = "password must be between 6 and 40 letters")]
-        [MaxLength(40, ErrorMessage = "password must be between 6 and 40 letters")]
+        [Required( ErrorMessage = "Password is required")]
+        [MinLength(6, ErrorMessage = "Password must be between 6 and 40 letters")]
+        [MaxLength(40, ErrorMessage = "Password must be between 6 and 40 letters")]
         [DataType(DataType.Password)]
         public string password { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Age is required")] 
         [Display(Name = "Age")]
         public int age { get; set; }
         public int codeVerif { get; set; }

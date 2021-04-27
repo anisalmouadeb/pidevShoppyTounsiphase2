@@ -1,0 +1,39 @@
+﻿@model pidevShoppyTounsi.Models.Jackpot
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Jackpot</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.currentAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.currentAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.globalAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.globalAmount)
+        </dd>
+
+    </dl>
+</div>
+

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<pidevShoppyTounsi.Models.Event>
+
+@{
+    ViewBag.Title = "suggestionEvents";
+}
+
+<h2>Suggestion events</h2>
+
+<p>
+    @Html.ActionLink("Disponible event", "DispoEvents")
+    @Html.ActionLink("My events", "MyEvents")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estimatedAmount)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.location)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.numberOfparticipants)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.eventDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estimatedAmount)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.location)
+        </td>
+     
+        <td>
+            @Html.DisplayFor(modelItem => item.numberOfparticipants)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.eventDate)
+        </td>
+        <td>
+            @Html.ActionLink("Close", "Edit", new { id = item.eventId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.eventId }) |
+            @Html.ActionLink("Participate", "Participate", new { id = item.eventId })
+        </td>
+    </tr>
+}
+
+</table>

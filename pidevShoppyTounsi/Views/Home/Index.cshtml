@@ -1,4 +1,5 @@
 ﻿@using pidevShoppyTounsi.Controllers
+
 @{
     ViewBag.Title = "Home Page";
 
@@ -9,11 +10,228 @@ else
 { Layout = "~/Views/Shared/NotConnectedClient.cshtml"; }
 
 
-<nav class="breadcrumb-nav">
-    <div class="container">
-        <ul class="breadcrumb">
-            <li><a href="demo1.html"><i class="d-icon-home"></i></a></li>
-            <li>Home</li>
-        </ul>
+<main class="main">
+    <div class="page-content">
+        <section class="intro-section">
+            <div class="owl-carousel owl-theme row owl-dot-inner owl-dot-white intro-slider animation-slider cols-1 gutter-no"
+                 data-owl-options="{
+                        'nav': false,
+                        'dots': true,
+                        'loop': false,
+                        'items': 1,
+                        'autoplay': false,
+                        'autoplayTimeout': 8000
+                    }">
+
+                <div class="banner banner-fixed intro-slide1" style="background-color: #46b2e8;">
+                    <figure>
+                        <img src="~/assets/images/slide1.jpg" alt="intro-banner" width="1903"
+                             height="630" style="background-color: #34ace5;" />
+                    </figure>
+                    <div class="container">
+                        <div class="banner-content y-50">
+                            <h4 class="banner-subtitle font-weight-bold ls-l">
+                                <span class="d-inline-block slide-animate"
+                                      data-animation-options="{'name': 'fadeInRightShorter', 'duration': '1s', 'delay': '.2s'}">
+                                    Buy
+                                    2 Get
+                                </span>
+                                <span class="d-inline-block label-star bg-white text-primary slide-animate"
+                                      data-animation-options="{'name': 'fadeInRightShorter', 'duration': '1s', 'delay': '.4s'}">
+                                    1
+                                    Free
+                                </span>
+                            </h4>
+                            <h2 class="banner-title font-weight-bold text-white lh-1 ls-md slide-animate"
+                                data-animation-options="{'name': 'fadeInUpShorter', 'duration': '1.2s', 'delay': '1s'}">
+                                Welcome
+                            </h2>
+                            <h3 class="font-weight-normal lh-1 ls-l text-white slide-animate"
+                                data-animation-options="{'name': 'fadeInUpShorter', 'duration': '1.2s', 'delay': '1s'}">
+                                To ShoppyTounsi
+                            </h3>
+                            <p class="slide-animate text-white ls-s mb-7"
+                               data-animation-options="{'name': 'fadeInUpShorter', 'duration': '1.2s', 'delay': '1s'}">
+                                Get Free Shipping on all orders over 99.00 DT
+                            </p>
+                            <a href="/Home/products" class="btn btn-dark btn-rounded slide-animate"
+                               data-animation-options="{'name': 'fadeInUpShorter', 'duration': '1s', 'delay': '1.8s'}">
+                                Shop
+                                Now<i class="d-icon-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="banner banner-fixed intro-slide2" style="background-color: #dddee0;">
+                    <figure>
+                        <img src="~/assets/images/slide1.jpg" alt="intro-banner" width="1903"
+                             height="630" style="background-color: #d8d9d9;" />
+                    </figure>
+                    <div class="container">
+                        <div class="banner-content y-50 ml-auto text-right">
+                            <h4 class="banner-subtitle ls-s mb-1 slide-animate"
+                                data-animation-options="{'name': 'fadeInUp', 'duration': '.7s'}">
+                                <span class="d-block text-uppercase mb-2">Coming soon</span><strong class="font-weight-semi-bold ls-m">Riode Birthday</strong>
+                            </h4>
+                            <h2 class="banner-title mb-2 d-inline-block font-weight-bold text-primary slide-animate"
+                                data-animation-options="{'name': 'fadeInRight', 'duration': '1.2s', 'delay': '.5s'}">
+                                Sale
+                            </h2>
+                            <p class="slide-animate font-primary ls-s text-dark mb-4"
+                               data-animation-options="{'name': 'fadeInUp', 'duration': '1s', 'delay': '1.2s'}">
+                                Up to 70% off on all products <br />online &amp; Free Shipping over $90
+                            </p>
+                            <a href="shop.html" class="btn btn-dark btn-rounded slide-animate"
+                               data-animation-options="{'name': 'fadeInUp', 'duration': '1s', 'delay': '1.4s'}">
+                                Shop
+                                Now<i class="d-icon-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="banner banner-fixed video-banner intro-slide3" style="background-color: #dddee0;">
+                    <figure>
+                        <img src="~/assets/images/slide1.jpg" width="1903" height="630"></img>
+                    </figure>
+                    <div class="container">
+                        <div class="banner-content x-50 y-50 text-center">
+                            <h4 class="banner-subtitle text-white text-uppercase mb-3 ls-normal slide-animate"
+                                data-animation-options="{'name': 'fadeIn', 'duration': '.7s'}">
+                                Check out our
+                            </h4>
+                            <h2 class="banner-title mb-3 text-white font-weight-bold text-uppercase ls-m slide-animate"
+                                data-animation-options="{'name': 'fadeInUp', 'duration': '.7s', 'delay': '.5s'}">
+                                Summer Season's
+                            </h2>
+                            <p class="slide-animate mb-7 text-white ls-s font-primary "
+                               data-animation-options="{'name': 'fadeInUp', 'duration': '1s', 'delay': '.8s'}">
+                                Up to 50% Off this Season’s &amp; Get free shipping<br />on all orders over
+                                $199.00
+                            </p>
+                            <a href="shop.html" class="btn btn-dark btn-rounded slide-animate mb-1"
+                               data-animation-options="{'name': 'fadeInLeft', 'duration': '1s', 'delay': '1.5s'}">
+                                Shop
+                                Now<i class="d-icon-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+        <br />       <br />       <br />       <br />       <br />       <br />       <br />
+
+        <section class="banner-group mt-4">
+            <div class="container">
+                <h2 class="title d-none">Banner Group</h2>
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <div class="banner banner-3 banner-fixed banner-radius content-middle appear-animate"
+                             data-animation-options="{'name': 'fadeInLeftShorter', 'duration': '1s', 'delay': '.2s'}">
+                            <figure>
+                                <img src="images/demos/demo1/banners/banner1.jpg" alt="banner" width="380"
+                                     height="207" style="background-color: #836648;" />
+                            </figure>
+                            <div class="banner-content">
+                                <h3 class="banner-title text-white mb-1">For Men's</h3>
+                                <h4 class="banner-subtitle text-uppercase font-weight-normal text-white">
+                                    Starting at $29
+                                </h4>
+                                <hr class="banner-divider">
+                                <a href="shop.html" class="btn btn-white btn-link btn-underline">
+                                    Shop Now<i class="d-icon-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-4 order-lg-auto order-sm-last">
+                        <div class="banner banner-4 banner-fixed banner-radius content-middle content-center appear-animate"
+                             data-animation-options="{'name': 'fadeIn', 'duration': '1s', 'delay': '.2s'}">
+                            <figure>
+                                <img src="images/demos/demo1/banners/banner2.jpg" alt="banner" width="350"
+                                     height="177" style="background-color: #1e1e1e;" />
+                            </figure>
+                            <div class="banner-content d-flex align-items-center w-100 text-left">
+                                <div class="mr-auto mb-4 mb-md-0">
+                                    <h4 class="banner-subtitle text-white">
+                                        Up to 20% Off<br><span class="ls-l">Black Friday</span>
+                                    </h4>
+                                    <h3 class="banner-title text-primary font-weight-bold lh-1 mb-0">Sale</h3>
+                                </div>
+                                <a href="shop.html"
+                                   class="btn btn-primary btn-outline btn-rounded font-weight-bold text-white">
+                                    Shop
+                                    Now<i class="d-icon-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <div class="banner banner-5 banner-fixed banner-radius content-middle appear-animate"
+                             data-animation-options="{'name': 'fadeInRightShorter', 'duration': '1s', 'delay': '.2s'}">
+                            <figure>
+                                <img src="images/demos/demo1/banners/banner3.jpg" alt="banner" width="380"
+                                     height="207" style="background-color: #97928b;" />
+                            </figure>
+                            <div class="banner-content">
+                                <h3 class="banner-title text-white mb-1">Fashions</h3>
+                                <h4 class="banner-subtitle text-uppercase font-weight-normal text-white">
+                                    30% Off
+                                </h4>
+                                <hr class="banner-divider">
+                                <a href="shop.html" class="btn btn-white btn-link btn-underline">
+                                    Shop Now<i class="d-icon-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <br />       <br />       <br />       <br />       <br />       <br />       <br />
+        <section class="banner banner-background parallax text-center" data-option="{'offset': -60}"
+                 data-image-src="images/demos/demo1/parallax.jpg" style="background-color: #2d2f33;">
+            <div class="container">
+                <div class="banner-content appear-animate"
+                     data-animation-options="{'name': 'blurIn', 'duration': '1s', 'delay': '.2s'}">
+                    <h4 class="banner-subtitle text-white font-weight-bold ls-l">
+                        Extra<span class="d-inline-block label-star bg-dark text-primary ml-4 mr-2">
+                            30%
+                            Off
+                        </span>Online
+                    </h4>
+                    <h3 class="banner-title font-weight-bold text-white">Summer Season Sale</h3>
+                    <p class="text-white ls-s">Free shipping on orders over $99</p>
+                    <a href="shop.html" class="btn btn-primary btn-rounded btn-icon-right">
+                        Shop Now<i class="d-icon-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
     </div>
-</nav>
+</main>
+
+
+<script src="~/ClientTemp/vendor/jquery/jquery.min.js"></script>
+<script src="~/ClientTemp/vendor/elevatezoom/jquery.elevatezoom.min.js"></script>
+<script src="~/ClientTemp/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+<script src="~/ClientTemp/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+<script src="~/ClientTemp/vendor/jquery/jquery.min.js"></script>
+<script src="~/ClientTemp/vendor/parallax/parallax.min.js"></script>
+<script src="~/ClientTemp/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+<script src="~/ClientTemp/vendor/elevatezoom/jquery.elevatezoom.min.js"></script>
+<script src="~/ClientTemp/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+<script src="~/ClientTemp/vendor/owl-carousel/owl.carousel.min.js"></script>
+<!-- Main JS File -->
+<script src="~/ClientTemp/js/main.min.js"></script>

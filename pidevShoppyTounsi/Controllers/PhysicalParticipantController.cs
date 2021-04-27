@@ -1,7 +1,6 @@
 ﻿using pidevShoppyTounsi.Models;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Web;
@@ -9,12 +8,12 @@ using System.Web.Mvc;
 
 namespace pidevShoppyTounsi.Controllers
 {
-    public class ProductController : Controller
+    public class PhysicalParticipantController : Controller
     {
+        // GET: PhysicalParticipant
         HttpClient Client;
         string baseAddress;
-
-        public ProductController()
+        public PhysicalParticipantController()
         {
             Client = new HttpClient();
             baseAddress = "http://localhost:8081/";
@@ -28,57 +27,39 @@ namespace pidevShoppyTounsi.Controllers
                     new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", LoginController.TokenConnect);
             }
         }
-
-
-        // GET: Product
+        // GET: PhysicalParticipant
         public ActionResult Index()
         {
-            HttpResponseMessage response = Client.GetAsync("product/allProducts").Result;
-            IEnumerable<Product> Products;
-
-            if (response.IsSuccessStatusCode)
-            {
-                Products = response.Content.ReadAsAsync<IEnumerable<Product>>().Result;
-            }
-            else
-            {
-                Products = null;
-
-            }
-            foreach(Product p in Products)
-            {
-                Debug.WriteLine(p.name);
-            }
-            return View(Products);
+            return View();
         }
 
-        // GET: Product/Details/5
+        // GET: PhysicalParticipant/Details/5
         public ActionResult Details(int id)
         {
 
-            HttpResponseMessage response = Client.GetAsync("getProductById/" + id).Result;
-            Product Product;
-
+            return View();
+        }
+        public ActionResult ofEvent(int id)
+        {
+            HttpResponseMessage response = Client.GetAsync("retriveEventPhysicalParticipant/" + id).Result;
+            IEnumerable<PhysicalParticipant> physicalParticipants;
             if (response.IsSuccessStatusCode)
             {
-                Product = response.Content.ReadAsAsync<Product>().Result;
+                physicalParticipants = response.Content.ReadAsAsync<IEnumerable<PhysicalParticipant>>().Result;
             }
             else
             {
-                Product = null;
-
+                physicalParticipants = null;
             }
-
-            return View(Product);
+            return View(physicalParticipants);
         }
-
-        // GET: Product/Create
+        // GET: PhysicalParticipant/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Product/Create
+        // POST: PhysicalParticipant/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -94,13 +75,13 @@ namespace pidevShoppyTounsi.Controllers
             }
         }
 
-        // GET: Product/Edit/5
+        // GET: PhysicalParticipant/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Product/Edit/5
+        // POST: PhysicalParticipant/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -116,13 +97,13 @@ namespace pidevShoppyTounsi.Controllers
             }
         }
 
-        // GET: Product/Delete/5
+        // GET: PhysicalParticipant/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Product/Delete/5
+        // POST: PhysicalParticipant/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

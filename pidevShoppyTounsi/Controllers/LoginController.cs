@@ -74,7 +74,7 @@ namespace pidevShoppyTounsi.Controllers
 
                     if (response.roles.Contains("ROLE_ADMIN"))
                     {
-                        return RedirectToAction("../User");
+                        return RedirectToAction("../AdminAccount/Home");
                     }
                     
 

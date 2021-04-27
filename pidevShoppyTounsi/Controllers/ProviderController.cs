@@ -22,6 +22,13 @@ namespace pidevShoppyTounsi.Controllers
             baseAddress = "http://localhost:8081/";
             Client.BaseAddress = new Uri(baseAddress);
             Client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            if (LoginController.TokenConnect != "")
+            {
+                Client.DefaultRequestHeaders.Add("Accept", "application/json");
+
+                Client.DefaultRequestHeaders.Authorization =
+                    new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", LoginController.TokenConnect);
+            }
         }
       
         // GET: Provider

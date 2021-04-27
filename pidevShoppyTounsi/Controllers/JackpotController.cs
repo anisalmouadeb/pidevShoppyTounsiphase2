@@ -1,7 +1,6 @@
 ﻿using pidevShoppyTounsi.Models;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Web;
@@ -9,12 +8,11 @@ using System.Web.Mvc;
 
 namespace pidevShoppyTounsi.Controllers
 {
-    public class ProductController : Controller
+    public class JackpotController : Controller
     {
         HttpClient Client;
         string baseAddress;
-
-        public ProductController()
+        public JackpotController()
         {
             Client = new HttpClient();
             baseAddress = "http://localhost:8081/";
@@ -28,57 +26,37 @@ namespace pidevShoppyTounsi.Controllers
                     new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", LoginController.TokenConnect);
             }
         }
-
-
-        // GET: Product
+        // GET: Jackpot
         public ActionResult Index()
         {
-            HttpResponseMessage response = Client.GetAsync("product/allProducts").Result;
-            IEnumerable<Product> Products;
-
-            if (response.IsSuccessStatusCode)
-            {
-                Products = response.Content.ReadAsAsync<IEnumerable<Product>>().Result;
-            }
-            else
-            {
-                Products = null;
-
-            }
-            foreach(Product p in Products)
-            {
-                Debug.WriteLine(p.name);
-            }
-            return View(Products);
+            return View();
         }
 
-        // GET: Product/Details/5
-        public ActionResult Details(int id)
+        // GET: Jackpot/Details/5
+        public ActionResult Details()
         {
-
-            HttpResponseMessage response = Client.GetAsync("getProductById/" + id).Result;
-            Product Product;
-
+            HttpResponseMessage response = Client.GetAsync("retriveJackpot/1").Result;
+            Jackpot jackpot;
             if (response.IsSuccessStatusCode)
             {
-                Product = response.Content.ReadAsAsync<Product>().Result;
+                jackpot = response.Content.ReadAsAsync<Jackpot>().Result;
             }
             else
             {
-                Product = null;
-
+                jackpot = null;
             }
 
-            return View(Product);
+
+            return View(jackpot);
         }
 
-        // GET: Product/Create
+        // GET: Jackpot/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Product/Create
+        // POST: Jackpot/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -94,13 +72,13 @@ namespace pidevShoppyTounsi.Controllers
             }
         }
 
-        // GET: Product/Edit/5
+        // GET: Jackpot/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Product/Edit/5
+        // POST: Jackpot/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -116,13 +94,13 @@ namespace pidevShoppyTounsi.Controllers
             }
         }
 
-        // GET: Product/Delete/5
+        // GET: Jackpot/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Product/Delete/5
+        // POST: Jackpot/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

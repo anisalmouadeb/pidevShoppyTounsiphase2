@@ -7,18 +7,15 @@
 { Layout = "~/Views/Shared/ConnectedClient.cshtml"; }
 else
 { Layout = "~/Views/Shared/NotConnectedClient.cshtml"; }
-<nav class="breadcrumb-nav">
-    <div class="container">
-        <ul class="breadcrumb">
-            <li><a href="demo1.html"><i class="d-icon-card"></i></a></li>
-            <li>Visit Our Store</li>
-        </ul>
-    </div>
-</nav>
+<br />
+<br />
+<br />
+<br />
 <div class="page-header pl-4 pr-4">
+
     <figure class="product-image">
         <iframe src="https://momento360.com/e/u/6a4278666cc74761adf1db390d5eeccc?utm_campaign=embed&utm_source=other&heading=187.8&pitch=-19.2&field-of-view=75&size=medium"
-                width="1590" height="255">
+                width="1590" height="450">
         </iframe>
     </figure>
 
@@ -27,251 +24,277 @@ else
 <br />
 <br />
 <br />
+<br />
+<main class="main account">
 
-<div class="page-content mb-12" style="margin-left:10px">
-    <div class="container-fluid">
-   
-        @foreach (var item in Model)
-        {
-            <br />
-            @Html.HiddenFor(modelItem => item.shelfId, new { htmlAttributes = new { @id = item.shelfId } })
-            <div class="row gutter-lg " style="margin-left:50px">
+    <div class="page-content mt-4 mb-10 pb-6">
+        <div class="container">
+
+            <div class="tab tab-vertical gutter-lg">
+                <ul class="nav nav-tabs mb-4 col-lg-3 col-md-4" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#orders">Our Selfs</a>
+
+                </ul>
+                <div class="tab-content col-lg-9 col-md-8">
+
+                    <div class="tab-pane active" id="orders">
+                      
 
 
-               
-                    <div class="product product-single row">
-
-                        <div class="col-md-4">
-
-                            <figure class="product-image">
-                                <iframe src="https://momento360.com/e/u/6a4278666cc74761adf1db390d5eeccc?utm_campaign=embed&utm_source=other&heading=187.8&pitch=-19.2&field-of-view=75&size=medium"
-                                        width="450" height="250"></iframe>
-                            </figure>
-
-                        </div>
-                        <div class="col-md-8">
-                            
-                                 <div class="product-details">
-                                     <div class="product-cat">
-                                         <a href="shop-grid-3col.html">@Html.DisplayFor(modelItem => item.type)</a>
-                                     </div>
-                                     <h1 class="product-name mt-3">@Html.DisplayFor(modelItem => item.shelfname)</h1>
+                        @foreach (var item in Model)
+                        {
+                            <br />
+                            @Html.HiddenFor(modelItem => item.shelfId, new { htmlAttributes = new { @id = item.shelfId } })
+                            <div class="row gutter-lg " >
 
 
 
-                                   
+                                <div class="product product-single row">
 
-                                     @{int nb = 0;
-                                     }
-                                     @foreach (var s in ViewBag.shelfRating)
-                                     {
-                                         if (@s.shelf.shelfId == item.shelfId)
-                                         {
-                                             nb++;
-                                         }
+                                    <div class="col-md-3">
 
-                                     }
-                                     @{int nb2 = 0; }
-                                     @{int rate = 0;}
+                                        <figure class="product-image">
+                                            <iframe src="https://momento360.com/e/u/6a4278666cc74761adf1db390d5eeccc?utm_campaign=embed&utm_source=other&heading=187.8&pitch=-19.2&field-of-view=75&size=medium"
+                                                    width="410" height="330"></iframe>
+                                        </figure>
 
-                                     @foreach (var s in ViewBag.shelfRating)
-                                     {
-                                         if (@s.user.userId == LoginController.ConnectedId && @s.shelf.shelfId == item.shelfId)
-                                         {
-                                             nb2++;
-                                             rate = s.rating;
-                                         }
+                                    </div>
+                                    <div class="col-md-8" >
 
-                                     }
-                                     <div class="product-price">  Rating </div>
-                                     @if ((item.rating) == 0)
-                                     {
-                                         <div class="ratings-container">
-                                             <div class="ratings-full">
-                                                 <span class="ratings" style="width:0%"></span>
-                                                 <span class="tooltiptext tooltip-top"></span>
-                                             </div>
-                                             <a class="link-to-tab rating-reviews">
-                                                 @if (nb2 > 0)
-                                                 {
-                                                     <div>
-                                                         (  @nb reviews ) (your rate is @rate)
-                                                     </div>
-                                                 }
-                                                 else
-                                                 { <div>
-                                                         (  @nb reviews )
-                                                     </div>}
-
-                                                 )
-
-                                             </a>
-                                         </div>
-                                     }
-                                     @if ((item.rating) == 1)
-                                     {
-                                         <div class="ratings-container">
-                                             <div class="ratings-full">
-                                                 <span class="ratings" style="width:20%"></span>
-                                                 <span class="tooltiptext tooltip-top"></span>
-                                             </div>
-                                             <a class="link-to-tab rating-reviews">
-                                                 @if (nb2 > 0)
-                                                 {
-                                                     <div>
-                                                         (  @nb reviews ) (your rate is @rate)
-                                                     </div>
-                                                 }
-                                                 else
-                                                 { <div>
-                                                         (  @nb reviews )
-                                                     </div>}
-                                             </a>
-                                         </div>
-                                     }
-                                     @if ((item.rating) == 2)
-                                     {
-                                         <div class="ratings-container">
-                                             <div class="ratings-full">
-                                                 <span class="ratings" style="width:40%"></span>
-                                                 <span class="tooltiptext tooltip-top"></span>
-                                             </div>
-                                             <a class="link-to-tab rating-reviews">
-                                                 @if (nb2 > 0)
-                                                 {
-                                                     <div>
-                                                         (  @nb reviews ) (your rate is @rate)
-                                                     </div>
-                                                 }
-                                                 else
-                                                 { <div>
-                                                         (  @nb reviews )
-                                                     </div>}
-                                             </a>
-                                         </div>
-                                     }
-                                     @if ((item.rating) == 3)
-                                     {
-                                         <div class="ratings-container">
-                                             <div class="ratings-full">
-                                                 <span class="ratings" style="width:60%"></span>
-                                                 <span class="tooltiptext tooltip-top"></span>
-                                             </div>
-                                             <a class="link-to-tab rating-reviews">
-                                                 @if (nb2 > 0)
-                                                 {
-                                                     <div>
-                                                         (  @nb reviews ) (your rate is @rate)
-                                                     </div>
-                                                 }
-                                                 else
-                                                 { <div>
-                                                         (  @nb reviews )
-                                                     </div>}
-                                             </a>
-                                         </div>
-                                     }
-                                     @if ((item.rating) == 4)
-                                     {
-                                         <div class="ratings-container">
-                                             <div class="ratings-full">
-                                                 <span class="ratings" style="width:80%"></span>
-                                                 <span class="tooltiptext tooltip-top"></span>
-                                             </div>
-                                             <a class="link-to-tab rating-reviews">
-                                                 @if (nb2 > 0)
-                                                 {
-                                                     <div>
-                                                         (  @nb reviews ) (your rate is @rate)
-                                                     </div>
-                                                 }
-                                                 else
-                                                 { <div>
-                                                         (  @nb reviews )
-                                                     </div>}
-                                             </a>
-                                         </div>
-                                     }
-                                     @if ((item.rating) == 5)
-                                     {
-                                         <div class="ratings-container">
-                                             <div class="ratings-full">
-                                                 <span class="ratings" style="width:100%"></span>
-                                                 <span class="tooltiptext tooltip-top"></span>
-                                             </div>
-                                             <a class="link-to-tab rating-reviews">
-                                                 @if (nb2 > 0)
-                                                 {
-                                                     <div>
-                                                         (  @nb reviews ) (your rate is @rate)
-                                                     </div>
-                                                 }
-                                                 else
-                                                 { <div>
-                                                         (  @nb reviews )
-                                                     </div>}
-                                             </a>
-                                         </div>
-                                     }
+                                        <div class="product-details"style="margin-left:210px">
+                                            <div class="product-cat">
+                                                <a href="shop-grid-3col.html">@Html.DisplayFor(modelItem => item.type)</a>
+                                            </div>
+                                            <h1 class="product-name mt-3">@Html.DisplayFor(modelItem => item.shelfname)</h1>
 
 
 
 
-                                  
 
-                                     <hr class="product-divider">
+                                            @{int nb = 0;
+                                            }
+                                            @foreach (var s in ViewBag.shelfRating)
+                                            {
+                                                if (@s.shelf.shelfId == item.shelfId)
+                                                {
+                                                    nb++;
+                                                }
 
-                                     <div class="product-form product-qty">
-                                         <div class="product-form-group">
+                                            }
+                                            @{int nb2 = 0; }
+                                            @{int rate = 0;}
 
-                                             <div class="input-group mr-2">
-                                                 <button class="quantity-minus d-icon-minus"></button>
-                                                 <input id="textbox" class="quantity form-control" type="number" min="1" max="5">
-                                                 <button class="quantity-plus d-icon-plus"></button>
-                                             </div>
-                                             @if (nb2 > 0)
-                                             {<button onclick="changeHref()" id="button" value="@item.shelfId" class="btn btn-success ls-normal font-weight-semi-bold">
-                                                     Update Your Rate
-                                                 </button>}
-                                             else
-                                             {<button onclick="changeHref()" id="button" value="@item.shelfId" class="btn btn-success ls-normal font-weight-semi-bold">
-                                                     Add Ratting
-                                                 </button>}
+                                            @foreach (var s in ViewBag.shelfRating)
+                                            {
+                                                if (@s.user.userId == LoginController.ConnectedId && @s.shelf.shelfId == item.shelfId)
+                                                {
+                                                    nb2++;
+                                                    rate = s.rating;
+                                                }
+
+                                            }
+                                            <div class="product-price">  Rating </div>
+                                            @if ((item.rating) == 0)
+                                            {
+                                                <div class="ratings-container">
+                                                    <div class="ratings-full">
+                                                        <span class="ratings" style="width:0%"></span>
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div>
+                                                    <a class="link-to-tab rating-reviews">
+                                                        @if (nb2 > 0)
+                                                        {
+                                                            <div>
+                                                                (  @nb reviews ) (your rate is @rate)
+                                                            </div>
+                                                        }
+                                                        else
+                                                        { <div>
+                                                                (  @nb reviews )
+                                                            </div>}
+
+                                                        )
+
+                                                    </a>
+                                                </div>
+                                            }
+                                            @if ((item.rating) == 1)
+                                            {
+                                                <div class="ratings-container">
+                                                    <div class="ratings-full">
+                                                        <span class="ratings" style="width:20%"></span>
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div>
+                                                    <a class="link-to-tab rating-reviews">
+                                                        @if (nb2 > 0)
+                                                        {
+                                                            <div>
+                                                                (  @nb reviews ) (your rate is @rate)
+                                                            </div>
+                                                        }
+                                                        else
+                                                        { <div>
+                                                                (  @nb reviews )
+                                                            </div>}
+                                                    </a>
+                                                </div>
+                                            }
+                                            @if ((item.rating) == 2)
+                                            {
+                                                <div class="ratings-container">
+                                                    <div class="ratings-full">
+                                                        <span class="ratings" style="width:40%"></span>
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div>
+                                                    <a class="link-to-tab rating-reviews">
+                                                        @if (nb2 > 0)
+                                                        {
+                                                            <div>
+                                                                (  @nb reviews ) (your rate is @rate)
+                                                            </div>
+                                                        }
+                                                        else
+                                                        { <div>
+                                                                (  @nb reviews )
+                                                            </div>}
+                                                    </a>
+                                                </div>
+                                            }
+                                            @if ((item.rating) == 3)
+                                            {
+                                                <div class="ratings-container">
+                                                    <div class="ratings-full">
+                                                        <span class="ratings" style="width:60%"></span>
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div>
+                                                    <a class="link-to-tab rating-reviews">
+                                                        @if (nb2 > 0)
+                                                        {
+                                                            <div>
+                                                                (  @nb reviews ) (your rate is @rate)
+                                                            </div>
+                                                        }
+                                                        else
+                                                        { <div>
+                                                                (  @nb reviews )
+                                                            </div>}
+                                                    </a>
+                                                </div>
+                                            }
+                                            @if ((item.rating) == 4)
+                                            {
+                                                <div class="ratings-container">
+                                                    <div class="ratings-full">
+                                                        <span class="ratings" style="width:80%"></span>
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div>
+                                                    <a class="link-to-tab rating-reviews">
+                                                        @if (nb2 > 0)
+                                                        {
+                                                            <div>
+                                                                (  @nb reviews ) (your rate is @rate)
+                                                            </div>
+                                                        }
+                                                        else
+                                                        { <div>
+                                                                (  @nb reviews )
+                                                            </div>}
+                                                    </a>
+                                                </div>
+                                            }
+                                            @if ((item.rating) == 5)
+                                            {
+                                                <div class="ratings-container">
+                                                    <div class="ratings-full">
+                                                        <span class="ratings" style="width:100%"></span>
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div>
+                                                    <a class="link-to-tab rating-reviews">
+                                                        @if (nb2 > 0)
+                                                        {
+                                                            <div>
+                                                                (  @nb reviews ) (your rate is @rate)
+                                                            </div>
+                                                        }
+                                                        else
+                                                        { <div>
+                                                                (  @nb reviews )
+                                                            </div>}
+                                                    </a>
+                                                </div>
+                                            }
 
 
 
-                                             <button class="btn btn-primary ls-normal font-weight-semi-bold" onclick="location.href='ShelfListOfProducts/'+@item.shelfId">
-                                                 See products
-                                             </button>
-                                         </div>
-                                     </div>
-
-                                     <hr class="product-divider mb-3">
 
 
 
-                                 </div>
-                        </div>
+                                            <hr class="product-divider">
 
-                    </div>
+                                            <div class="product-form product-qty">
+                                                <div class="product-form-group">
+
+                                                    <div class="input-group mr-2">
+                                                        <button class="quantity-minus d-icon-minus"></button>
+                                                        <input id="textbox" class="quantity form-control" type="number" min="1" max="5">
+                                                        <button class="quantity-plus d-icon-plus"></button>
+                                                    </div>
+                                                    @if (nb2 > 0)
+                                                    {<button onclick="changeHref()" id="button" value="@item.shelfId" class="btn btn-success ls-normal font-weight-semi-bold">
+                                                            Update Your Rate
+                                                        </button>}
+                                                    else
+                                                    {<button onclick="changeHref()" id="button" value="@item.shelfId" class="btn btn-success ls-normal font-weight-semi-bold">
+                                                            Add Ratting
+                                                        </button>}
 
 
-                
-            </div>
+
+                                                    <button class="btn btn-primary ls-normal font-weight-semi-bold" onclick="location.href='ShelfListOfProducts/'+@item.shelfId">
+                                                        See products
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                            <hr class="product-divider mb-3">
 
 
-            <script>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+                            </div>
+
+
+                            <script>
 function changeHref(){
                                                       var url = '@Url.Action("AddRate", "Shelf")';
     var txtVal = $('#textbox').val();
                             var idd = $('#button').val();
                                                       window.location.href = url + '/' + idd  +'/' + txtVal;
                                                   }</script>
-            <br />
-            <hr  />
-        }
+                            <br />
+                            <hr style="border:double" />
+                        }
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</main>
+
+<br />
+<br />
+<br />
+
+
 
 
 <script src="vendor/jquery/jquery.min.js"></script>

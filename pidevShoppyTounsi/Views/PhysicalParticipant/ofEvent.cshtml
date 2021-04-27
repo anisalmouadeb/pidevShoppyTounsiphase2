@@ -1,0 +1,39 @@
+﻿@model IEnumerable<pidevShoppyTounsi.Models.PhysicalParticipant>
+
+@{
+    ViewBag.Title = "ofEvent";
+}
+
+<h2>Physical participant of the vent</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fullname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sum)
+        </th>
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.fullname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sum)
+        </td>
+        
+    </tr>
+}
+
+</table>

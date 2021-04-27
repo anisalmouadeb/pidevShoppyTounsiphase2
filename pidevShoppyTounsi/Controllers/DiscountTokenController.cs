@@ -1,7 +1,6 @@
 ﻿using pidevShoppyTounsi.Models;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Web;
@@ -9,12 +8,11 @@ using System.Web.Mvc;
 
 namespace pidevShoppyTounsi.Controllers
 {
-    public class ProductController : Controller
+    public class DiscountTokenController : Controller
     {
         HttpClient Client;
         string baseAddress;
-
-        public ProductController()
+        public DiscountTokenController()
         {
             Client = new HttpClient();
             baseAddress = "http://localhost:8081/";
@@ -28,57 +26,52 @@ namespace pidevShoppyTounsi.Controllers
                     new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", LoginController.TokenConnect);
             }
         }
-
-
-        // GET: Product
+        // GET: DiscountToken
         public ActionResult Index()
         {
-            HttpResponseMessage response = Client.GetAsync("product/allProducts").Result;
-            IEnumerable<Product> Products;
-
+            return View();
+        }
+        public ActionResult MyDiscountTokens()
+        {
+            HttpResponseMessage response = Client.GetAsync("retriveMyDiscountTokens").Result;
+            IEnumerable<DiscountToken> discountTokens;
             if (response.IsSuccessStatusCode)
             {
-                Products = response.Content.ReadAsAsync<IEnumerable<Product>>().Result;
+                discountTokens = response.Content.ReadAsAsync<IEnumerable<DiscountToken>>().Result;
             }
             else
             {
-                Products = null;
-
+                discountTokens = null;
             }
-            foreach(Product p in Products)
-            {
-                Debug.WriteLine(p.name);
-            }
-            return View(Products);
+            return View(discountTokens);
         }
 
-        // GET: Product/Details/5
+
+        // GET: DiscountToken/Details/5
         public ActionResult Details(int id)
         {
-
-            HttpResponseMessage response = Client.GetAsync("getProductById/" + id).Result;
-            Product Product;
-
+            HttpResponseMessage response = Client.GetAsync("retriveDiscountToken/" + id).Result;
+            DiscountToken discountToken;
             if (response.IsSuccessStatusCode)
             {
-                Product = response.Content.ReadAsAsync<Product>().Result;
+                discountToken = response.Content.ReadAsAsync<DiscountToken>().Result;
             }
             else
             {
-                Product = null;
-
+                discountToken = null;
             }
 
-            return View(Product);
+
+            return View(discountToken);
         }
 
-        // GET: Product/Create
+        // GET: DiscountToken/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Product/Create
+        // POST: DiscountToken/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -94,13 +87,13 @@ namespace pidevShoppyTounsi.Controllers
             }
         }
 
-        // GET: Product/Edit/5
+        // GET: DiscountToken/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Product/Edit/5
+        // POST: DiscountToken/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -116,13 +109,13 @@ namespace pidevShoppyTounsi.Controllers
             }
         }
 
-        // GET: Product/Delete/5
+        // GET: DiscountToken/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Product/Delete/5
+        // POST: DiscountToken/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
@@ -137,5 +130,6 @@ namespace pidevShoppyTounsi.Controllers
                 return View();
             }
         }
+
     }
 }

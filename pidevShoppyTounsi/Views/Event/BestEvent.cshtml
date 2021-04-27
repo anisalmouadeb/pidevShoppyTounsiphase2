@@ -1,0 +1,82 @@
+﻿@model pidevShoppyTounsi.Models.Event
+
+@{
+    ViewBag.Title = "BestEvent";
+}
+
+<h2>Best Event</h2>
+
+<div>
+    <h4>Event</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estimatedAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estimatedAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.collectedAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.collectedAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numberOfVisits)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numberOfVisits)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numberOfparticipants)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numberOfparticipants)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numberOfCurrentParticipants)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numberOfCurrentParticipants)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.eventDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.eventDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.eventId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -91,10 +91,16 @@ namespace pidevShoppyTounsi.Controllers
 
                      return RedirectToAction("MyAccount");
                  }
+                else
+                {
+                    JwtResponse response = APIresponse.Content.ReadAsAsync<JwtResponse>().Result;
+                    TempData["message1"] = response.message;
+                    Debug.WriteLine(TempData["message1"].ToString());
+                    return RedirectToAction("UpdateAccount");
+                }
 
-                 
 
-                return RedirectToAction("MyAccount");
+
             }
             catch
             {

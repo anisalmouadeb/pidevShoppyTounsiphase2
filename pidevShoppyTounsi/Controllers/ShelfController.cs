@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace pidevShoppyTounsi.Controllers
 {
-    [RedirectingAction]
+  
     public class ShelfController : Controller
     {
         HttpClient Client;
@@ -31,7 +31,7 @@ namespace pidevShoppyTounsi.Controllers
                     new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", LoginController.TokenConnect);
             }
         }
-        // GET: Shelf
+        [RedirectingAction]      // GET: Shelf
         public ActionResult Index()
         {
             HttpResponseMessage response = Client.GetAsync("getAllShelfs").Result;
@@ -55,7 +55,7 @@ namespace pidevShoppyTounsi.Controllers
         }
 
 
-
+       
         public ActionResult ListShelfs()
         {
             HttpResponseMessage response = Client.GetAsync("getShelfs").Result;
@@ -92,7 +92,7 @@ namespace pidevShoppyTounsi.Controllers
             return View(shelfs);
         }
 
-
+        [RedirectingAction]
 
         public ActionResult ListOfProducts(int id)
         {
@@ -128,7 +128,7 @@ namespace pidevShoppyTounsi.Controllers
 
             return View(products);
         }
-
+        [RedirectingAction]
         public ActionResult ShelfListOfProducts(int id)
         {
             HttpResponseMessage response = Client.GetAsync("getShelfById/" + id).Result;
@@ -168,7 +168,7 @@ namespace pidevShoppyTounsi.Controllers
             return View(products);
         }
 
-
+        [RedirectingAction]
         public ActionResult ListOfCategory(int id)
         {
             ViewBag.shelfid = id;
@@ -217,7 +217,7 @@ namespace pidevShoppyTounsi.Controllers
         }
 
 
-
+        [RedirectingAction]
         public ActionResult ListOfRating(int id)
         {
             HttpResponseMessage response2 = Client.GetAsync("getShelfById/" + id).Result;
@@ -259,6 +259,7 @@ namespace pidevShoppyTounsi.Controllers
             return View(ratings);
         }
         // GET: Shelf/Details/5
+        [RedirectingAction]
         public ActionResult Details(int id)
         {
             HttpResponseMessage response = Client.GetAsync("getShelfById/" + id).Result;
@@ -277,6 +278,7 @@ namespace pidevShoppyTounsi.Controllers
         }
 
         // GET: Shelf/Create
+        [RedirectingAction]
         public ActionResult Create()
         {
             return View();
@@ -312,13 +314,14 @@ namespace pidevShoppyTounsi.Controllers
         }
 
         // GET: Shelf/Edit/5
+        [RedirectingAction]
         public ActionResult Edit(int id)
         {
             return View();
         }
 
         // POST: Shelf/Edit/5
-
+        [RedirectingAction]
         public ActionResult AddRate(int id ,int rate )
 
         {
@@ -329,7 +332,7 @@ namespace pidevShoppyTounsi.Controllers
             Debug.WriteLine(APIresponse.StatusCode);
             return RedirectToAction("ListShelfs");
         }
-
+        [RedirectingAction]
         [HttpPost]
         public ActionResult Edit(Shelf shelf,int id, FormCollection collection)
         {
@@ -357,6 +360,7 @@ namespace pidevShoppyTounsi.Controllers
         }
 
         // GET: Shelf/Delete/5
+        [RedirectingAction]
         public ActionResult Delete(int id)
         {
             HttpResponseMessage response = Client.GetAsync("getShelfById/" + id).Result;
@@ -373,10 +377,10 @@ namespace pidevShoppyTounsi.Controllers
             }
             return View(shelf);
         }
-        
-     
 
-             
+
+
+        [RedirectingAction]
         public ActionResult DeleteCategory(int id, int shelfId)
         {
             try
@@ -408,7 +412,7 @@ namespace pidevShoppyTounsi.Controllers
                 return RedirectToAction("ListOfCategory/"+ shelfId);
             }
         }
-
+        [RedirectingAction]
         public ActionResult AddCategory(int shelfId)
 
         {
@@ -462,7 +466,7 @@ namespace pidevShoppyTounsi.Controllers
             ViewBag.CategoryId = new SelectList(cats3, "categoryId", "name");
             return View();
         }
-
+        [RedirectingAction]
         [HttpPost]
         public ActionResult AddCategory(FormCollection collection, int shelfId)
         {
@@ -497,6 +501,7 @@ namespace pidevShoppyTounsi.Controllers
         }
 
         // POST: Shelf/Delete/5
+        [RedirectingAction]
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

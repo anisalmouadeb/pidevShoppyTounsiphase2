@@ -1,0 +1,106 @@
+﻿@using pidevShoppyTounsi.Models
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+
+<div class="row mt-3">
+
+    <div class="col-12 col-lg-6 col-xl-4">
+        <div class="card gradient-branding">
+            <div class="card-body">
+                <div class="media align-items-center">
+                    <div class="media-body">
+                        <p class="text-white">Total Revenue</p>
+                        <h4 class="text-white line-height-5"> @ViewBag.amount DT</h4>
+                    </div>
+                    <div class=""><span id="dashboard2-chart-2"></span></div>
+                </div>
+            </div>
+            <div class="card-footer border-light-2">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-lg-6 col-xl-4">
+        <div class="card gradient-ibiza">
+            <div class="card-body">
+                <div class="media align-items-center">
+                    <div class="media-body">
+                        <p class="text-white">Sum of Outlays</p>
+                        <h4 class="text-white line-height-5">@ViewBag.sumoutLay DT</h4>
+                    </div>
+                    <div class=""><span id="dashboard2-chart-1"></span></div>
+                </div>
+            </div>
+            <div class="card-footer border-light-2">
+                <p class="mb-0 text-white">
+
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-12 col-lg-12 col-xl-4">
+        <div class="card gradient-deepblue">
+            <div class="card-body">
+                <div class="media align-items-center">
+                    <div class="media-body">
+                        <p class="text-white">Nember of Users</p>
+                        <h4 class="text-white line-height-5">@ViewBag.nbuser</h4>
+                    </div>
+                    <div class=""><span id="dashboard2-chart-3"></span></div>
+                </div>
+            </div>
+            <div class="card-footer border-light-2">
+                <p class="mb-0 text-white">
+
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div><!--End Row-->
+
+
+<div class="row">
+    <div class="col-12 col-lg-12 col-xl-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-line-chart"></i> Shelfs Revenue
+                <div class="card-action">
+
+
+                </div>
+            </div>
+            <div class="card-body">
+                @foreach (ShelfRevenu s in ViewBag.shelfs)
+                {
+                <div class="media align-items-center">
+
+                    <div class="media-body text-left ml-3">
+                        <div class="progress-wrapper">
+                            <p>@s.shelf <span class="float-right">@s.revenu DT</span></p>
+                            <div class="progress" style="height: 7px">
+                               @{var a = (s.revenu / ViewBag.amount )*100;}
+                                <div class="progress-bar gradient-deepblue" style="@Html.Raw("width:" + a + "%;")"></div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<hr>
+                                   }
+            </div>
+        </div>
+    </div>
+
+</div><!--End Row-->
+

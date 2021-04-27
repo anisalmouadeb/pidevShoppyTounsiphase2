@@ -1,7 +1,6 @@
 ﻿using pidevShoppyTounsi.Models;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Web;
@@ -9,12 +8,11 @@ using System.Web.Mvc;
 
 namespace pidevShoppyTounsi.Controllers
 {
-    public class ProductController : Controller
+    public class MakePaimentController : Controller
     {
         HttpClient Client;
         string baseAddress;
-
-        public ProductController()
+        public MakePaimentController()
         {
             Client = new HttpClient();
             baseAddress = "http://localhost:8081/";
@@ -28,65 +26,45 @@ namespace pidevShoppyTounsi.Controllers
                     new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", LoginController.TokenConnect);
             }
         }
-
-
-        // GET: Product
+        // GET: MakePaiment
         public ActionResult Index()
         {
-            HttpResponseMessage response = Client.GetAsync("product/allProducts").Result;
-            IEnumerable<Product> Products;
-
-            if (response.IsSuccessStatusCode)
-            {
-                Products = response.Content.ReadAsAsync<IEnumerable<Product>>().Result;
-            }
-            else
-            {
-                Products = null;
-
-            }
-            foreach(Product p in Products)
-            {
-                Debug.WriteLine(p.name);
-            }
-            return View(Products);
+            return View();
         }
 
-        // GET: Product/Details/5
+        // GET: MakePaiment/Details/5
         public ActionResult Details(int id)
         {
+            return View();
+        }
+        public ActionResult Confirm(ConfirmPaiment confirmPaiment)
+        {
 
-            HttpResponseMessage response = Client.GetAsync("getProductById/" + id).Result;
-            Product Product;
+            String url = confirmPaiment.redirectUrl;
+            ViewBag.url = url;
 
-            if (response.IsSuccessStatusCode)
-            {
-                Product = response.Content.ReadAsAsync<Product>().Result;
-            }
-            else
-            {
-                Product = null;
-
-            }
-
-            return View(Product);
+            return View(confirmPaiment);
         }
 
-        // GET: Product/Create
+        // GET: MakePaiment/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Product/Create
+        // POST: MakePaiment/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(FormCollection collection, MakePaiment makePaiment)
         {
+            ConfirmPaiment confirmPaiment;
+
             try
             {
                 // TODO: Add insert logic here
+                var response = Client.PostAsJsonAsync<MakePaiment>("paypal/make/payment", makePaiment).ContinueWith(postTask => postTask.Result.EnsureSuccessStatusCode()).Result;
+                confirmPaiment = response.Content.ReadAsAsync<ConfirmPaiment>().Result;
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Confirm", confirmPaiment);
             }
             catch
             {
@@ -94,13 +72,13 @@ namespace pidevShoppyTounsi.Controllers
             }
         }
 
-        // GET: Product/Edit/5
+        // GET: MakePaiment/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Product/Edit/5
+        // POST: MakePaiment/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -116,13 +94,13 @@ namespace pidevShoppyTounsi.Controllers
             }
         }
 
-        // GET: Product/Delete/5
+        // GET: MakePaiment/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Product/Delete/5
+        // POST: MakePaiment/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

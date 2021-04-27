@@ -1,62 +1,89 @@
 ﻿@model pidevShoppyTounsi.Models.Product
 
-<div>
-    <h2>Product Detail</h2>
+@using pidevShoppyTounsi.Controllers
+@{
+    ViewBag.Title = "Details";
+}
 
 
-    <table with="65%">
-        <tr>
-            <td>
-                <div>
-                    <hr />
-                    <dl class="dl-horizontal">
-                        <dt>
-                            @Html.DisplayNameFor(model => model.name)
-                        </dt>
+@if (LoginController.TokenConnect != "")
+{ Layout = "~/Views/Shared/ConnectedClient.cshtml"; }
+else
+{ Layout = "~/Views/Shared/NotConnectedClient.cshtml"; }
 
-                        <dd>
-                            @Html.DisplayFor(model => model.name)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.description)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.description)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.priceV)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.priceV)
-                        </dd>
-                        <dt></dt>
-                        <dd>
-                           <div>
-                                @using (Html.BeginForm("AddItemIntoBasket", "Basket", FormMethod.Post))
-                                {
-                                //    @Html.HiddenFor(m => m.Id)
-                                    @Html.DropDownList("Quantity", Enumerable.Range(1, 10).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }))
-                                    @Html.Hidden("UserId", 1)
-                                    <input type="submit" class="btn-primary" value="Add Basket" />
-                                }
-                            </div> 
-                        </dd>
+<nav class="breadcrumb-nav">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="demo1.html"><i class="d-icon-user"></i></a></li>
+            <li>Product : @Model.name</li>
+        </ul>
+    </div>
+</nav>
 
 
-                    </dl>
+<div class="page-content mt-4 mb-10 pb-6">
+    <div class="container">
 
+        <div class="tab tab-vertical gutter-lg">
+            <ul class="nav nav-tabs mb-4 col-lg-3 col-md-4" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#account">Product details</a>
+                </li>
+
+
+            </ul>
+            <div class="tab-content col-lg-9 col-md-8">
+
+
+
+
+                <div class="tab-pane active" id="account">
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h5>  @Html.LabelFor(model => model.code, htmlAttributes: new { @class = "control-label col-md-2" }) :</h5>
+                        </div>
+                        <div class="col-sm-9">
+                            @Html.EditorFor(model => model.code, new { htmlAttributes = new { @Value = Model.code, @disabled = "disabled", @class = "form-control" } })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h5>  @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" }) :</h5>
+                        </div>
+                        <div class="col-sm-9">
+                            @Html.EditorFor(model => model.name, new { htmlAttributes = new { @Value = Model.name, @disabled = "disabled", @class = "form-control" } })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h5>  @Html.LabelFor(model => model.priceV, htmlAttributes: new { @class = "control-label col-md-2" }) :</h5>
+                        </div>
+                        <div class="col-sm-9">
+                            @Html.EditorFor(model => model.priceV, new { htmlAttributes = new { @Value = Model.priceV, @disabled = "disabled", @class = "form-control" } })
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    <br /> <br />
+                    @using (Html.BeginForm("Add", "Cart", FormMethod.Post))
+                    {
+                        @Html.Hidden("id",Model.productId)
+                        <div class="input-group mr-2">
+
+                            @Html.DropDownList("Quantity", Enumerable.Range(1, 10).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }))
+
+                        </div>
+                        @Html.Hidden("userId", LoginController.ConnectedId)
+                        <button type="submit" class="btn btn-primary">Add to Cart <i class="fa fa-cart-arrow-down"></i></button>
+                    }
                 </div>
-            </td>
-        </tr>
-    </table>
-
-
+                
+                </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.productId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

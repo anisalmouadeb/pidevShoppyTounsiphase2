@@ -5,11 +5,9 @@ using System.Web;
 
 namespace pidevShoppyTounsi.Models
 {
-    public class ShelfRevenu
+    public class AddRate
     {
-     
-            public double revenu { get; set; }
-            public string shelf { get; set; }
-        
+        public int id { get; set; }
+        public int rate { get; set; }
     }
 }

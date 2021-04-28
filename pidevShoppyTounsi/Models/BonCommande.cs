@@ -11,7 +11,9 @@ namespace pidevShoppyTounsi.Models
 		[Key]
 		public long bonCoammandId { get; set; }
 		[Display(Name = "Product Name")]
+		[Required(ErrorMessage ="Please select product")]
 		public String productName { get; set; }
+		[Required(ErrorMessage = "Please select provider")]
 		[Display(Name = "Provier Name")]
 		public String providerName { get; set; }
 		[Display(Name = "Purchase Order Date")]

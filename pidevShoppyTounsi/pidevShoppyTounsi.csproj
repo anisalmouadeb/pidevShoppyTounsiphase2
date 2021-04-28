@@ -162,6 +162,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProviderController.cs" />
     <Compile Include="Controllers\ShelfController.cs" />
+    <Compile Include="Models\AddRate.cs" />
     <Compile Include="Models\AddToCart.cs" />
     <Compile Include="Models\ShelfRevenu.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -1540,10 +1541,12 @@
     <Content Include="Views\Shelf\ShelfListOfProducts.cshtml" />
     <Content Include="Views\Home\Products.cshtml" />
     <Content Include="Views\Cart\MyCart.cshtml" />
+    <Content Include="Views\PushaseOrderInProccess\NotifyProvider.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="Views\PurchaseOrder\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

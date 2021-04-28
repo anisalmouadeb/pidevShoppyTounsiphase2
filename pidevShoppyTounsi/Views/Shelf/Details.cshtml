@@ -49,11 +49,9 @@
 
 
             <div class="col-md-offset-2 col-md-10">
-
-                <button type="button" value="Edit" class="btn btn-dark" onclick="location.href='../Edit/'+@Model.shelfId">
-                    <i class="fa fa-edit"></i>
-                    Edit
-                </button>
+                <a class="btn btn-primary" href="@Url.Action("ListOfProducts","Shelf" , new { id = Model.shelfId })"> <i class="fa fa-list"></i> List of Products </a>
+                <a class="btn btn-primary" href="@Url.Action("ListOfCategory","Shelf" , new { id = Model.shelfId })"> <i class="fa fa-list"></i> List of Categories </a>
+              
                 <button type="button" value="Back To List" class="btn btn-primary" onclick="location.href='../Index'">
                     <i class="fa fa-home"></i>
                     Back To list

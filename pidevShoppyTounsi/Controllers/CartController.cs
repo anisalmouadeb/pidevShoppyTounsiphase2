@@ -95,7 +95,7 @@ namespace pidevShoppyTounsi.Controllers
                 ords = null;
 
             }
-            ords.ElementAt(0);
+            
             ViewBag.ords = ords;
             return View();
           

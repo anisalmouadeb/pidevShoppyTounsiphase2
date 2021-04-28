@@ -8,7 +8,7 @@ namespace pidevShoppyTounsi.Models
 {
 	public class Provider
 	{
-
+		[Required(ErrorMessage = "Please select provider")]
 		public long providerId { get; set; }
 		[Required(ErrorMessage = "Name is required")]
 		[Display(Name = "Provier Name")]

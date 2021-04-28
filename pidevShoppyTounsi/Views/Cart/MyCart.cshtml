@@ -36,8 +36,9 @@ else
                                 </tr>
                             </thead>
                             <tbody>
-
-                                @foreach (OrderLine o in ViewBag.ords)
+                                @if(ViewBag.ords!=null)
+                                { 
+                                foreach (OrderLine o in ViewBag.ords)
                                 {
                                 <tr>
                                     <td class="order-sm-11"><a href="#">@o.product.name</a></td>
@@ -55,7 +56,7 @@ else
                                 </tr>
                                 }
 
-
+                                }
                             </tbody>
                         </table>
                     </div>

@@ -19,9 +19,10 @@ namespace pidevShoppyTounsi.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Entry Date")]
         public string entryDate { get; set; }
-        [Required(ErrorMessage = "Product is required")]
+        
+        [Required(ErrorMessage = "Please select product")]
         public Product product { get; set; }
-        [Required(ErrorMessage = "Provider is required")]
+        [Required(ErrorMessage = "Please select provider")]
         public Provider provider { get; set; }
         [Required(ErrorMessage = "Artical Price is required")]
         [Range(1, double.MaxValue, ErrorMessage = "Artical Price Must be  greater than 0")]

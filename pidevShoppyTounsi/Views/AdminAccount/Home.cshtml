@@ -84,13 +84,15 @@
 
                     <div class="media-body text-left ml-3">
                         <div class="progress-wrapper">
-                            <p>@s.shelf <span class="float-right">@s.revenu DT</span></p>
+                            @{int a =(int)((s.revenu / ViewBag.amount) * 100);}
+                            <p>@s.shelf <span class="float-right">@s.revenu DT  </span></p>
                             <div class="progress" style="height: 7px">
-                               @{var a = (s.revenu / ViewBag.amount )*100;}
-                                <div class="progress-bar gradient-deepblue" style="@Html.Raw("width:" + a + "%;")"></div>
-</div>
 
-</div>
+
+                                <div class="progress-bar gradient-deepblue" style="@Html.Raw("width:" + a + "%;")"></div>
+                            </div>
+
+                        </div>
 
 </div>
 

@@ -317,21 +317,22 @@ namespace pidevShoppyTounsi.Controllers
         [RedirectingAction]
         public ActionResult Edit(int id)
         {
+            ViewBag.id = id;
             return View();
         }
 
         // POST: Shelf/Edit/5
         [RedirectingAction]
-        public ActionResult AddRate(int id ,int rate )
+        public ActionResult AddRate(AddRate r)
 
         {
            // addShelfRating / 1 / 1
-            Debug.WriteLine(rate);
-            Debug.WriteLine(id);
-            var APIresponse = Client.PostAsJsonAsync<Shelf>(baseAddress + "addShelfRating/" + id + "/" + rate,null).GetAwaiter().GetResult();
+          
+            var APIresponse = Client.PostAsJsonAsync<Shelf>(baseAddress + "addShelfRating/" + r.id + "/" + r.rate,null).GetAwaiter().GetResult();
             Debug.WriteLine(APIresponse.StatusCode);
             return RedirectToAction("ListShelfs");
         }
+       
         [RedirectingAction]
         [HttpPost]
         public ActionResult Edit(Shelf shelf,int id, FormCollection collection)
@@ -420,17 +421,17 @@ namespace pidevShoppyTounsi.Controllers
             HttpResponseMessage response = Client.GetAsync("getShelfById/" + shelfId).Result;
             Shelf shelf;
             HttpResponseMessage response2 = Client.GetAsync("getAllCategory").Result;
-            IEnumerable<Category> cats2;
-            IList<Category> cats3 = new List<Category> { }; 
+            IEnumerable<Category> cat1;
+           
             if (response2.IsSuccessStatusCode)
             {
-                cats2 = response2.Content.ReadAsAsync<IEnumerable<Category>>().Result;
+                cat1 = response2.Content.ReadAsAsync<IEnumerable<Category>>().Result;
             }
             else
             {
-                cats2 = null;
+                cat1 = null;
             }
-
+          
 
 
             if (response.IsSuccessStatusCode)
@@ -442,28 +443,26 @@ namespace pidevShoppyTounsi.Controllers
                 shelf = null;
 
             }
-
-            IEnumerable<Category> cats;
-            cats = shelf.category;
-            foreach (Category c in cats2)
+            IList<Category> cat2 = new List<Category> { };
+            IEnumerable<Category> cats3;
+         
+            cats3 = shelf.category;
+            foreach (Category c in cat1)
             {
-                Debug.WriteLine(c.categoryId);
-               if (cats!=null)
+                foreach (Category c2 in cats3)
                 {
-                    foreach (Category c2 in cats)
+                    if(c.categoryId!=c2.categoryId)
                     {
-                        if (c.categoryId != c2.categoryId)
-                        {
-
-                           
-                        }
+                        Debug.WriteLine("add" + c.name + c2.name);
+                        cat2.Add(c);
                     }
                 }
-                cats3.Add(c);
-            }
 
+
+            }
+            ViewBag.id = shelf.shelfId;
             ViewBag.shelfname = shelf.shelfname;
-            ViewBag.CategoryId = new SelectList(cats3, "categoryId", "name");
+            ViewBag.CategoryId = new SelectList(cat2, "categoryId", "name");
             return View();
         }
         [RedirectingAction]

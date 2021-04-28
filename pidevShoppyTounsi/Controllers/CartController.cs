@@ -226,6 +226,16 @@ namespace pidevShoppyTounsi.Controllers
             return View();
         }
 
+        public ActionResult OrderComplete()
+        {
+
+            return View();
+        }
+        public ActionResult CancelOrder()
+        {
+
+            return View();
+        }
 
 
     }

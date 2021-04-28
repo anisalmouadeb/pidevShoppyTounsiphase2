@@ -1,4 +1,4 @@
-﻿@using pidevShoppyTounsi.Controllers
+﻿@using pidevShoppyTounsi.Controllers @using pidevShoppyTounsi.Models
 <!DOCTYPE html>
 <html lang="en">
 
@@ -111,7 +111,72 @@
                             <i class="d-icon-heart"></i>
                         </a>
                         <span class="divider"></span>
-                      
+                        <div class="dropdown cart-dropdown type2 cart-offcanvas mr-0 mr-lg-2">
+                            <a href="#" class="cart-toggle label-block link">
+                                <div class="cart-label d-lg-show">
+                                    <span class="cart-name">Shopping Cart:</span>
+                                    <span class="cart-price">@CartController.amount DT</span>
+                                </div>
+                                @{var nb = 0; }
+                                @if (CartController.orderLines != null)
+                                {
+
+                                    foreach (OrderLine o in CartController.orderLines)
+                                    {
+                                        nb++;
+
+                                    }
+                                }
+                                <i class="d-icon-bag"><span class="cart-count"> @nb</span></i>
+                            </a>
+                            <div class="cart-overlay"></div>
+                            <!-- End Cart Toggle -->
+                            <div class="dropdown-box">
+                                <div class="cart-header">
+                                    <h4 class="cart-title">Shopping Cart</h4>
+                                    <a href="#" class="btn btn-dark btn-link btn-icon-right btn-close">
+                                        close<i class="d-icon-arrow-right"></i><span class="sr-only">Cart</span>
+                                    </a>
+                                </div>
+                                <div class="products scrollable">
+                                    @if (CartController.orderLines != null)
+                                    {
+                                        foreach (OrderLine o in CartController.orderLines)
+                                        {
+                                            <div></div>
+
+                                            <div class="product product-cart">
+
+
+                                                <div class="product-detail">
+                                                    <a href="product.html" class="product-name"> @o.product.name</a>
+                                                    <div class="price-box">
+                                                        <span class="product-quantity">@o.quantity</span>
+                                                        <span class="product-price"> @o.product.priceV DT</span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        }
+                                    }
+                                    </div>
+                                
+                                  
+                                    <div class="cart-total">
+                                        <label>Subtotal:</label>
+                                        <span class="price">@CartController.amount DT</span>
+                                    </div>
+                                    <!-- End of Cart Total -->
+                                    <div class="cart-action">
+                                        <a href="/Cart/MyCart" class="btn btn-dark btn-link">View Cart</a>
+                                      
+                                    </div>
+                                    <!-- End of Cart Action -->
+                                </div>
+                                <!-- End Dropdown Box -->
+                            </div>
+
                     </div>
                 </div>
             </div>

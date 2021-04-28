@@ -1542,6 +1542,8 @@
     <Content Include="Views\Home\Products.cshtml" />
     <Content Include="Views\Cart\MyCart.cshtml" />
     <Content Include="Views\PushaseOrderInProccess\NotifyProvider.cshtml" />
+    <Content Include="Views\Cart\Preconfirm.cshtml" />
+    <Content Include="Views\Cart\Payment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

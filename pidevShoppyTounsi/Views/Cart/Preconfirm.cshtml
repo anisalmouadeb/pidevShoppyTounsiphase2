@@ -1,0 +1,91 @@
+﻿
+
+@model IEnumerable<pidevShoppyTounsi.Models.OrderLine>
+@using pidevShoppyTounsi.Controllers
+@using pidevShoppyTounsi.Models
+@{
+    ViewBag.Title = "Preconfirm";
+}
+
+@if (LoginController.TokenConnect != "")
+{ Layout = "~/Views/Shared/ConnectedClient.cshtml"; }
+else
+{ Layout = "~/Views/Shared/NotConnectedClient.cshtml"; }
+
+
+
+
+
+<div class="step-by pr-4 pl-4">
+    <h3 class="title title-simple title-step"><a href="cart.html">1. Shopping Cart</a></h3>
+    <h3 class="title title-simple title-step active"><a href="checkout.html">2. Preconfirm</a></h3>
+    <h3 class="title title-simple title-step"><a href="order.html">3. Payment</a></h3>
+    <h3 class="title title-simple title-step"><a href="order.html">4.Order Complete</a></h3>
+</div>
+
+<main class="main mt-6 single-product">
+    <div class="page-content mb-10 pb-6">
+        <div class="container">
+
+
+
+
+
+            <div class="sticky-sidebar mt-1" data-sticky-options="{'bottom': 50}">
+                <div class="summary pt-5">
+                    <h3 class="title title-simple text-left text-uppercase">Details</h3>
+                    <table class="order-table border-danger">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="product-name">
+                                    Fashionable Overnight Bag
+                                </td>
+                                <td class="product-total text-body"> </td>
+                            </tr>
+
+                            <tr class="sumnary-shipping shipping-row-last">
+                                <td colspan="2">
+                                    <h4 class="summary-subtitle">Shipping Mode</h4>
+                                    <ul>
+                                        <li>
+                                            <div class="custom-radio">
+                                                <input type="radio" id="flat_rate"
+                                                       name="shipping" class="custom-control-input" checked>
+                                                <label class="custom-control-label"
+                                                       for="flat_rate">Pick up the order on site </label>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td class="product-total text-body">0 DT </td>
+                            </tr>
+                            <tr class="summary-total">
+                                <td class="pb-0">
+                                    <h4 class="summary-subtitle">Total</h4>
+                                </td>
+                                <td class=" pt-0 pb-0">
+                                    <p class="summary-total-price ls-s text-primary">$290.00</p>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="form-checkbox mt-4 mb-5">
+                        <input type="checkbox" class="custom-checkbox" id="terms-condition"
+                               name="terms-condition" />
+                        <label class="form-control-label" for="terms-condition">
+                            I have read and agree to the website <a href="#">terms and conditions </a>*
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-dark btn-rounded btn-order">Confirm Order</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

@@ -27,7 +27,7 @@ else
                 <div class="alert alert-light alert-primary alert-icon mb-4 card-header">
                     <i class="fas fa-exclamation-circle"></i>
                     <span class="text-body">Payment Online?</span>
-                    <a href="#alert-body1" class="text-primary collapse">Click here</a>
+                    <a href="/MakeP/Create" class="text-primary collapse">Click here</a>
                 </div>
                 <div class="card accordion">
                     <div class="alert alert-light alert-primary alert-icon mb-4 card-header">
@@ -38,9 +38,12 @@ else
                     <div class="alert-body mb-4 collapsed" id="alert-body2">
                         <p>If you have a coupon code, please apply it below.</p>
                         <div class="check-coupon-box d-flex">
-                            <input type="text" name="coupon_code" class="input-text form-control text-grey ls-m mr-4"
-                                   id="coupon_code" value="" placeholder="Coupon code">
-                            <button type="submit" class="btn btn-dark btn-rounded btn-outline">Apply Coupon</button>
+                            @using (Html.BeginForm("BonA", "MakeP", FormMethod.Post))
+                            {
+                                @Html.Editor("code", new { htmlAttributes = new { @class = "form-control form-control-rounded" } })
+                              
+                                <button type="submit" class="btn btn-dark btn-rounded btn-outline">Apply Coupon</button>
+                            }
                         </div>
                     </div>
                 </div>

@@ -154,6 +154,7 @@
     <Compile Include="Controllers\JackpotController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MakePaimentController.cs" />
+    <Compile Include="Controllers\MakePController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\PhysicalParticipantController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -164,6 +165,9 @@
     <Compile Include="Controllers\ShelfController.cs" />
     <Compile Include="Models\AddRate.cs" />
     <Compile Include="Models\AddToCart.cs" />
+    <Compile Include="Models\BonAchat.cs" />
+    <Compile Include="Models\ConfirmP.cs" />
+    <Compile Include="Models\MakeP.cs" />
     <Compile Include="Models\ShelfRevenu.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1546,6 +1550,8 @@
     <Content Include="Views\Cart\Payment.cshtml" />
     <Content Include="Views\Cart\OrderComplete.cshtml" />
     <Content Include="Views\Cart\CancelOrder.cshtml" />
+    <Content Include="Views\MakeP\Create.cshtml" />
+    <Content Include="Views\MakeP\Confirm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -215,10 +215,42 @@ namespace pidevShoppyTounsi.Controllers
             }
         }
 
+
+
         public ActionResult Preconfirm()
         {
-
             return View();
+        }
+
+        
+        public ActionResult Preconfirme()
+        {
+            try
+            {
+                HttpResponseMessage response = Client.GetAsync("getUserById/" + LoginController.ConnectedId).Result;
+                User user;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    user = response.Content.ReadAsAsync<User>().Result;
+                }
+                else
+                {
+                    user = null;
+
+                }
+
+
+                // TODO: Add delete logic here
+                var APIresponse = Client.PostAsJsonAsync<String>(baseAddress + "ConfirmOrder/" + user.shoppingcart.shoppingCartId, null).ContinueWith(postTask => postTask.Result.EnsureSuccessStatusCode());
+                return RedirectToAction("Payment");
+            }
+            catch
+            {
+                return RedirectToAction("Preconfirm");
+            }
+
+          
         }
         public ActionResult Payment()
         {

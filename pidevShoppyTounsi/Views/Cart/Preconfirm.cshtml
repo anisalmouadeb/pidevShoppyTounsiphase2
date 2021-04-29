@@ -37,14 +37,14 @@ else
                     <table class="order-table border-danger">
                         <thead>
                             <tr>
-                                <th>Product</th>
+                                <th> @LoginController.ConnectedName</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td class="product-name">
-                                    Fashionable Overnight Bag
+                                   
                                 </td>
                                 <td class="product-total text-body"> </td>
                             </tr>
@@ -70,7 +70,7 @@ else
                                     <h4 class="summary-subtitle">Total</h4>
                                 </td>
                                 <td class=" pt-0 pb-0">
-                                    <p class="summary-total-price ls-s text-primary">$290.00</p>
+                                    <p class="summary-total-price ls-s text-primary">@CartController.amount DT</p>
                                 </td>
 
                             </tr>
@@ -83,7 +83,7 @@ else
                             I have read and agree to the website <a href="#">terms and conditions </a>*
                         </label>
                     </div>
-                    <button type="submit" class="btn btn-dark btn-rounded btn-order">Confirm Order</button>
+                    <button type="button" class="btn btn-dark btn-rounded btn-order" onclick="location.href='../Cart/Preconfirme'">Confirm Order</button>
                 </div>
             </div>
         </div>

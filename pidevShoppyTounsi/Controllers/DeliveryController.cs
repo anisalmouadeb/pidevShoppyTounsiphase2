@@ -75,8 +75,6 @@ namespace pidevShoppyTounsi.Controllers
             {
 
                 var APIResponse = httpClient.PostAsJsonAsync<Delivery>(baseAddress + "addDelivery/", delivery).GetAwaiter().GetResult();
-                TempData["seccussmessage"] = "save seccuss";
-                var message = APIResponse.ToString();
                 if (APIResponse.IsSuccessStatusCode)
                 {
 
@@ -123,9 +121,9 @@ namespace pidevShoppyTounsi.Controllers
                 //question_Satisfaction.id = id;
 
                 // var APIresponse = httpClient.PutAsJsonAsync<Question_Satisfaction>(baseAddress+"Updatequestion/"+id, question_Satisfaction).GetAwaiter().GetResult();
-                var APIresponse = httpClient.PutAsJsonAsync<Delivery>(baseAddress + "updateDelivery/" + id, delivery).ContinueWith(putTask => putTask.Result.EnsureSuccessStatusCode());
+                var APIresponse = httpClient.PutAsJsonAsync<Delivery>(baseAddress+"updateDelivery/"+id,delivery).ContinueWith(putTask => putTask.Result.EnsureSuccessStatusCode());
 
-                return RedirectToAction("getallClaim");
+                return RedirectToAction("GetAllDeliverys");
             }
             catch
             {
@@ -140,9 +138,9 @@ namespace pidevShoppyTounsi.Controllers
 
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("getallDelivery");
+                return RedirectToAction("GetAllDeliverys");
             }
-            return RedirectToAction("getallDelivery");
+            return RedirectToAction("GetAllDeliverys");
 
         }
 

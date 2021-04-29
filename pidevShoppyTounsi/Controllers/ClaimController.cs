@@ -28,12 +28,12 @@ namespace pidevShoppyTounsi.Controllers
         {
 
             List<Claim> claimss = null;
-            var tokenResponse = httpClient.GetAsync(baseAddress + "getallClaim").Result;
+            var tokenResponse = httpClient.GetAsync(baseAddress +"getallClaim").Result;
             if (tokenResponse.IsSuccessStatusCode)
             {
-                var claims = tokenResponse.Content.ReadAsAsync<IEnumerable<Claim>>().Result;
+                claimss = tokenResponse.Content.ReadAsAsync<List<Claim>>().Result;
 
-                return View(claims);
+                return View(claimss);
             }
             else
             {
@@ -116,32 +116,32 @@ namespace pidevShoppyTounsi.Controllers
         {
             try
             {
-                // TODO: Add update logic here
-
-                // TODO: Add update logic here
-                //question_Satisfaction.id = id;
-
-                // var APIresponse = httpClient.PutAsJsonAsync<Question_Satisfaction>(baseAddress+"Updatequestion/"+id, question_Satisfaction).GetAwaiter().GetResult();
                 var APIresponse = httpClient.PutAsJsonAsync<Claim>(baseAddress + "updateClaim/" + id, claim).ContinueWith(putTask => putTask.Result.EnsureSuccessStatusCode());
 
-                return RedirectToAction("getallClaim");
+                return RedirectToAction("GetAllClaim");
             }
             catch
             {
                 return View();
             }
         }
+        public ActionResult Delete()
+        {
 
+            return View();
+
+        }
         // GET: Message/Delete/5
+        [HttpPost]
         public ActionResult Delete(int id)
         {
-            HttpResponseMessage response = httpClient.DeleteAsync("deleteClaim/" + id).Result;
+            HttpResponseMessage response = httpClient.DeleteAsync("deleteClaim/"+id).Result;
 
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("getallClaim");
+                return RedirectToAction("GetAllClaim");
             }
-            return RedirectToAction("getallClaim");
+            return RedirectToAction("GetAllClaim");
 
         }
     }

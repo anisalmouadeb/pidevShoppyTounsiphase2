@@ -10,14 +10,11 @@ namespace pidevShoppyTounsi.Models
      
 
 
-        public long ClaimId { get; set; }
-
-
+        public long Id { get; set; }
 
         public string description { get; set; }
         public string decision { get; set; }
 
         public string etat { get; set; }
-        public object DefaultRequestHeaders { get; internal set; }
     }
 }

@@ -1553,8 +1553,6 @@
     <Content Include="Views\Cart\OrderComplete.cshtml" />
     <Content Include="Views\Cart\CancelOrder.cshtml" />
     <Content Include="Views\Claim\Delete.cshtml" />
-    <Content Include="Views\Claim\Edit.cshtml" />
-    <Content Include="Views\Claim\GetAllClaim.cshtml" />
     <Content Include="Views\Claim\getClaimById.cshtml" />
     <Content Include="Views\Delivery\Create.cshtml" />
     <Content Include="Views\Delivery\Delete.cshtml" />
@@ -1565,6 +1563,9 @@
     <Content Include="Views\DeliveryMan\GetAllDeliveryMans.cshtml" />
     <Content Include="Views\DeliveryMan\Edit.cshtml" />
     <Content Include="Views\DeliveryMan\Delete.cshtml" />
+    <Content Include="Views\Claim\Edit.cshtml" />
+    <Content Include="Views\Claim\GetAllClaim.cshtml" />
+    <Content Include="Views\Claim\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

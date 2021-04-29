@@ -122,14 +122,20 @@ namespace pidevShoppyTounsi.Controllers
                 // var APIresponse = httpClient.PutAsJsonAsync<Question_Satisfaction>(baseAddress+"Updatequestion/"+id, question_Satisfaction).GetAwaiter().GetResult();
                 var APIresponse = httpClient.PutAsJsonAsync<DeliveryMan>(baseAddress + "updateDeliveryMan/" + id, deliveryman).ContinueWith(putTask => putTask.Result.EnsureSuccessStatusCode());
 
-                return RedirectToAction("getallDeliveryMans");
+                return RedirectToAction("GetAllDeliveryMans");
             }
             catch
             {
                 return View();
             }
         }
+        public ActionResult Delete()
+        {
+            return View();
 
+
+        }
+        [HttpPost]
         // GET: Message/Delete/5
         public ActionResult Delete(int id)
         {
@@ -137,9 +143,9 @@ namespace pidevShoppyTounsi.Controllers
 
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("getallDeliveryMans");
+                return RedirectToAction("GetAllDeliveryMans");
             }
-            return RedirectToAction("getallDeliveryMans");
+            return RedirectToAction("GetAllDeliveryMans");
 
         }
     }

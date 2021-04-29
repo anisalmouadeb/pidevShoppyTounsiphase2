@@ -98,15 +98,34 @@ namespace pidevShoppyTounsi.Controllers
 
 
 
+        public ActionResult Edit(int id)
+        {
+            var tokenResponse = httpClient.GetAsync(baseAddress + "getDelivery/" + id).Result;
+            if (tokenResponse.IsSuccessStatusCode)
+            {
+                var delivery = tokenResponse.Content.ReadAsAsync<Delivery>().Result;
+                return View(delivery);
+            }
+            else
+            {
+                return View(new Delivery());
+            }
+        }
+
         [HttpPost]
         public ActionResult Edit(int id, Delivery delivery)
         {
             try
             {
+                // TODO: Add update logic here
 
-                var APIresponse = httpClient.PutAsJsonAsync<Delivery>(baseAddress + "Updatedelivery/", delivery).ContinueWith(putTask => putTask.Result.EnsureSuccessStatusCode());
+                // TODO: Add update logic here
+                //question_Satisfaction.id = id;
 
-                return RedirectToAction("GetAllDeliverys");
+                // var APIresponse = httpClient.PutAsJsonAsync<Question_Satisfaction>(baseAddress+"Updatequestion/"+id, question_Satisfaction).GetAwaiter().GetResult();
+                var APIresponse = httpClient.PutAsJsonAsync<Delivery>(baseAddress + "updateDelivery/" + id, delivery).ContinueWith(putTask => putTask.Result.EnsureSuccessStatusCode());
+
+                return RedirectToAction("getallClaim");
             }
             catch
             {
@@ -117,19 +136,14 @@ namespace pidevShoppyTounsi.Controllers
         // GET: Message/Delete/5
         public ActionResult Delete(int id)
         {
-            HttpResponseMessage response = httpClient.GetAsync("deleteDeliveryById/" + id).Result;
-            Delivery delivery;
+            HttpResponseMessage response = httpClient.DeleteAsync("deleteDelivery/" + id).Result;
 
             if (response.IsSuccessStatusCode)
             {
-                delivery = response.Content.ReadAsAsync<Delivery>().Result;
+                return RedirectToAction("getallDelivery");
             }
-            else
-            {
-                delivery = null;
+            return RedirectToAction("getallDelivery");
 
-            }
-            return View(delivery);
         }
 
     }

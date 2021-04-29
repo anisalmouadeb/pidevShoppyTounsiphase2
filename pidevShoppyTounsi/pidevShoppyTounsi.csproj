@@ -1563,6 +1563,8 @@
     <Content Include="Views\Delivery\getDeliveryById.cshtml" />
     <Content Include="Views\DeliveryMan\Create.cshtml" />
     <Content Include="Views\DeliveryMan\GetAllDeliveryMans.cshtml" />
+    <Content Include="Views\DeliveryMan\Edit.cshtml" />
+    <Content Include="Views\DeliveryMan\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

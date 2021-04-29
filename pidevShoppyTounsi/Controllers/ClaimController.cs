@@ -97,11 +97,29 @@ namespace pidevShoppyTounsi.Controllers
 
 
 
+        public ActionResult Edit(int id)
+        {
+            var tokenResponse = httpClient.GetAsync(baseAddress + "getClaim/" + id).Result;
+            if (tokenResponse.IsSuccessStatusCode)
+            {
+                var claim = tokenResponse.Content.ReadAsAsync<Claim>().Result;
+                return View(claim);
+            }
+            else
+            {
+                return View(new Claim());
+            }
+        }
+
         [HttpPost]
         public ActionResult Edit(int id, Claim claim)
         {
             try
             {
+                // TODO: Add update logic here
+
+                // TODO: Add update logic here
+                //question_Satisfaction.id = id;
 
                 // var APIresponse = httpClient.PutAsJsonAsync<Question_Satisfaction>(baseAddress+"Updatequestion/"+id, question_Satisfaction).GetAwaiter().GetResult();
                 var APIresponse = httpClient.PutAsJsonAsync<Claim>(baseAddress + "updateClaim/" + id, claim).ContinueWith(putTask => putTask.Result.EnsureSuccessStatusCode());
@@ -114,11 +132,12 @@ namespace pidevShoppyTounsi.Controllers
             }
         }
 
-        [HttpPost]
+        // GET: Message/Delete/5
         public ActionResult Delete(int id)
         {
-            var tokenResponse = httpClient.DeleteAsync(baseAddress + "deleteClaim/" + id).Result;
-            if (tokenResponse.IsSuccessStatusCode)
+            HttpResponseMessage response = httpClient.DeleteAsync("deleteClaim/" + id).Result;
+
+            if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("getallClaim");
             }

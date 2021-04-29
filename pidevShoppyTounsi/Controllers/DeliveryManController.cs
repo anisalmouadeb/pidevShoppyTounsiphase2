@@ -95,14 +95,32 @@ namespace pidevShoppyTounsi.Controllers
 
 
 
+        public ActionResult Edit(int id)
+        {
+            var tokenResponse = httpClient.GetAsync(baseAddress + "getDeliveryMan/" + id).Result;
+            if (tokenResponse.IsSuccessStatusCode)
+            {
+                var deliveryman = tokenResponse.Content.ReadAsAsync<DeliveryMan>().Result;
+                return View(deliveryman);
+            }
+            else
+            {
+                return View(new DeliveryMan());
+            }
+        }
+
         [HttpPost]
-        public ActionResult Edit(int id, DeliveryMan deliveryMan)
+        public ActionResult Edit(int id, DeliveryMan deliveryman)
         {
             try
             {
+                // TODO: Add update logic here
+
+                // TODO: Add update logic here
+                //question_Satisfaction.id = id;
 
                 // var APIresponse = httpClient.PutAsJsonAsync<Question_Satisfaction>(baseAddress+"Updatequestion/"+id, question_Satisfaction).GetAwaiter().GetResult();
-                var APIresponse = httpClient.PutAsJsonAsync<DeliveryMan>(baseAddress + "Updateclaim/", deliveryMan).ContinueWith(putTask => putTask.Result.EnsureSuccessStatusCode());
+                var APIresponse = httpClient.PutAsJsonAsync<DeliveryMan>(baseAddress + "updateDeliveryMan/" + id, deliveryman).ContinueWith(putTask => putTask.Result.EnsureSuccessStatusCode());
 
                 return RedirectToAction("getallDeliveryMans");
             }
@@ -115,19 +133,14 @@ namespace pidevShoppyTounsi.Controllers
         // GET: Message/Delete/5
         public ActionResult Delete(int id)
         {
-            HttpResponseMessage response = httpClient.GetAsync("deleteDeliveryById/" + id).Result;
-            DeliveryMan deliveryMan;
+            HttpResponseMessage response = httpClient.DeleteAsync("deleteDeliveryMan/" + id).Result;
 
             if (response.IsSuccessStatusCode)
             {
-                deliveryMan = response.Content.ReadAsAsync<DeliveryMan>().Result;
+                return RedirectToAction("getallDeliveryMans");
             }
-            else
-            {
-                deliveryMan = null;
+            return RedirectToAction("getallDeliveryMans");
 
-            }
-            return View(deliveryMan);
         }
     }
 }

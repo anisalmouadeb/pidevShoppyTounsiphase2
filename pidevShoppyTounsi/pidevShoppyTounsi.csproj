@@ -146,7 +146,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminAccountController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\ClaimController.cs" />
     <Compile Include="Controllers\ClientAccountController.cs" />
+    <Compile Include="Controllers\DeliveryController.cs" />
+    <Compile Include="Controllers\DeliveryManController.cs" />
     <Compile Include="Controllers\DiscountTokenController.cs" />
     <Compile Include="Controllers\DonationController.cs" />
     <Compile Include="Controllers\EntryController.cs" />
@@ -164,6 +167,9 @@
     <Compile Include="Controllers\ShelfController.cs" />
     <Compile Include="Models\AddRate.cs" />
     <Compile Include="Models\AddToCart.cs" />
+    <Compile Include="Models\Claim.cs" />
+    <Compile Include="Models\Delivery.cs" />
+    <Compile Include="Models\DeliveryMan.cs" />
     <Compile Include="Models\ShelfRevenu.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1546,6 +1552,17 @@
     <Content Include="Views\Cart\Payment.cshtml" />
     <Content Include="Views\Cart\OrderComplete.cshtml" />
     <Content Include="Views\Cart\CancelOrder.cshtml" />
+    <Content Include="Views\Claim\Delete.cshtml" />
+    <Content Include="Views\Claim\Edit.cshtml" />
+    <Content Include="Views\Claim\GetAllClaim.cshtml" />
+    <Content Include="Views\Claim\getClaimById.cshtml" />
+    <Content Include="Views\Delivery\Create.cshtml" />
+    <Content Include="Views\Delivery\Delete.cshtml" />
+    <Content Include="Views\Delivery\Edit.cshtml" />
+    <Content Include="Views\Delivery\GetAllDeliverys.cshtml" />
+    <Content Include="Views\Delivery\getDeliveryById.cshtml" />
+    <Content Include="Views\DeliveryMan\Create.cshtml" />
+    <Content Include="Views\DeliveryMan\GetAllDeliveryMans.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

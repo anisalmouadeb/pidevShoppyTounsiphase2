@@ -1,0 +1,29 @@
+﻿@model pidevShoppyTounsi.Models.ConfirmP
+@using pidevShoppyTounsi.Controllers
+@{
+    ViewBag.Title = "Confirm";
+}
+
+@if (LoginController.TokenConnect != "")
+{ Layout = "~/Views/Shared/ConnectedClient.cshtml"; }
+else
+{ Layout = "~/Views/Shared/NotConnectedClient.cshtml"; }
+
+<h2>Confirm</h2>
+
+
+<div>
+    <h4>Confirm Paiment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dd>
+            <Label>Confirm your payment ?</Label>
+        </dd>
+        <dd>
+            <a href=@ViewBag.url class="btn btn-success">Confirm</a>
+        </dd>
+    </dl>
+</div>
+<p>
+</p>
+

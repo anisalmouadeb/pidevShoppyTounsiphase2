@@ -15,7 +15,8 @@ namespace pidevShoppyTounsi.Controllers
     {
         HttpClient Client;
         string baseAddress;
-
+        public static IEnumerable<OrderLine> orderLines;
+        public static float amount;
         public CartController()
         {
             Client = new HttpClient();
@@ -83,9 +84,9 @@ namespace pidevShoppyTounsi.Controllers
         public ActionResult MyCart()
         {
             Debug.WriteLine(LoginController.ConnectedId);
-            HttpResponseMessage response = Client.GetAsync("getOrderLineByUser/"+LoginController.ConnectedId).Result;
+            HttpResponseMessage response = Client.GetAsync("getOrderLineByUser/" + LoginController.ConnectedId).Result;
             IEnumerable<OrderLine> ords;
-            
+
             if (response.IsSuccessStatusCode)
             {
                 ords = response.Content.ReadAsAsync<IEnumerable<OrderLine>>().Result;
@@ -95,9 +96,41 @@ namespace pidevShoppyTounsi.Controllers
                 ords = null;
 
             }
-            
+            CartController.orderLines = ords;
             ViewBag.ords = ords;
+
+            HttpResponseMessage response3 = Client.GetAsync("getUserById/" + LoginController.ConnectedId).Result;
+            User user;
+
+            if (response3.IsSuccessStatusCode)
+            {
+                user = response3.Content.ReadAsAsync<User>().Result;
+            }
+            else
+            {
+                user = null;
+
+            }
+            HttpResponseMessage response2 = Client.GetAsync("getTotalAmount/" + user.shoppingcart.shoppingCartId).Result;
+
+            float a = 0;
+            if (response2.IsSuccessStatusCode)
+            {
+                a = response2.Content.ReadAsAsync<float>().Result;
+            }
+            else
+            {
+                a = 0;
+                // comment 
+            }
+
+            CartController.amount = a;
+
+
             return View();
+          
+            
+         
           
         }
    
@@ -159,11 +192,16 @@ namespace pidevShoppyTounsi.Controllers
         }
 
         // GET: Cart/Delete/5
- 
+
 
         // POST: Cart/Delete/5
-       
-        public ActionResult Delete(int id)
+      
+        public ActionResult Total()
+        {
+          
+            return View();
+        }
+            public ActionResult Delete(int id)
         {
             try
             {
@@ -176,6 +214,62 @@ namespace pidevShoppyTounsi.Controllers
                 return RedirectToAction("MyCart");
             }
         }
+
+
+
+        public ActionResult Preconfirm()
+        {
+            return View();
+        }
+
+        
+        public ActionResult Preconfirme()
+        {
+            try
+            {
+                HttpResponseMessage response = Client.GetAsync("getUserById/" + LoginController.ConnectedId).Result;
+                User user;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    user = response.Content.ReadAsAsync<User>().Result;
+                }
+                else
+                {
+                    user = null;
+
+                }
+
+
+                // TODO: Add delete logic here
+                var APIresponse = Client.PostAsJsonAsync<String>(baseAddress + "ConfirmOrder/" + user.shoppingcart.shoppingCartId, null).ContinueWith(postTask => postTask.Result.EnsureSuccessStatusCode());
+                return RedirectToAction("Payment");
+            }
+            catch
+            {
+                return RedirectToAction("Preconfirm");
+            }
+
+          
+        }
+        public ActionResult Payment()
+        {
+
+            return View();
+        }
+
+        public ActionResult OrderComplete()
+        {
+
+            return View();
+        }
+        public ActionResult CancelOrder()
+        {
+
+            return View();
+        }
+
+
     }
 
 

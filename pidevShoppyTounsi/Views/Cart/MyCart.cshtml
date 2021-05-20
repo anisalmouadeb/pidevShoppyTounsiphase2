@@ -14,6 +14,12 @@ else
 
     <div class="page-content mt-4 mb-10 pb-6">
         <div class="container">
+            <div class="step-by pr-4 pl-4">
+                <h3 class="title title-simple title-step active"><a href="cart.html">1. Shopping Cart</a></h3>
+                <h3 class="title title-simple title-step "><a href="checkout.html">2. Preconfirm</a></h3>
+                <h3 class="title title-simple title-step"><a href="order.html">3. Payment</a></h3>
+                <h3 class="title title-simple title-step "><a href="order.html">4.Order Complete</a></h3>
+            </div>
 
             <div class="tab tab-vertical gutter-lg">
                 <ul class="nav nav-tabs mb-4 col-lg-3 col-md-4" role="tablist">
@@ -27,7 +33,7 @@ else
                         <table class="order-table">
                             <thead>
                                 <tr>
-                                   
+
                                     <th>Product Name</th>
                                     <th>Quantity</th>
                                     <th>Price</th>
@@ -36,29 +42,35 @@ else
                                 </tr>
                             </thead>
                             <tbody>
-                                @if(ViewBag.ords!=null)
-                                { 
-                                foreach (OrderLine o in ViewBag.ords)
+                                @if (ViewBag.ords != null)
                                 {
-                                <tr>
-                                    <td class="order-sm-11"><a href="#">@o.product.name</a></td>
-                                    <td class="order-number">@o.quantity</td>
-                                    <td class="order-status">@o.price</td>
-                                    <td class="order-total">
-                                        @if (o.confirmed == true)
-                                        {<div> Confirmed</div> }
-                                        else
-                                        { <span> Not Confirmed</span>}
-                                    </td>
-                                    @if (o.confirmed == false) { 
-                                        <td class="order-action">   <a class="btn btn-link text-danger m-1" onclick="location.href='Delete/'+@o.orderLineId">  Delete </a></td>
-                             }
-                                </tr>
-                                }
+                                    foreach (OrderLine o in ViewBag.ords)
+                                    {
+                                        <tr>
+                                            <td class="order-sm-11"><a href="#">@o.product.name</a></td>
+                                            <td class="order-number">@o.quantity</td>
+                                            <td class="order-status">@o.price</td>
+                                            <td class="order-total">
+                                                @if (o.confirmed == true)
+                                                {<div> Confirmed</div> }
+                                                else
+                                                { <span> Not Confirmed</span>}
+                                            </td>
+                                            @if (o.confirmed == false)
+                                            {
+                                                <td class="order-action">   <a class="btn btn-link text-danger m-1" onclick="location.href='Delete/'+@o.orderLineId">  Delete </a></td>
+                                            }
+                                        </tr>
+                                    }
 
                                 }
                             </tbody>
                         </table>
+                        <div class="cart-actions mb-6 pt-4">
+                            <a href="/Home/Products" class="btn btn-dark btn-md btn-rounded btn-icon-left mr-4 mb-4"><i class="d-icon-arrow-left"></i>Continue Shopping</a>
+
+                            <a href="/Cart/PreConfirm" class="btn btn-dark btn-rounded btn-order">Place Order</a>
+                        </div>
                     </div>
 
 

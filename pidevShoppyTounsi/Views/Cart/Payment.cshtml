@@ -1,0 +1,54 @@
+﻿
+
+@model IEnumerable<pidevShoppyTounsi.Models.OrderLine>
+@using pidevShoppyTounsi.Controllers
+@using pidevShoppyTounsi.Models
+@{
+    ViewBag.Title = "Payment";
+}
+
+@if (LoginController.TokenConnect != "")
+{ Layout = "~/Views/Shared/ConnectedClient.cshtml"; }
+else
+{ Layout = "~/Views/Shared/NotConnectedClient.cshtml"; }
+
+
+<main class="main checkout">
+    <div class="page-content pt-7 pb-10 mb-10">
+        <div class="step-by pr-4 pl-4">
+            <h3 class="title title-simple title-step"><a href="cart.html">1. Shopping Cart</a></h3>
+            <h3 class="title title-simple title-step "><a href="checkout.html">2. Checkout</a></h3>
+            <h3 class="title title-simple title-step active"><a href="order.html">3. Payment</a></h3>
+            <h3 class="title title-simple title-step"><a href="order.html">4.Order Complete</a></h3>
+        </div>
+        <div class="container mt-7">
+
+            <div class="card accordion">
+                <div class="alert alert-light alert-primary alert-icon mb-4 card-header">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span class="text-body">Payment Online?</span>
+                    <a href="/MakeP/Create" class="text-primary collapse">Click here</a>
+                </div>
+                <div class="card accordion">
+                    <div class="alert alert-light alert-primary alert-icon mb-4 card-header">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span class="text-body">Have a coupon?</span>
+                        <a href="#alert-body2" class="text-primary">Click here to enter your code</a>
+                    </div>
+                    <div class="alert-body mb-4 collapsed" id="alert-body2">
+                        <p>If you have a coupon code, please apply it below.</p>
+                        <div class="check-coupon-box d-flex">
+                            @using (Html.BeginForm("BonA", "MakeP", FormMethod.Post))
+                            {
+                                @Html.Editor("code", new { htmlAttributes = new { @class = "form-control form-control-rounded" } })
+                              
+                                <button type="submit" class="btn btn-dark btn-rounded btn-outline">Apply Coupon</button>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+

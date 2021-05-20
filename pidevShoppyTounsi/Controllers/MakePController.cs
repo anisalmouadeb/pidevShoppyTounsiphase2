@@ -1,19 +1,19 @@
-﻿using pidevShoppyTounsi.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Web;
+using System.Net.Http;
 using System.Web.Mvc;
+using pidevShoppyTounsi.Models;
+using System.Diagnostics;
 
 namespace pidevShoppyTounsi.Controllers
 {
-    public class OrderController : Controller
+    public class MakePController : Controller
     {
         HttpClient Client;
         string baseAddress;
-
-        public OrderController()
+        public MakePController()
         {
             Client = new HttpClient();
             baseAddress = "http://localhost:8081/";
@@ -27,38 +27,57 @@ namespace pidevShoppyTounsi.Controllers
                     new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", LoginController.TokenConnect);
             }
         }
-        // GET: Order
+        // GET: MakeP
         public ActionResult Index()
         {
-            HttpResponseMessage response = Client.GetAsync("getAllOrders").Result;
-            IEnumerable<Order> orders;
-
-            if (response.IsSuccessStatusCode)
-            {
-                orders = response.Content.ReadAsAsync<IEnumerable<Order>>().Result;
-            }
-            else
-            {
-                orders = null;
-                // comment 
-            }
-
-            return View(orders);
+            return View();
         }
 
-        // GET: Order/Details/5
+        // GET: MakeP/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Order/Create
-        public ActionResult Create()
+        // GET: MakeP/Create
+        public ActionResult Create(FormCollection collection, MakeP makeP)
         {
-            return View();
+            ConfirmP confirmP;
+            Debug.WriteLine(makeP.sum);
+            try
+            {
+                HttpResponseMessage response = Client.GetAsync("getAllOrders").Result;
+                IEnumerable<Order> orders;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    orders = response.Content.ReadAsAsync<IEnumerable<Order>>().Result;
+                }
+                else
+                {
+                    orders = null;
+                    // comment 
+                }
+                int a = 0;
+                foreach(Order o in orders )
+                {
+                    a = o.orderId;
+                }
+                makeP.sum = (int)CartController.amount;
+                    
+                // TODO: Add insert logic here
+                var response2 = Client.PostAsJsonAsync<MakeP>("paypale/makee/paymentee/"+a, makeP).ContinueWith(postTask => postTask.Result.EnsureSuccessStatusCode()).Result;
+                confirmP = response2.Content.ReadAsAsync<ConfirmP>().Result;
+
+                return RedirectToAction("Confirm", confirmP);
+            }
+            catch
+            {
+                return View();
+            }
         }
 
-        // POST: Order/Create
+        // POST: MakeP/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -74,13 +93,13 @@ namespace pidevShoppyTounsi.Controllers
             }
         }
 
-        // GET: Order/Edit/5
+        // GET: MakeP/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Order/Edit/5
+        // POST: MakeP/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -96,13 +115,13 @@ namespace pidevShoppyTounsi.Controllers
             }
         }
 
-        // GET: Order/Delete/5
+        // GET: MakeP/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Order/Delete/5
+        // POST: MakeP/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
@@ -117,74 +136,20 @@ namespace pidevShoppyTounsi.Controllers
                 return View();
             }
         }
-        // GET: GetOrderOftheMonth
-        public ActionResult GetOrderOftheMonth()
+
+        public ActionResult Confirm(ConfirmP confirmP)
         {
 
-            HttpResponseMessage response = Client.GetAsync("GetOrderOftheMonth").Result;
-            Order orders;
+            String url = confirmP.redirectUrl;
+            ViewBag.url = url;
 
-            if (response.IsSuccessStatusCode)
-            {
-                orders = response.Content.ReadAsAsync<Order>().Result;
-            }
-            else
-            {
-                orders = null;
-
-            }
-
-            return View(orders);
+            return View(confirmP);
         }
-        // GET: GetStarUserOftheMonth
-        public ActionResult GetStarUserOftheMonth()
+        [HttpPost]
+        public ActionResult BonA(BonAchat b)
         {
-
-            HttpResponseMessage response = Client.GetAsync("GetStarUserOftheMonth").Result;
-            User users;
-
-            if (response.IsSuccessStatusCode)
-            {
-                users = response.Content.ReadAsAsync<User>().Result;
-            }
-            else
-            {
-                users = null;
-
-            }
-
-            return View(users);
-        }
-
-
-        public ActionResult Pdf()
-        {
-
-            HttpResponseMessage response = Client.GetAsync("getAllOrders").Result;
-            IEnumerable<Order> orders;
-
-            if (response.IsSuccessStatusCode)
-            {
-                orders = response.Content.ReadAsAsync<IEnumerable<Order>>().Result;
-            }
-            else
-            {
-                orders = null;
-
-            }
-            int a = 0;
-            foreach (Order o in orders)
-            {
-                a = o.orderId;
-            }
-
-
-            return Redirect(baseAddress + "export/pdf/" + a);
-            //nchalh tekhdm
-        }
-
-        public ActionResult CancelOrder()
-        {
+            Debug.WriteLine("nchalh tekhdm");
+            Debug.WriteLine(b.code);
             HttpResponseMessage response = Client.GetAsync("getAllOrders").Result;
             IEnumerable<Order> orders;
 
@@ -202,10 +167,9 @@ namespace pidevShoppyTounsi.Controllers
             {
                 a = o.orderId;
             }
-            var APIresponse = Client.PostAsJsonAsync<Order>(baseAddress + "CancelOrder/" + a, null).GetAwaiter().GetResult();
-
-            return RedirectToAction("../Cart/CancelOrder");
-
+            var APIresponse = Client.PostAsJsonAsync<Order>(baseAddress + "PaymentDone/" +a+"/" +b.code , null).GetAwaiter().GetResult();
+            Debug.WriteLine(APIresponse.StatusCode);
+            return RedirectToAction("../Cart/OrderComplete");
         }
     }
 }

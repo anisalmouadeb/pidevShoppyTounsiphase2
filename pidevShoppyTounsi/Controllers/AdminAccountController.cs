@@ -32,9 +32,12 @@ namespace pidevShoppyTounsi.Controllers
         // GET: AdminAccount
         public ActionResult Index()
         {
-     
+
+
+
             return View();
         }
+
 
         public ActionResult Home()
         {
@@ -112,6 +115,59 @@ namespace pidevShoppyTounsi.Controllers
 
             ViewBag.amount = amount;
             Debug.WriteLine(amount);
+
+
+
+
+
+
+
+
+
+
+
+
+
+            HttpResponseMessage response5 = Client.GetAsync("getAllEntry").Result;
+            IEnumerable<Entry> entries;
+
+
+            if (response5.IsSuccessStatusCode)
+            {
+                entries = response5.Content.ReadAsAsync<IEnumerable<Entry>>().Result;
+
+            }
+            else
+            {
+                entries = null;
+            }
+            List<double> montants = new List<double>() { 0, 0, 0, 0, 0, 0, 0 };
+            for (int i = 0; i < 7; i++)
+            {
+                montants[i] = 0;
+            }
+            for (int i = 0; i < 7; i++)
+            {
+                double mt = 0;
+                foreach (Entry e in entries)
+                {
+                    if (e.entryDate.Day.Equals(DateTime.Now.Day - i) && e.entryDate.Month.Equals(DateTime.Now.Month) && e.entryDate.Year.Equals(DateTime.Now.Year))
+                    {
+                        mt = mt + e.montant;
+                    }
+
+                }
+                montants[i] = mt;
+                Debug.WriteLine(montants[i]);
+            }
+            ViewBag.amounts = montants;
+
+
+
+
+
+
+
             return View();
         }
         // GET: AdminAccount/Details/5
@@ -184,6 +240,9 @@ namespace pidevShoppyTounsi.Controllers
                 {
                     JwtResponse response = APIresponse.Content.ReadAsAsync<JwtResponse>().Result;
                     LoginController.TokenConnect = response.accessToken;
+                    LoginController.ConnectedName = response.username;
+                    LoginController.ConnectedId = response.id;
+                    LoginController.ConnectedRole = response.roles.ElementAt(0);
 
 
 

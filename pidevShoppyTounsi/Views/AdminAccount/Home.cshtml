@@ -80,29 +80,94 @@
             <div class="card-body">
                 @foreach (ShelfRevenu s in ViewBag.shelfs)
                 {
-                <div class="media align-items-center">
+                    <div class="media align-items-center">
 
-                    <div class="media-body text-left ml-3">
-                        <div class="progress-wrapper">
-                            @{int a =(int)((s.revenu / ViewBag.amount) * 100);}
-                            <p>@s.shelf <span class="float-right">@s.revenu DT  </span></p>
-                            <div class="progress" style="height: 7px">
+                        <div class="media-body text-left ml-3">
+                            <div class="progress-wrapper">
+                                @{int a = (int)((s.revenu / ViewBag.amount) * 100);}
+                                <p>@s.shelf <span class="float-right">@s.revenu DT  </span></p>
+                                <div class="progress" style="height: 7px">
 
 
-                                <div class="progress-bar gradient-deepblue" style="@Html.Raw("width:" + a + "%;")"></div>
+                                    <div class="progress-bar gradient-deepblue" style="@Html.Raw("width:" + a + "%;")"></div>
+                                </div>
+
                             </div>
 
                         </div>
 
-</div>
+                    </div>
 
-</div>
-
-<hr>
-                                   }
+                    <hr>
+                }
             </div>
         </div>
     </div>
 
 </div><!--End Row-->
 
+<div class="row">
+    <div class="col-12 col-lg-12 col-xl-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-line-chart"></i> Otlays Last Seven Days Revenue
+                <div class="card-action">
+
+
+                </div>
+            </div>
+            <div class="card-body">
+
+                <figure class="highcharts-figure">
+                    <div id="container"></div>
+                    <p class="highcharts-description">
+                        This chart shows teh outlays of our Store
+                    </p>
+                </figure>
+            </div>
+        </div>
+    </div>
+
+</div><!--End Row-->
+
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+@{int b = (int)DateTime.Now.Day;}
+<script>
+    Highcharts.chart('container', {
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: 'Last Seven Days Outlays'
+        },
+        subtitle: {
+            text: 'ShoppyTounsi.tn'
+        },
+        xAxis: {
+            categories: ['@{int x1 = b - 6;} @x1-@DateTime.Now.Month', '@{int x2 = b - 5;} @x2-@DateTime.Now.Month', '@{int x3 = b - 4;} @x3-@DateTime.Now.Month', '@{int x4 = b - 3;} @x4-@DateTime.Now.Month', '@{int x5 = b - 2;} @x5-@DateTime.Now.Month', '@{int x6 = b - 1;} @x6-@DateTime.Now.Month', '@DateTime.Now.Day-@DateTime.Now.Month']
+        },
+        yAxis: {
+            title: {
+                text: 'Amount (DT)'
+            }
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: true
+                },
+                enableMouseTracking: false
+            }
+        },
+        series: [{
+            name: 'Outlays',
+            data: [@ViewBag.amounts[6], @ViewBag.amounts[5], @ViewBag.amounts[4], @ViewBag.amounts[3], @ViewBag.amounts[2], @ViewBag.amounts[1], @ViewBag.amounts[0]]
+        }, ]
+    });
+
+</script>

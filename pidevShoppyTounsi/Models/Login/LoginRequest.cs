@@ -8,9 +8,10 @@ namespace pidevShoppyTounsi.Models.Login
 {
     public class LoginRequest
     {
-        [Required]
+        [Required(ErrorMessage = "Userame is required")]
         public String username { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Password is required")]
+ 
         [DataType(DataType.Password)]
         public String password { get; set; }
     }

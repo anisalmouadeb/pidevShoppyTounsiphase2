@@ -3,6 +3,7 @@ using pidevShoppyTounsi.Models;
 using pidevShoppyTounsi.Models.Login;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Web;
@@ -23,6 +24,12 @@ namespace pidevShoppyTounsi.Controllers
             baseAddress = "http://localhost:8081/";
             Client.BaseAddress = new Uri(baseAddress);
             Client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            if (LoginController.TokenConnect != "")
+            {
+                Client.DefaultRequestHeaders.Add("Accept", "application/json");
+                Client.DefaultRequestHeaders.Authorization =
+                    new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", LoginController.TokenConnect);
+            }
         }
         // GET: BonCommande
         public ActionResult Index()
@@ -51,7 +58,57 @@ namespace pidevShoppyTounsi.Controllers
         {
             try
             {
-                
+
+                Debug.WriteLine("begin");
+                Debug.WriteLine(b.productName);
+         
+                var APIresponse = Client.PostAsJsonAsync<BonCommande>(baseAddress + "notifyProvider/" + b.productName,null).ContinueWith(postTask => postTask.Result.EnsureSuccessStatusCode());
+
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+            public ActionResult NotifyProvider()
+        {
+
+         
+            HttpResponseMessage response2 = Client.GetAsync("allProducts").Result;
+            IEnumerable<Product> products;
+        
+
+            if (response2.IsSuccessStatusCode)
+            {
+                products = response2.Content.ReadAsAsync<IEnumerable<Product>>().Result;
+            }
+            else
+            {
+                products = null;
+            }
+     
+            ViewBag.ProductId = new SelectList(products, "ProductId", "name");
+            return View();
+        }
+
+
+
+
+
+
+
+
+
+
+        [HttpPost]
+        public ActionResult Create(BonCommande b)
+        {
+            try
+            {
+
                 HttpResponseMessage response = Client.GetAsync("getProductById/" + b.productName).Result;
                 Product Product;
 
@@ -92,7 +149,7 @@ namespace pidevShoppyTounsi.Controllers
             }
         }
 
-            public ActionResult NotifyProvider()
+        public ActionResult Create()
         {
 
             HttpResponseMessage response = Client.GetAsync("getAllProviders").Result;
@@ -121,6 +178,10 @@ namespace pidevShoppyTounsi.Controllers
             ViewBag.ProductId = new SelectList(products, "ProductId", "name");
             return View();
         }
+
+
+
+
 
 
 

@@ -65,10 +65,7 @@
                             @Html.DisplayNameFor(model => model.verified)
 
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.connected)
-
-                        </th>
+                 
 
                         <th></th>
                     </tr>
@@ -147,23 +144,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td>
-                                <div>
-                                    <div>
-                                        @if (item.connected)
-                                        {<div class="icheck-material-success">
-                                                <input type="checkbox" id="success" checked disabled />
-                                                <label for="success"></label>
-                                            </div>}
-                                        else
-                                        {<div class="icheck-material-danger">
-                                                <input type="checkbox" id="success" checked disabled />
-                                                <label for="success"></label>
-                                            </div>}
-
-                                    </div>
-                                </div>
-                            </td>
+                           
                             <td>
                                 <a class="btn btn-link text-info m-1" href="@Url.Action("Details","User" , new { id = item.userId })"> Details </a>
 

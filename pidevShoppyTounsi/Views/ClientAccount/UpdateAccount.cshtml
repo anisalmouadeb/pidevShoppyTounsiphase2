@@ -118,10 +118,11 @@ else
                                 <i class="fa fa-check-square-o"></i>
                                 Submit
                             </button>
+                            <button type="button" class="btn btn-dark" onclick="location.href='MyAccount'">Back to your Details </button>
                             @{
                                 if (TempData["message1"] != null)
                                 {
-                                    @Html.Label("username or email is alrady exist", new { @style = "font-size:20px ;color:red; margin-left:20px" })
+                                    @Html.Label("username or email is alrady exist", new { @style = "font-size:15px ;color:red; margin-left:10px" })
 
 
                                 }

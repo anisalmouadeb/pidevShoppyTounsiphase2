@@ -18,7 +18,7 @@ namespace pidevShoppyTounsi.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Entry Date")]
-        public string entryDate { get; set; }
+        public DateTime entryDate { get; set; }
         
         [Required(ErrorMessage = "Please select product")]
         public Product product { get; set; }

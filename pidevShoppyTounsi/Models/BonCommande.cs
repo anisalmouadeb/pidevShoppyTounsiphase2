@@ -17,7 +17,8 @@ namespace pidevShoppyTounsi.Models
 		[Display(Name = "Provier Name")]
 		public String providerName { get; set; }
 		[Display(Name = "Purchase Order Date")]
-		[DataType(DataType.DateTime)]
+		[DataType(DataType.Date)]
+		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 		public DateTime bonCommandeDate { get; set; }
 		public int quantity { get; set; }
 	}

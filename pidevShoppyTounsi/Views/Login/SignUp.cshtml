@@ -52,7 +52,7 @@
                                 @Html.EditorFor(model => model.email, new { htmlAttributes = new { style = "font-size:15px", @class = "col-md-12 form-control input-shadow" } })
 
                                 <div class="form-control-position">
-                                    <i class="icon-envelope-open"></i>
+                                    <i class="icon-envelope"></i>
                                 </div>
                                 @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
                             </div>
@@ -89,7 +89,7 @@
                                 @Html.EditorFor(model => model.cin, new { htmlAttributes = new { style = "font-size:15px", @class = "col-md-12 form-control input-shadow" } })
 
                                 <div class="form-control-position">
-                                    <i class="icon-lock"></i>
+                                    <i class="fa fa-id-card"></i>
                                 </div>
                                 @Html.ValidationMessageFor(model => model.cin, "", new { @class = "text-danger" })
                             </div>
@@ -102,7 +102,7 @@
                                 @Html.EditorFor(model => model.address, new { htmlAttributes = new { style = "font-size:15px", @class = "col-md-12 form-control input-shadow" } })
 
                                 <div class="form-control-position">
-                                    <i class="icon-lock"></i>
+                                    <i class="icon-home"></i>
                                 </div>
                                 @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
                             </div>
@@ -116,21 +116,21 @@
                                 @Html.EditorFor(model => model.sex, new { htmlAttributes = new { style = "font-size:15px", @class = "col-md-12 form-control input-shadow" } })
 
                                 <div class="form-control-position">
-                                    <i class="icon-lock"></i>
+                                    <i class="icon-user"></i>
                                 </div>
                                 @Html.ValidationMessageFor(model => model.sex, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <br />
                         <div class="form-group">
-                            <label for="exampleInputPassword" class="" style="font-size:12px">Phone Number</label>
+                            <label for="exampleInputPassword" class="" style="font-size:12px">Phone Number (+216)</label>
                             <div class="position-relative has-icon-right" style="font-size:12px">
                                 @Html.EditorFor(model => model.numTel, new { htmlAttributes = new { style = "font-size:15px", @class = "  col-md-12 col- form-control input-shadow" } })
 
                                 <div class="form-control-position">
-                                    <i class="icon-lock"></i>
+                                    <i class="icon-phone"></i>
                                 </div>
-                                @Html.ValidationMessageFor(model => model.numTel, "", new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(model => model.numTel, "", new { @default= "+216",@class = "text-danger" })
                             </div>
                         </div>
 

@@ -831,6 +831,7 @@
     <Content Include="assets\images\gallery\slider-c.jpg" />
     <Content Include="assets\images\logo-icon.png" />
     <Content Include="assets\images\logo-icon2.png" />
+    <Content Include="assets\images\page-header-back.jpg" />
     <Content Include="assets\images\payment-icons\american-dark.png" />
     <Content Include="assets\images\payment-icons\mastro-dark.png" />
     <Content Include="assets\images\payment-icons\paypal-dark.png" />
@@ -1542,6 +1543,8 @@
     <Content Include="Views\Home\Products.cshtml" />
     <Content Include="Views\Cart\MyCart.cshtml" />
     <Content Include="Views\PushaseOrderInProccess\NotifyProvider.cshtml" />
+    <Content Include="Views\AdminAccount\Index.cshtml" />
+    <Content Include="Views\PushaseOrderInProccess\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

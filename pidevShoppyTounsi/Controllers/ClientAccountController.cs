@@ -85,8 +85,12 @@ namespace pidevShoppyTounsi.Controllers
                  {
                      JwtResponse response = APIresponse.Content.ReadAsAsync<JwtResponse>().Result;
                      LoginController.TokenConnect = response.accessToken;
+                 
+                    LoginController.ConnectedName = response.username;
+                    LoginController.ConnectedId = response.id;
+                    LoginController.ConnectedRole = response.roles.ElementAt(0);
 
-                     Debug.WriteLine(u.name);
+                    Debug.WriteLine(u.name);
                      Debug.WriteLine(u.userId);
 
                      return RedirectToAction("MyAccount");

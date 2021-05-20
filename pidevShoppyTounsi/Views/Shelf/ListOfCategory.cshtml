@@ -21,9 +21,7 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.name)
                             </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.categoryType)
-                            </th>
+                      
                             <th>
 
 
@@ -41,9 +39,6 @@
                                     @Html.DisplayFor(modelItem => item.name)
                                 </td>
 
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.categoryType)
-                                </td>
 
                                 <td>
                                     <a class="btn btn-link text-danger m-1" href="@Url.Action("DeleteCategory","Shelf" ,new { id = item.categoryId, shelfId = @ViewBag.shelfid })">  Delete  </a>

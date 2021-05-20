@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<figure class="highcharts-figure">
+    <div id="container"></div>
+    <p class="highcharts-description">
+        This chart shows teh outlays of our Store
+    </p>
+</figure>
+@{int a = (int)DateTime.Now.Day;}
+<script>
+    Highcharts.chart('container', {
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: 'Last Seven Days Outlays'
+        },
+        subtitle: {
+            text: 'ShoppyTounsi.tn'
+        },
+        xAxis: {
+            categories: ['@{int x1 = a - 6;} @x1-@DateTime.Now.Month', '@{int x2 = a - 5;} @x2-@DateTime.Now.Month', '@{int x3 = a - 4;} @x3-@DateTime.Now.Month', '@{int x4 = a - 3;} @x4-@DateTime.Now.Month', '@{int x5 = a - 2;} @x5-@DateTime.Now.Month', '@{int x6 = a - 1;} @x6-@DateTime.Now.Month', '@DateTime.Now.Day-@DateTime.Now.Month']
+        },
+        yAxis: {
+            title: {
+                text: 'Amount (DT)'
+            }
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: true
+                },
+                enableMouseTracking: false
+            }
+        },
+        series: [{
+            name: 'Outlays',
+            data: [@ViewBag.amount[6], @ViewBag.amount[5], @ViewBag.amount[4], @ViewBag.amount[3], @ViewBag.amount[2], @ViewBag.amount[1], @ViewBag.amount[0]]
+        }, ]
+    });
+
+</script>

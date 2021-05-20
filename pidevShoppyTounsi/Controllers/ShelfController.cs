@@ -283,7 +283,7 @@ namespace pidevShoppyTounsi.Controllers
         {
             return View();
         }
-
+        [RedirectingAction]
         // POST: Shelf/Create
         [HttpPost]
         public ActionResult Create(Shelf shelf)
@@ -292,7 +292,7 @@ namespace pidevShoppyTounsi.Controllers
             {
                 var APIresponse = Client.PostAsJsonAsync<Shelf>(baseAddress + "addShelf", shelf).GetAwaiter().GetResult();
                 // TODO: Add insert logic here
-                String message = APIresponse.ToString();
+              
                 if (APIresponse.IsSuccessStatusCode)
                 {
                     JwtResponse response = APIresponse.Content.ReadAsAsync<JwtResponse>().Result;
@@ -309,7 +309,7 @@ namespace pidevShoppyTounsi.Controllers
 
             catch
             {
-                return View();
+                return RedirectToAction("Index");
             }
         }
 
@@ -443,20 +443,43 @@ namespace pidevShoppyTounsi.Controllers
                 shelf = null;
 
             }
-            IList<Category> cat2 = new List<Category> { };
-            IEnumerable<Category> cats3;
+            List<Category> cat2 = new List<Category> { };
+            IEnumerable<Category> cats3 = new List<Category> { }; ;
          
-            cats3 = shelf.category;
-            foreach (Category c in cat1)
+            if(shelf.category.Any())
+            { cats3 = shelf.category;
+                Debug.WriteLine("add1");
+            }
+            else
             {
-                foreach (Category c2 in cats3)
+                Debug.WriteLine("add2");
+            }
+           
+
+           
+            if (cats3.Any())
+            {
+                foreach (Category c in cat1)
                 {
-                    if(c.categoryId!=c2.categoryId)
+                    foreach (Category c2 in cats3)
                     {
-                        Debug.WriteLine("add" + c.name + c2.name);
-                        cat2.Add(c);
+                        if (c.categoryId != c2.categoryId)
+                        {
+                            Debug.WriteLine("add" + c.name + c2.name);
+                            cat2.Add(c);
+                        }
                     }
+
+
                 }
+            }
+            else
+            {
+                foreach (Category c in cat1)
+                {
+                    Debug.WriteLine("add" + c.name );
+                    cat2.Add(c);
+;                }
 
 
             }
